@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\home\\createstudent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\home\\createstudent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\home\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\home\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\home\\updatestudent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\home\\updatestudent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\model\\studentscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\model\\studentscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|e:\\asp.net core\\cruddatabasefirst\\cruddatabasefirst\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{72604B67-0904-443C-9AEC-06AC03DDA02C}|CRUDDatabaseFirst\\CRUDDatabaseFirst.csproj|solutionrelative:cruddatabasefirst\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T09:35:32.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Delete.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Home\\Delete.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Delete.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Home\\Delete.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T09:26:27.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateStudent.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\CreateStudent.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Home\\CreateStudent.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\CreateStudent.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Home\\CreateStudent.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T09:21:11.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UpdateStudent.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\UpdateStudent.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Home\\UpdateStudent.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\UpdateStudent.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Home\\UpdateStudent.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T09:18:20.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Details.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Home\\Details.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Details.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Home\\Details.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAACgAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T08:57:29.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T08:44:26.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAswCMAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T08:29:15.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Program.cs",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Program.cs",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Program.cs",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Program.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAADwvwsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T08:17:01.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\appsettings.json",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\appsettings.json",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\appsettings.json",
+              "RelativeToolTip": "CRUDDatabaseFirst\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-11T08:15:11.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StudentsContext.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Model\\StudentsContext.cs",
+              "RelativeDocumentMoniker": "CRUDDatabaseFirst\\Model\\StudentsContext.cs",
+              "ToolTip": "E:\\ASP.NET Core\\CRUDDatabaseFirst\\CRUDDatabaseFirst\\Model\\StudentsContext.cs",
+              "RelativeToolTip": "CRUDDatabaseFirst\\Model\\StudentsContext.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAkwBsAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T08:14:35.225Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

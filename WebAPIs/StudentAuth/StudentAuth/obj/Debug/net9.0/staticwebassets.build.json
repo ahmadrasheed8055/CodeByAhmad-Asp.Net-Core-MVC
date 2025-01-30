@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "K6S1/w5YbZodDMjcFau+SnhjLIRLn3uRt6yLh49PFwo=",
+  "Source": "StudentAuth",
+  "BasePath": "_content/StudentAuth",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ASP.NET Core\\DatabaseFirstApproach\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|e:\\asp.net core\\databasefirstapproach\\databasefirstapproach\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|solutionrelative:databasefirstapproach\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|e:\\asp.net core\\databasefirstapproach\\databasefirstapproach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|solutionrelative:databasefirstapproach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|e:\\asp.net core\\databasefirstapproach\\databasefirstapproach\\model\\employeedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|solutionrelative:databasefirstapproach\\model\\employeedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|e:\\asp.net core\\databasefirstapproach\\databasefirstapproach\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DC6BCD27-C5F5-460F-9A7C-73640A6DDEA9}|DatabaseFirstApproach\\DatabaseFirstApproach.csproj|solutionrelative:databasefirstapproach\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DatabaseFirstApproach\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DatabaseFirstApproach\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAYAAACAMTMzMzMrwBMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T11:23:47.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Program.cs",
+              "RelativeDocumentMoniker": "DatabaseFirstApproach\\Program.cs",
+              "ToolTip": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Program.cs",
+              "RelativeToolTip": "DatabaseFirstApproach\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T11:20:12.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\appsettings.json",
+              "RelativeDocumentMoniker": "DatabaseFirstApproach\\appsettings.json",
+              "ToolTip": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\appsettings.json",
+              "RelativeToolTip": "DatabaseFirstApproach\\appsettings.json",
+              "ViewState": "AQIAAAAAAABAMzMzMzMLwAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-09T11:10:28.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeDbContext.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Model\\EmployeeDbContext.cs",
+              "RelativeDocumentMoniker": "DatabaseFirstApproach\\Model\\EmployeeDbContext.cs",
+              "ToolTip": "E:\\ASP.NET Core\\DatabaseFirstApproach\\DatabaseFirstApproach\\Model\\EmployeeDbContext.cs",
+              "RelativeToolTip": "DatabaseFirstApproach\\Model\\EmployeeDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T11:01:12.444Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

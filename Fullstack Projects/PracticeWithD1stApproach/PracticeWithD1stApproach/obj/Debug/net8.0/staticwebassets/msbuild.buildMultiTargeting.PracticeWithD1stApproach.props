@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\PracticeWithD1stApproach.props" />
+</Project>

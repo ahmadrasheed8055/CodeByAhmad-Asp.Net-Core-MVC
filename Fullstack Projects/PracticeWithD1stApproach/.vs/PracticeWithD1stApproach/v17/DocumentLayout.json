@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\employee\\employeedetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\employee\\employeedetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\employee\\updateemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\employee\\updateemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\employee\\allemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\employee\\allemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\employee\\deleteemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\employee\\deleteemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\views\\employee\\createemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\views\\employee\\createemployee.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\models\\employeedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\models\\employeedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|e:\\asp.net core\\practicewithd1stapproach\\practicewithd1stapproach\\models\\employeemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5463112-2747-4E15-8C6C-DCD4D8D446EA}|PracticeWithD1stApproach\\PracticeWithD1stApproach.csproj|solutionrelative:practicewithd1stapproach\\models\\employeemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T10:57:33.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UpdateEmployee.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\UpdateEmployee.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Employee\\UpdateEmployee.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\UpdateEmployee.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Employee\\UpdateEmployee.cshtml",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAEEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T10:37:50.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeDetail.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\EmployeeDetail.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Employee\\EmployeeDetail.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\EmployeeDetail.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Employee\\EmployeeDetail.cshtml",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAEkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T10:34:50.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AllEmployees.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\AllEmployees.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Employee\\AllEmployees.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\AllEmployees.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Employee\\AllEmployees.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T10:08:44.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DeleteEmployee.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\DeleteEmployee.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Employee\\DeleteEmployee.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\DeleteEmployee.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Employee\\DeleteEmployee.cshtml",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T09:56:31.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Controllers\\EmployeeController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAwwGAAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-07T09:04:18.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Program.cs",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Program.cs",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Program.cs",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABwAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T14:02:39.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CreateEmployee.cshtml",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\CreateEmployee.cshtml",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Views\\Employee\\CreateEmployee.cshtml",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Views\\Employee\\CreateEmployee.cshtml",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Views\\Employee\\CreateEmployee.cshtml",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAEMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-07T10:59:54.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EmployeeDBContext.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Models\\EmployeeDBContext.cs",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Models\\EmployeeDBContext.cs",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Models\\EmployeeDBContext.cs",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Models\\EmployeeDBContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:59:34.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EmployeeModel.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Models\\EmployeeModel.cs",
+              "RelativeDocumentMoniker": "PracticeWithD1stApproach\\Models\\EmployeeModel.cs",
+              "ToolTip": "E:\\ASP.NET Core\\PracticeWithD1stApproach\\PracticeWithD1stApproach\\Models\\EmployeeModel.cs",
+              "RelativeToolTip": "PracticeWithD1stApproach\\Models\\EmployeeModel.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAkwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:56:42.97Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

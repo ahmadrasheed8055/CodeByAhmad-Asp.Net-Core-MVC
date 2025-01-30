@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CRUDDatabaseFirst.Model.StudentInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student Management System</h1>
+<!-- Success Alert (dismissible) -->
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<p>
+    <a asp-action="CreateStudent" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentRollNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentSection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentRollNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentSection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentEmail)
+                </td>
+                <td>
+                    <a asp-action="UpdateStudent" asp-route-id="@item.StudentId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

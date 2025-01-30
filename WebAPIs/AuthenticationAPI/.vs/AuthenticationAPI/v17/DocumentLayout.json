@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|e:\\asp.net core\\webapis\\authenticationapi\\authenticationapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|solutionrelative:authenticationapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|e:\\asp.net core\\webapis\\authenticationapi\\authenticationapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|solutionrelative:authenticationapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|e:\\asp.net core\\webapis\\authenticationapi\\authenticationapi\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|solutionrelative:authenticationapi\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|e:\\asp.net core\\webapis\\authenticationapi\\authenticationapi\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5AE81761-A868-42E7-AC04-0274165964F5}|AuthenticationAPI\\AuthenticationAPI.csproj|solutionrelative:authenticationapi\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20250122121619_initial-migration.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs",
+              "RelativeDocumentMoniker": "AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs",
+              "ToolTip": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs",
+              "RelativeToolTip": "AuthenticationAPI\\Migrations\\20250122121619_initial-migration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T12:16:22.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "AuthenticationAPI\\appsettings.json",
+              "ToolTip": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\appsettings.json",
+              "RelativeToolTip": "AuthenticationAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-22T12:11:22.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Program.cs",
+              "RelativeDocumentMoniker": "AuthenticationAPI\\Program.cs",
+              "ToolTip": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Program.cs",
+              "RelativeToolTip": "AuthenticationAPI\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T10:15:29.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "AuthenticationAPI\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "AuthenticationAPI\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T10:13:49.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "AuthenticationAPI\\ScaffoldingReadMe.txt",
+              "ToolTip": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "AuthenticationAPI\\ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-01-22T10:07:11.783Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

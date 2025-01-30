@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PracticeWithC1stApproach.Models.EmployeeModel>
+
+@{
+    ViewData["Title"] = "All Employees";
+}
+
+<h1>Employees Management System</h1>
+
+<p>
+    <a asp-action="CreateEmployee" class="btn btn-success">Create New</a>
+
+</p>
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> @TempData["success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    <a asp-action="UpdateEmployee" asp-route-id="@item.EmployeeId" class="btn btn-primary">Edit</a>
+                    <a asp-action="EmployeeDetail" asp-route-id="@item.EmployeeId" class="btn btn-info">Details</a>
+                    <a asp-action="DeleteEmployee" asp-route-id="@item.EmployeeId" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
