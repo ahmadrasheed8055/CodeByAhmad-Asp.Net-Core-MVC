@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ASP.NET Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj": {}
+    "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj": {}
   },
   "projects": {
-    "E:\\ASP.NET Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj": {
+    "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ASP.NET Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
+        "projectUniqueName": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
         "projectName": "FitMind-API",
-        "projectPath": "E:\\ASP.NET Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
+        "projectPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
         "packagesPath": "C:\\Users\\LIST-IT\\.nuget\\packages\\",
-        "outputPath": "E:\\ASP.NET Core\\WebAPIs\\FitMind-API\\FitMind-API\\obj\\",
+        "outputPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

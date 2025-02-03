@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FitMind-API",
-    "\\FitMind-API\\Models",
-    "\\FitMind-API\\Models\\Entities"
+    "\\FitMind-API"
   ],
+  "SelectedNode": "\\FitMind-API\\appsettings.Development.json",
   "PreviewInSolutionExplorer": false
 }

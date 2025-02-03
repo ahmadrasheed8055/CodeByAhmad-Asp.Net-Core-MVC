@@ -1,4 +1,6 @@
 using FitMind_API.Data;
+using FitMind_API.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,11 @@ builder.Services.AddControllers();
 // Add Swagger (OpenAPI) support
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+//configure service
+builder.Services.AddTransient<IEmailService, EmailService>();
+
 
 // Configure DbContext with SQL Server connection string
 builder.Services.AddDbContext<FMDBContext>(options =>

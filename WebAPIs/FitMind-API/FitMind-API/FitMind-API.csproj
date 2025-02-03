@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>FitMind_API</RootNamespace>
+    <UserSecretsId>84af87ae-c636-4a11-b81d-bd3386ec92c5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
