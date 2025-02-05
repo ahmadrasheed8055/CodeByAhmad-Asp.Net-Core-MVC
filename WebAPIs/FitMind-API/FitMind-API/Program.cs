@@ -16,12 +16,24 @@ builder.Services.AddSwaggerGen();
 //configure service
 builder.Services.AddTransient<IEmailService, EmailService>();
 
+//cors 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 // Configure DbContext with SQL Server connection string
 builder.Services.AddDbContext<FMDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FMDBCS")));
 
 var app = builder.Build();
+app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
