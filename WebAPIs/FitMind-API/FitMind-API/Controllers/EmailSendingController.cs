@@ -16,8 +16,11 @@ namespace FitMind_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendEmail(string receptor,  string subject, string body)
+        public async Task<IActionResult> SendEmail(string receptor)
         {
+            var subject = "This is subject";
+            var body = "This is body";
+
            await emailService.sendEmail(receptor, subject, body);
             return Ok();
         }

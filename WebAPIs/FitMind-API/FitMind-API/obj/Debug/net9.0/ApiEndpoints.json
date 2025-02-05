@@ -109,6 +109,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FitMind_API.Controllers.EmailSendingController",
+    "Method": "SendEmail",
+    "RelativePath": "api/EmailSending",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "receptor",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FitMind_API.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

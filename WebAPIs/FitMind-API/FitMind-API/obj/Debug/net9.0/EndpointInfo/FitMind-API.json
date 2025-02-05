@@ -190,6 +190,27 @@
         }
       }
     },
+    "/api/EmailSending": {
+      "post": {
+        "tags": [
+          "EmailSending"
+        ],
+        "parameters": [
+          {
+            "name": "receptor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
