@@ -1,6 +1,12 @@
-﻿using FitMind_API.Services;
+﻿using FitMind_API.Data;
+using FitMind_API.Models.DTOs;
+using FitMind_API.Models.Entities;
+using FitMind_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static FitMind_API.Models.Enums.Enum;
+
+
 
 namespace FitMind_API.Controllers
 {
@@ -9,20 +15,70 @@ namespace FitMind_API.Controllers
     public class EmailSendingController : ControllerBase
     {
         private readonly IEmailService emailService;
+        private readonly FMDBContext fMDBContext;
 
-        public EmailSendingController(IEmailService emailService)
+        public EmailSendingController(IEmailService emailService, FMDBContext fMDBContext)
         {
             this.emailService = emailService;
+            this.fMDBContext = fMDBContext;
         }
 
         [HttpPost]
         public async Task<IActionResult> SendEmail(string receptor)
         {
-            var subject = "This is subject";
-            var body = "This is body";
 
-           await emailService.sendEmail(receptor, subject, body);
+            var token = Guid.NewGuid().ToString();
+            var expiry = DateTime.UtcNow.AddHours(24); // adding 24 hours
+
+            var registrationTokenDetail = new UserRT()
+            {
+                Email = receptor,
+                Token = token,
+                Status = 1,
+                InsertedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            this.fMDBContext.UserRegistrationTokens.Add(registrationTokenDetail);
+            this.fMDBContext.SaveChanges();
+
+            var subject = "Welcome to FitMind! Complete Your Registration 🚀";
+            var body = $@"
+                        <html>
+                          <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>
+                            <div style='max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; 
+                                        border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;'>
+                              <h1 style='color: #333333;'>Welcome to FitMind! 🎉</h1>
+                              <p style='color: #555555; font-size: 16px;'>
+                                Thank you for joining us. Click the button below to complete your registration and 
+                                start your fitness journey!
+                              </p>
+                              <div style='margin: 30px 0;'>
+                                <a href='' 
+                                   style='background-color: #007bff; color: #ffffff; padding: 15px 25px; text-decoration: none; 
+                                          border-radius: 5px; font-size: 16px; display: inline-block;'>
+                                  Complete Registration
+                                </a>
+                              </div>
+                              <p style='color: #777777; font-size: 14px;'>
+                                If the button doesn't work, copy and paste this link into your browser:<br>
+                                <a href='' style='color: #007bff; word-break: break-all;'>
+                                 Link here
+                                </a>
+                              </p>
+                              <p style='color: #777777; font-size: 14px;'>
+                                See you soon!<br><b>The FitMind Team</b>
+                              </p>
+                            </div>
+                          </body>
+                        </html>";
+
+
+            await emailService.sendEmail(receptor, subject, body);
             return Ok();
         }
+
+
+
     }
 }

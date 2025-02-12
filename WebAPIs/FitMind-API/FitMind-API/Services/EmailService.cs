@@ -24,15 +24,25 @@ namespace FitMind_API.Services
             var host = configuration.GetValue<string>("EMAIL_CONFIGRATION:HOST");
             var port = configuration.GetValue<int>("EMAIL_CONFIGRATION:PORT");
 
-            var smtpClient = new SmtpClient(host, port);
-            smtpClient.EnableSsl = true;
-            smtpClient.UseDefaultCredentials = false;
+            using var smtpClient = new SmtpClient(host, port)
+            {
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(email, password)
+            };
 
-            smtpClient.Credentials = new NetworkCredential(email, password);
+            using var message = new MailMessage
+            {
+                From = new MailAddress(email!),
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            };
 
-            var message = new MailMessage(email!, receptor, subject, body);
+            message.To.Add(receptor);
+
             await smtpClient.SendMailAsync(message);
-
         }
+
     }
 }

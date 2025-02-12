@@ -11,5 +11,6 @@ namespace FitMind_API.Data
 
         //tables
         public DbSet<Categories> Categories { get; set; }
+        public DbSet<UserRT> UserRegistrationTokens { get; set; }
     }
 }
