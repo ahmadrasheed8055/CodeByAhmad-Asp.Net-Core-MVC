@@ -27,6 +27,7 @@ namespace FitMind_API.Controllers
             return await _context.Categories.ToListAsync();
         }
 
+
         // GET: api/categories/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Categories>> GetCategoryById(int id)

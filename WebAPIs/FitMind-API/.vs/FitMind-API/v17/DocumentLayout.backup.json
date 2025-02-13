@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\controllers\\emailsendingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\emailsendingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,12 +19,12 @@
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\enums\\userenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,32 +39,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\CategoriesController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\CategoriesController.cs",
+              "ViewState": "AgIAABYAAABgZmZmZmYswCEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T15:49:46.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "EmailSendingController.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\EmailSendingController.cs",
               "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
               "RelativeToolTip": "FitMind-API\\Controllers\\EmailSendingController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwEwAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAaWZmZmb0v08AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-12T10:33:38.725Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserRT.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\UserRT.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\UserRT.cs",
               "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\UserRT.cs",
               "RelativeToolTip": "FitMind-API\\Models\\Entities\\UserRT.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBIAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-11T16:04:55.212Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserEnums.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Enums\\UserEnums.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Enums\\UserEnums.cs",
@@ -86,13 +103,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "EmailService.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Services\\EmailService.cs",
               "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Services\\EmailService.cs",
               "RelativeToolTip": "FitMind-API\\Services\\EmailService.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAqwCcAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAqwCUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-03T18:45:55.037Z",
               "EditorCaption": ""

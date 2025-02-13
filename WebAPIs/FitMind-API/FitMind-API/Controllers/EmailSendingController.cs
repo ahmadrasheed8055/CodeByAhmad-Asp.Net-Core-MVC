@@ -29,6 +29,8 @@ namespace FitMind_API.Controllers
 
             var token = Guid.NewGuid().ToString();
             var expiry = DateTime.UtcNow.AddHours(24); // adding 24 hours
+            var registrationUrl = $"http://localhost:4200/register?token={token}";
+
 
             var registrationTokenDetail = new UserRT()
             {
@@ -38,7 +40,7 @@ namespace FitMind_API.Controllers
                 InsertedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
-
+            //next step is too
             this.fMDBContext.UserRegistrationTokens.Add(registrationTokenDetail);
             this.fMDBContext.SaveChanges();
 
@@ -54,7 +56,7 @@ namespace FitMind_API.Controllers
                                 start your fitness journey!
                               </p>
                               <div style='margin: 30px 0;'>
-                                <a href='' 
+                                <a href='{registrationUrl}' 
                                    style='background-color: #007bff; color: #ffffff; padding: 15px 25px; text-decoration: none; 
                                           border-radius: 5px; font-size: 16px; display: inline-block;'>
                                   Complete Registration
@@ -62,8 +64,8 @@ namespace FitMind_API.Controllers
                               </div>
                               <p style='color: #777777; font-size: 14px;'>
                                 If the button doesn't work, copy and paste this link into your browser:<br>
-                                <a href='' style='color: #007bff; word-break: break-all;'>
-                                 Link here
+                                <a href='{registrationUrl}' style='color: #007bff; word-break: break-all;'>
+                                {registrationUrl}
                                 </a>
                               </p>
                               <p style='color: #777777; font-size: 14px;'>
@@ -75,7 +77,8 @@ namespace FitMind_API.Controllers
 
 
             await emailService.sendEmail(receptor, subject, body);
-            return Ok();
+            return Redirect("www.google.com");
+            //return Ok();
         }
 
 
