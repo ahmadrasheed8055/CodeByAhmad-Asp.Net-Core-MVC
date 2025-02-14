@@ -5175,11 +5175,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET Core\\WebAPIs\\CRUDApi\\CRUDApi\\CRUDApi.csproj",
+      "projectUniqueName": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\CRUDApi\\CRUDApi\\CRUDApi.csproj",
       "projectName": "CRUDApi",
-      "projectPath": "E:\\ASP.NET Core\\WebAPIs\\CRUDApi\\CRUDApi\\CRUDApi.csproj",
+      "projectPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\CRUDApi\\CRUDApi\\CRUDApi.csproj",
       "packagesPath": "C:\\Users\\LIST-IT\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET Core\\WebAPIs\\CRUDApi\\CRUDApi\\obj\\",
+      "outputPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\CRUDApi\\CRUDApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

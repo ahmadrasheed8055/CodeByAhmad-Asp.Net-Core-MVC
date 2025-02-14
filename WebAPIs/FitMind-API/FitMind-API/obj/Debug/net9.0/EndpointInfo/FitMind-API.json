@@ -190,7 +190,7 @@
         }
       }
     },
-    "/api/EmailSending": {
+    "/api/EmailSending/send-email": {
       "post": {
         "tags": [
           "EmailSending"
@@ -203,6 +203,18 @@
               "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EmailSending/validate-email-token": {
+      "get": {
+        "tags": [
+          "EmailSending"
         ],
         "responses": {
           "200": {

@@ -4,6 +4,8 @@ using FitMind_API.Models.Entities;
 using FitMind_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using static FitMind_API.Models.Enums.Enum;
 
 
@@ -23,7 +25,11 @@ namespace FitMind_API.Controllers
             this.fMDBContext = fMDBContext;
         }
 
-        [HttpPost]
+
+
+
+
+        [HttpPost("send-email")]
         public async Task<IActionResult> SendEmail(string receptor)
         {
 
@@ -37,6 +43,7 @@ namespace FitMind_API.Controllers
                 Email = receptor,
                 Token = token,
                 Status = 1,
+                ExpiryDate = DateTime.UtcNow.AddMinutes(20), // expired in 20 minutes
                 InsertedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -75,10 +82,41 @@ namespace FitMind_API.Controllers
                           </body>
                         </html>";
 
-
             await emailService.sendEmail(receptor, subject, body);
-            return Redirect("www.google.com");
-            //return Ok();
+            //return Redirect("www.google.com");
+            return Ok();
+        }
+
+        //email validation
+        [HttpGet("validate-email-token")]
+        public async Task<IActionResult> emailValidation()
+        {
+            string urlToken = Request.Query["token"];
+
+            if (urlToken == null)
+            {
+                BadRequest(new { message = "Token is missing" });
+            }
+
+            var userToken = await fMDBContext.UserRegistrationTokens.FirstOrDefaultAsync(t => t.Token == urlToken);
+
+            if (userToken == null)
+            {
+                return NotFound(new { message = "Token not found!" });
+            }
+            else if (userToken.ExpiryDate < DateTime.UtcNow)
+            {
+                return BadRequest(new { message = "Token has expired!" });
+            }
+            else if (userToken.Status != 1)
+            {
+                return BadRequest(new { message = "User is already active" });
+            }
+
+
+
+            return Ok(new { message = $"Token found! {userToken}" });
+
         }
 
 

@@ -111,7 +111,7 @@
   {
     "ContainingType": "FitMind_API.Controllers.EmailSendingController",
     "Method": "SendEmail",
-    "RelativePath": "api/EmailSending",
+    "RelativePath": "api/EmailSending/send-email",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -122,6 +122,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.EmailSendingController",
+    "Method": "emailValidation",
+    "RelativePath": "api/EmailSending/validate-email-token",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
