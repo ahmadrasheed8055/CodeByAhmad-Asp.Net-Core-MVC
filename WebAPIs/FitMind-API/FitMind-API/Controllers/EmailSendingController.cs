@@ -87,11 +87,14 @@ namespace FitMind_API.Controllers
             return Ok();
         }
 
+
+        //http://localhost:5177/api/EmailSending/validate-email-token?token=395ed8a9-8bed-409b-8e27-a3ba18ce2040
         //email validation
         [HttpGet("validate-email-token")]
-        public async Task<IActionResult> emailValidation()
+        public async Task<IActionResult> emailValidation(string token)
         {
-            string urlToken = Request.Query["token"];
+            //string urlToken = Request.Query["token"];
+            string urlToken = token;
 
             if (urlToken == null)
             {
