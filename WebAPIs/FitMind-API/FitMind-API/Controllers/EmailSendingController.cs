@@ -43,7 +43,7 @@ namespace FitMind_API.Controllers
                 Email = receptor,
                 Token = token,
                 Status = 1,
-                ExpiryDate = DateTime.UtcNow.AddMinutes(20), // expired in 20 minutes
+                ExpiryDate = DateTime.UtcNow.AddHours(24), // expiring time
                 InsertedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -98,7 +98,7 @@ namespace FitMind_API.Controllers
 
             if (urlToken == null)
             {
-                BadRequest(new { message = "Token is missing" });
+              return  BadRequest(new { message = "Token is missing" });
             }
 
             var userToken = await fMDBContext.UserRegistrationTokens.FirstOrDefaultAsync(t => t.Token == urlToken);
@@ -118,7 +118,7 @@ namespace FitMind_API.Controllers
 
 
 
-            return Ok(new { message = $"Token found! {userToken}" });
+            return Ok(new { message = $"Token found! {userToken.Token}" });
 
         }
 
