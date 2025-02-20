@@ -118,7 +118,7 @@ namespace FitMind_API.Controllers
 
 
 
-            return Ok(new { message = $"Token found! {userToken.Token}" });
+            return Ok(new { message = "Token found!", email = userToken.Email });
 
         }
 

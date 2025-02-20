@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitMind_API.Models.Entities
 {
@@ -22,6 +23,12 @@ namespace FitMind_API.Models.Entities
         public DateTime ExpiryDate { get; set; } 
 
         public DateTime InsertedAt { get; set; }
-        public DateTime UpdatedAt { get; set; } 
+        public DateTime UpdatedAt { get; set; }
+
+        //user table connection
+        //[ForeignKey("AppUsers")]
+        public int? UserId { get; set; } // null-able
+        public AppUsers? AppUser { get; set; }
+
     }
 }
