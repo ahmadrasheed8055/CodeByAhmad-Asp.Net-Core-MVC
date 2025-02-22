@@ -21,32 +21,6 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
-    "Method": "GetAppUsers",
-    "RelativePath": "api/AppUsers/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FitMind_API.Models.Entities.AppUsers",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "PutAppUsers",
     "RelativePath": "api/AppUsers/{id}",
     "HttpMethod": "PUT",
@@ -97,6 +71,58 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "GetAppUsers",
+    "RelativePath": "api/AppUsers/get-user/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FitMind_API.Models.Entities.AppUsers",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "IsRegistered",
+    "RelativePath": "api/AppUsers/is-registered/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "FitMind_API.Controllers.CategoriesController",

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using static FitMind_API.Models.Enums.Enum;
 
 
@@ -27,12 +28,25 @@ namespace FitMind_API.Controllers
 
 
 
-
+        // Email validation function
+        private bool IsValidEmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
 
         [HttpPost("send-email")]
         public async Task<IActionResult> SendEmail(string receptor)
         {
+            if (!IsValidEmail(receptor))
+            {
+                return BadRequest("Email format is not correct");
+            }
 
+            bool isUserActive = await fMDBContext.AppUsers.AnyAsync(u => u.Email == receptor);
+            if (isUserActive)
+            {
+                return StatusCode(400);
+            }
             var token = Guid.NewGuid().ToString();
             var expiry = DateTime.UtcNow.AddHours(24); // adding 24 hours
             var registrationUrl = $"http://localhost:4200/register?token={token}";
@@ -84,7 +98,7 @@ namespace FitMind_API.Controllers
 
             await emailService.sendEmail(receptor, subject, body);
             //return Redirect("www.google.com");
-            return Ok();
+            return Ok(new {message= 1});
         }
 
 
@@ -111,9 +125,10 @@ namespace FitMind_API.Controllers
             {
                 return BadRequest(new { message = "Token has expired!" });
             }
-            else if (userToken.Status != 1)
+            else if (userToken.Status == 2)
             {
-                return BadRequest(new { message = "User is already active" });
+                //userToken.ExpiryDate = DateTime.UtcNow;
+                return NotFound(new { message = "User is already active" });
             }
 
 
@@ -121,6 +136,7 @@ namespace FitMind_API.Controllers
             return Ok(new { message = "Token found!", email = userToken.Email });
 
         }
+
 
 
 

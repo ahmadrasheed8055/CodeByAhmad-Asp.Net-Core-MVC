@@ -43,7 +43,7 @@
         }
       }
     },
-    "/api/AppUsers/{id}": {
+    "/api/AppUsers/get-user/{id}": {
       "get": {
         "tags": [
           "AppUsers"
@@ -81,7 +81,48 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/AppUsers/is-registered/{email}": {
+      "get": {
+        "tags": [
+          "AppUsers"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AppUsers/{id}": {
       "put": {
         "tags": [
           "AppUsers"

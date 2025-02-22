@@ -533,3 +533,4 @@ E:\ASP.NET Core\ASP.Net Core\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\Fi
 E:\ASP.NET Core\ASP.Net Core\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.genruntimeconfig.cache
 E:\ASP.NET Core\ASP.Net Core\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\ref\FitMind-API.dll
 E:\ASP.NET Core\ASP.Net Core\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+E:\ASP.NET Core\ASP.Net Core\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\BCrypt.Net-Next.dll

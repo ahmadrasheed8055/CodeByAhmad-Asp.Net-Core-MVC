@@ -9,6 +9,8 @@ using FitMind_API.Data;
 using FitMind_API.Models.Entities;
 using FitMind_API.Models.DTOs;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using BCrypt.Net;
+using System.Text.RegularExpressions;
 
 namespace FitMind_API.Controllers
 {
@@ -31,7 +33,7 @@ namespace FitMind_API.Controllers
         }
 
         // GET: api/AppUsers/5
-        [HttpGet("{id}")]
+        [HttpGet("get-user/{id}")]
         public async Task<ActionResult<AppUsers>> GetAppUsers(int id)
         {
             var appUsers = await _context.AppUsers.FindAsync(id);
@@ -43,6 +45,12 @@ namespace FitMind_API.Controllers
 
             return appUsers;
         }
+
+        
+
+       
+
+
 
         // PUT: api/AppUsers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -91,13 +99,13 @@ namespace FitMind_API.Controllers
 
             if (userToken.ExpiryDate < DateTime.UtcNow)
                 return BadRequest(new { message = "Token has expired!" });
-
+            
             // Step 2: Create user
             AppUsers user = new AppUsers()
             {
                 Username = uDTO.Username,
                 Email = uDTO.Email,
-                PasswordHash = uDTO.PasswordHash,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(uDTO.PasswordHash),
                 EmailConfirmed = uDTO.EmailConfirmed,
                 IsDeleted = false,
                 JoinedDate = uDTO.JoinedDate,
