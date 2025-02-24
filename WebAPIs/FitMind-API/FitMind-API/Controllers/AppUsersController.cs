@@ -33,17 +33,21 @@ namespace FitMind_API.Controllers
         }
 
         // GET: api/AppUsers/5
-        [HttpGet("get-user/{id}")]
-        public async Task<ActionResult<AppUsers>> GetAppUsers(int id)
+        [HttpPost("login-user")]
+        public async Task<ActionResult<AppUsers>> GetAppUsers([FromBody] UserLoginDTO loginDTO)
         {
-            var appUsers = await _context.AppUsers.FindAsync(id);
-
-            if (appUsers == null)
+            var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.Email == loginDTO.Email);
+            if (user == null)
             {
-                return NotFound();
+                return NotFound("User not found");
+            }
+            else if (BCrypt.Net.BCrypt.Verify(loginDTO.HashedPassword, user.PasswordHash)==false)
+            {
+                return BadRequest("Wrong password");
             }
 
-            return appUsers;
+            return user;
+            
         }
 
         
