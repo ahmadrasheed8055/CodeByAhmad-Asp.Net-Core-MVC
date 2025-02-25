@@ -41,18 +41,18 @@ namespace FitMind_API.Controllers
             {
                 return NotFound("User not found");
             }
-            else if (BCrypt.Net.BCrypt.Verify(loginDTO.HashedPassword, user.PasswordHash)==false)
+            else if (BCrypt.Net.BCrypt.Verify(loginDTO.HashedPassword, user.PasswordHash) == false)
             {
                 return BadRequest("Wrong password");
             }
 
             return user;
-            
+
         }
 
-        
 
-       
+
+
 
 
 
@@ -103,7 +103,7 @@ namespace FitMind_API.Controllers
 
             if (userToken.ExpiryDate < DateTime.UtcNow)
                 return BadRequest(new { message = "Token has expired!" });
-            
+
             // Step 2: Create user
             AppUsers user = new AppUsers()
             {
@@ -136,13 +136,54 @@ namespace FitMind_API.Controllers
             var appUsers = await _context.AppUsers.FindAsync(id);
             if (appUsers == null)
             {
-                return NotFound(new {message = "User with this id does not exist!"});
+                return NotFound(new { message = "User with this id does not exist!" });
             }
             appUsers.IsDeleted = true;
             _context.AppUsers.Update(appUsers);
             await _context.SaveChangesAsync();
 
-            return Ok(new {message = "User unactivated!"});
+            return Ok(new { message = "User unactivated!" });
+        }
+
+
+        //uploading image in bytes 
+        [HttpPut("upload-image/{id}")]
+        public async Task<IActionResult> UploadProfileImage(IFormFile file, int id)
+        {
+            //step 1
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("No file detected!");
+            }
+
+            var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
+            var maxSize = 5 * 1024 * 1024;
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (file.Length > maxSize)
+            {
+                return BadRequest("File size must be less than 5MB.");
+            }
+            else if (!allowedExtensions.Contains(fileExtension))
+            {
+                return BadRequest("Only JPG, JPEG, and PNG files are allowed.");
+            }
+
+
+            //step 2 file to byte array
+            using var memory = new MemoryStream();
+            await file.CopyToAsync(memory);
+
+            //step 3 find user by id
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            user.ProfilePhoto = memory.ToArray();
+            await _context.SaveChangesAsync();
+            return Ok("Image uploaded!");
+
         }
 
         private bool AppUsersExists(int id)

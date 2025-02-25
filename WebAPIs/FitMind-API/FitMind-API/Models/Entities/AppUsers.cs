@@ -25,6 +25,15 @@ namespace FitMind_API.Models.Entities
 
         public int Status { get; set; } = 1;
 
+        //after updation profile details
+        public string? UniqueName { get; set; }
+        public int? UserVisibility { get; set; }
+        public string? Bio { get; set; }
+        public int? Phone { get; set; }
+        public string? FacebookLink { get; set; }
+        public string? InstagramLink { get; set; }
+        public byte[]? ProfilePhoto { get; set; }
+
         // Navigation Property for Tokens
         public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();
     }
