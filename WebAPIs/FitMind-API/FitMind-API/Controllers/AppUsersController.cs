@@ -150,6 +150,12 @@ namespace FitMind_API.Controllers
         [HttpPut("upload-image/{id}")]
         public async Task<IActionResult> UploadProfileImage(IFormFile file, int id)
         {
+             //step 3 find user by id
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
             //step 1
             if (file == null || file.Length == 0)
             {
@@ -173,19 +179,25 @@ namespace FitMind_API.Controllers
             using var memory = new MemoryStream();
             await file.CopyToAsync(memory);
 
-            //step 3 find user by id
-            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
+           
 
             user.ProfilePhoto = memory.ToArray();
             await _context.SaveChangesAsync();
-            return Ok("Image uploaded!");
+            return Ok();
 
         }
 
+        [HttpGet("get-image/{id}")]
+        public async Task<IActionResult> GetProfileImage(int id)
+        {
+            var user = await _context.AppUsers.FindAsync(id);
+            if (user == null || user.ProfilePhoto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok( user.ProfilePhoto);
+        }
         private bool AppUsersExists(int id)
         {
             return _context.AppUsers.Any(e => e.Id == id);

@@ -74,6 +74,22 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "GetProfileImage",
+    "RelativePath": "api/AppUsers/get-image/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "GetAppUsers",
     "RelativePath": "api/AppUsers/login-user",
     "HttpMethod": "POST",
