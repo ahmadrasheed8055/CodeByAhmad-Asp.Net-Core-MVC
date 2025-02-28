@@ -4,6 +4,7 @@ using FitMind_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMind_API.Migrations
 {
     [DbContext(typeof(FMDBContext))]
-    partial class FMDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250227080830_Country property added")]
+    partial class Countrypropertyadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace FitMind_API.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<byte[]>("BackgroundPhoto")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -58,9 +58,6 @@ namespace FitMind_API.Migrations
 
                     b.Property<DateTime>("JoinedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()

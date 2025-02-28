@@ -253,6 +253,72 @@
         }
       }
     },
+    "/api/AppUsers/upload-background-image/{id}": {
+      "put": {
+        "tags": [
+          "AppUsers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AppUsers/get-background-image/{id}": {
+      "get": {
+        "tags": [
+          "AppUsers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/categories": {
       "get": {
         "tags": [
@@ -647,7 +713,20 @@
             "type": "string",
             "nullable": true
           },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
           "profilePhoto": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "backgroundPhoto": {
             "type": "string",
             "format": "byte",
             "nullable": true

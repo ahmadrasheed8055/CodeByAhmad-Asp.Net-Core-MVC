@@ -7,7 +7,12 @@
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\appuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f991583901fa95a6553a9f16074e90cbc173f6f1a999b47c23162a6e6bbf87a5\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20250227080830_Country property added.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FitMind-API\\Migrations\\20250227080830_Country property added.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,18 +22,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppUsersController.cs",
-              "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f991583901fa95a6553a9f16074e90cbc173f6f1a999b47c23162a6e6bbf87a5\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
-              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f991583901fa95a6553a9f16074e90cbc173f6f1a999b47c23162a6e6bbf87a5\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs [Read Only]",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAtwJcAAAAFAAAAAQAAAA==",
+              "DocumentIndex": 2,
+              "Title": "20250227080830_Country property added.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20250227080830_Country property added.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Migrations\\20250227080830_Country property added.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20250227080830_Country property added.cs",
+              "RelativeToolTip": "FitMind-API\\Migrations\\20250227080830_Country property added.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T07:11:25.902Z",
-              "EditorCaption": " [Read Only]"
+              "WhenOpened": "2025-02-27T08:08:30.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppUsers.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAADwvyMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T07:44:14.909Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -38,7 +58,7 @@
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\AppUsersController.cs",
               "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
               "RelativeToolTip": "FitMind-API\\Controllers\\AppUsersController.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAMwMQAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAMkAAAAAzMzMzMwswPMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T11:18:15.507Z",
               "EditorCaption": ""

@@ -74,6 +74,22 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "GetBackgroundImage",
+    "RelativePath": "api/AppUsers/get-background-image/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "GetProfileImage",
     "RelativePath": "api/AppUsers/get-image/{id}",
     "HttpMethod": "GET",
@@ -113,6 +129,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "UploadBackgroundImage",
+    "RelativePath": "api/AppUsers/upload-background-image/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",

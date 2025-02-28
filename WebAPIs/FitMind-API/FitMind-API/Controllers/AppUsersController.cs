@@ -154,12 +154,12 @@ namespace FitMind_API.Controllers
             var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
-                return NotFound("User not found");
+                return NotFound(new {message = "User not found"});
             }
             //step 1
             if (file == null || file.Length == 0)
             {
-                return BadRequest("No file detected!");
+                return BadRequest(new { message = "No file detected" });
             }
 
             var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
@@ -167,11 +167,11 @@ namespace FitMind_API.Controllers
             var fileExtension = Path.GetExtension(file.FileName).ToLower();
             if (file.Length > maxSize)
             {
-                return BadRequest("File size must be less than 5MB.");
+                return BadRequest(new { message = "File size must be less than 5MB." });
             }
             else if (!allowedExtensions.Contains(fileExtension))
             {
-                return BadRequest("Only JPG, JPEG, and PNG files are allowed.");
+                return BadRequest(new { message = "Only JPG, JPEG, and PNG files are allowed." });
             }
 
 
@@ -198,6 +198,63 @@ namespace FitMind_API.Controllers
 
             return Ok( user.ProfilePhoto);
         }
+
+
+        //uploading background photo
+        [HttpPut("upload-background-image/{id}")]
+        public async Task<IActionResult> UploadBackgroundImage(IFormFile file, int id)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest(new { message = "No image found." });
+            }
+
+            var user = await _context.AppUsers.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var allowedExtensions = new HashSet<string> { ".jpg", ".png", ".jpeg" };
+            var maxSize = 5 * 1024 * 1024;
+            var fileExtension = Path.GetExtension(file.FileName)?.ToLower();
+
+            if (file.Length > maxSize || !allowedExtensions.Contains(fileExtension))
+            {
+                return BadRequest(new
+                {
+                    message = file.Length > maxSize
+                    ? "File size exceeds 5MB."
+                    : "Invalid file type. Only JPG, PNG, and JPEG are allowed."
+                });
+            }
+
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+
+            user.BackgroundPhoto = memoryStream.ToArray();
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Background image uploaded successfully." });
+        }
+
+        //get background image
+        [HttpGet("get-background-image/{id}")]
+        public async Task<IActionResult> GetBackgroundImage(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest(new { message = "No id detected" });
+            }
+            var user = await _context.AppUsers.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(user.BackgroundPhoto);
+        }
+
         private bool AppUsersExists(int id)
         {
             return _context.AppUsers.Any(e => e.Id == id);

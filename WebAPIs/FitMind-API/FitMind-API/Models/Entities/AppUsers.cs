@@ -32,7 +32,10 @@ namespace FitMind_API.Models.Entities
         public int? Phone { get; set; }
         public string? FacebookLink { get; set; }
         public string? InstagramLink { get; set; }
+        public string? Location { get; set; }
+        public string? Country { get; set; }
         public byte[]? ProfilePhoto { get; set; }
+        public byte[]? BackgroundPhoto { get; set; }
 
         // Navigation Property for Tokens
         public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();
