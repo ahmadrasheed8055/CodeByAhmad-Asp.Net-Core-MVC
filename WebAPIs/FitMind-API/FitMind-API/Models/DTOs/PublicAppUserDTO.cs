@@ -1,9 +1,8 @@
-﻿using FitMind_API.Models.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FitMind_API.Models.DTOs
 {
-    public class AppUserDTO
+    public class PublicAppUserDTO
     {
         [Key]
         public int Id { get; set; }
@@ -15,7 +14,6 @@ namespace FitMind_API.Models.DTOs
         public required string Email { get; set; }
 
         //[Required]
-        public required string PasswordHash { get; set; }  // Store Hashed Password
 
         public bool EmailConfirmed { get; set; } = false;
 
@@ -35,8 +33,5 @@ namespace FitMind_API.Models.DTOs
         public string? InstagramLink { get; set; }
         public string? Location { get; set; }
         public string? Country { get; set; }
-
-        // Navigation Property for Tokens
-        //public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();
     }
 }

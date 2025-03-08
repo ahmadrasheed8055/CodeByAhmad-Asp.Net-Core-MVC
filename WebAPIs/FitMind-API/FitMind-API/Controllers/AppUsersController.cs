@@ -11,6 +11,8 @@ using FitMind_API.Models.DTOs;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using BCrypt.Net;
 using System.Text.RegularExpressions;
+using System.Text.Json;
+using FitMind_API.Common;
 
 namespace FitMind_API.Controllers
 {
@@ -34,7 +36,7 @@ namespace FitMind_API.Controllers
 
         // GET: api/AppUsers/5
         [HttpPost("login-user")]
-        public async Task<ActionResult<AppUsers>> GetAppUsers([FromBody] UserLoginDTO loginDTO)
+        public async Task<ActionResult<int>> GetAppUsers([FromBody] UserLoginDTO loginDTO)
         {
             var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.Email == loginDTO.Email);
             if (user == null)
@@ -46,51 +48,69 @@ namespace FitMind_API.Controllers
                 return BadRequest("Wrong password");
             }
 
-            return user;
+            return user.Id;
 
         }
 
+    
 
-
-
-
-
-
-        // PUT: api/AppUsers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppUsers(int id, AppUsers appUsers)
+        [HttpGet("get-user/{id}")]
+        public async Task<ActionResult<PublicAppUserDTO>> GetUser(int id)
         {
-            if (id != appUsers.Id)
-            {
-                return BadRequest();
-            }
+            var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.Id == id);
+                
 
-            _context.Entry(appUsers).State = EntityState.Modified;
-
-            try
+            var result = JsonSerializer.Deserialize<PublicAppUserDTO>(JsonSerializer.Serialize(user));
+          
+            if (user == null || result == null)
             {
-                await _context.SaveChangesAsync();
+                return NotFound("User not found");
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AppUsersExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return result;
         }
 
-        // POST: api/AppUsers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+
+
+
+
+
+        // PUT: api/AppUsers/
+        [HttpPut("update-app-user/{id}")]
+        public async Task<IActionResult> PutAppUsers(int id, PublicAppUserDTO appUser)
+        {
+            if (id != appUser.Id)
+            {
+                return BadRequest(new { message = "Invalid Id" });
+            }
+
+            var user = await _context.AppUsers.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            //  UniqueName UserVisibility Bio Phone FacebookLink InstagramLink  Location Country
+            user.Username = appUser.Username;
+            user.UniqueName = appUser.UniqueName;
+            user.UserVisibility = appUser.UserVisibility;
+            user.Bio = appUser.Bio;
+            user.Phone = appUser.Phone;
+            user.FacebookLink = appUser.FacebookLink;
+            user.InstagramLink = appUser.InstagramLink;
+            user.Location = appUser.Location;
+            user.Country = appUser.Country;
+            user.UpdatedAt = DateTime.UtcNow;
+
+            _context.AppUsers.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new {message = "User updated!"});
+        }
+
+        
         [HttpPost("add-app-user")]
-        public async Task<ActionResult> PostAppUsers(AppUserDTO uDTO)
+        public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
         {
             // Step 1: Check if a valid token exists for the email
             var userToken = await _context.UserRegistrationTokens
@@ -110,9 +130,9 @@ namespace FitMind_API.Controllers
                 Username = uDTO.Username,
                 Email = uDTO.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(uDTO.PasswordHash),
-                EmailConfirmed = uDTO.EmailConfirmed,
+                EmailConfirmed = true,
                 IsDeleted = false,
-                JoinedDate = uDTO.JoinedDate,
+                JoinedDate = DateTime.UtcNow,
                 Status = 2
             };
 
@@ -125,7 +145,7 @@ namespace FitMind_API.Controllers
             _context.UserRegistrationTokens.Update(userToken);
             await _context.SaveChangesAsync(); // Save token update
 
-            return Ok(new { message = "User registered successfully and token linked!" });
+            return Ok(new { message = "User registered successfully and token linked!", id = user.Id });
         }
 
 

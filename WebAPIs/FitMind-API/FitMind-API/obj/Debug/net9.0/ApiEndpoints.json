@@ -21,27 +21,6 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
-    "Method": "PutAppUsers",
-    "RelativePath": "api/AppUsers/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "appUsers",
-        "Type": "FitMind_API.Models.Entities.AppUsers",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "PostAppUsers",
     "RelativePath": "api/AppUsers/add-app-user",
     "HttpMethod": "POST",
@@ -50,7 +29,7 @@
     "Parameters": [
       {
         "Name": "uDTO",
-        "Type": "FitMind_API.Models.DTOs.AppUserDTO",
+        "Type": "FitMind_API.Models.DTOs.RegistrationAppUserDTO",
         "IsRequired": true
       }
     ],
@@ -106,6 +85,32 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "GetUser",
+    "RelativePath": "api/AppUsers/get-user/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FitMind_API.Models.DTOs.PublicAppUserDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "GetAppUsers",
     "RelativePath": "api/AppUsers/login-user",
     "HttpMethod": "POST",
@@ -120,7 +125,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FitMind_API.Models.Entities.AppUsers",
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -129,6 +134,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "PutAppUsers",
+    "RelativePath": "api/AppUsers/update-app-user/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "appUser",
+        "Type": "FitMind_API.Models.DTOs.PublicAppUserDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",

@@ -48,7 +48,7 @@ namespace FitMind_API.Controllers
                 return StatusCode(400);
             }
             var token = Guid.NewGuid().ToString();
-            var expiry = DateTime.UtcNow.AddHours(24); // adding 24 hours
+            var expiry = DateTime.UtcNow.AddHours(1); // adding 24 hours
             var registrationUrl = $"http://localhost:4200/register?token={token}";
 
 
@@ -57,7 +57,7 @@ namespace FitMind_API.Controllers
                 Email = receptor,
                 Token = token,
                 Status = 1,
-                ExpiryDate = DateTime.UtcNow.AddHours(24), // expiring time
+                ExpiryDate = expiry, // expiring time
                 InsertedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
