@@ -29,7 +29,7 @@ namespace FitMind_API.Models.Entities
         public string? UniqueName { get; set; }
         public int? UserVisibility { get; set; }
         public string? Bio { get; set; }
-        public int? Phone { get; set; }
+        public string? Phone { get; set; }
         public string? FacebookLink { get; set; }
         public string? InstagramLink { get; set; }
         public string? Location { get; set; }
