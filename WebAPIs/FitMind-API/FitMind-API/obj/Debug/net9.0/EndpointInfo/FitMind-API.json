@@ -693,8 +693,7 @@
             "nullable": true
           },
           "phone": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           },
           "facebookLink": {
@@ -824,8 +823,7 @@
             "nullable": true
           },
           "phone": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           },
           "facebookLink": {

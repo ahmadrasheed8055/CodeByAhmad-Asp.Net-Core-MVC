@@ -68,6 +68,14 @@ namespace FitMind_API.Controllers
             }
             return result;
         }
+        private string uniqueNameGenerator(string username)
+        {
+            string cleanedName = username.Replace(" ", "").ToLower();
+            var seconds = DateTime.UtcNow.ToString("ss");
+            var randomNumber = new Random().Next(1000, 9999);
+
+            return $"{cleanedName}{seconds}{randomNumber}";
+        }
 
 
 
@@ -108,7 +116,7 @@ namespace FitMind_API.Controllers
             return Ok(new {message = "User updated!"});
         }
 
-        
+      
         [HttpPost("add-app-user")]
         public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
         {
@@ -128,6 +136,7 @@ namespace FitMind_API.Controllers
             AppUsers user = new AppUsers()
             {
                 Username = uDTO.Username,
+                UniqueName = uniqueNameGenerator(uDTO.Username),
                 Email = uDTO.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(uDTO.PasswordHash),
                 EmailConfirmed = true,
