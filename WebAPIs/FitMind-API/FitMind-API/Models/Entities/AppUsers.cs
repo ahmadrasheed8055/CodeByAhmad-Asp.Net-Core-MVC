@@ -37,6 +37,9 @@ namespace FitMind_API.Models.Entities
         public byte[]? ProfilePhoto { get; set; }
         public byte[]? BackgroundPhoto { get; set; }
 
+        //update password date colum
+        public DateTime? PasswordUpdateAt { get; set; }
+            
         // Navigation Property for Tokens
         public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();
     }

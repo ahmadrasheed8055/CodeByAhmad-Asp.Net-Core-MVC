@@ -52,16 +52,16 @@ namespace FitMind_API.Controllers
 
         }
 
-    
+
 
         [HttpGet("get-user/{id}")]
         public async Task<ActionResult<PublicAppUserDTO>> GetUser(int id)
         {
             var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.Id == id);
-                
+
 
             var result = JsonSerializer.Deserialize<PublicAppUserDTO>(JsonSerializer.Serialize(user));
-          
+
             if (user == null || result == null)
             {
                 return NotFound("User not found");
@@ -99,8 +99,17 @@ namespace FitMind_API.Controllers
                 return NotFound(new { message = "User not found" });
             }
             //  UniqueName UserVisibility Bio Phone FacebookLink InstagramLink  Location Country
+
             user.Username = appUser.Username;
-            user.UniqueName = appUser.UniqueName;
+            if (appUser.UniqueName != null)
+            {
+                var exist = await CheckUniqueName(appUser.UniqueName, appUser.Id);
+                if (exist)
+                {
+                    return StatusCode(409, new { message = "Unique name already exists." });
+                }
+                user.UniqueName = appUser.UniqueName;
+            }
             user.UserVisibility = appUser.UserVisibility;
             user.Bio = appUser.Bio;
             user.Phone = appUser.Phone;
@@ -113,10 +122,10 @@ namespace FitMind_API.Controllers
             _context.AppUsers.Update(user);
             await _context.SaveChangesAsync();
 
-            return Ok(new {message = "User updated!"});
+            return Ok(new { message = "User updated!" });
         }
 
-      
+
         [HttpPost("add-app-user")]
         public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
         {
@@ -179,11 +188,11 @@ namespace FitMind_API.Controllers
         [HttpPut("upload-image/{id}")]
         public async Task<IActionResult> UploadProfileImage(IFormFile file, int id)
         {
-             //step 3 find user by id
+            //step 3 find user by id
             var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
-                return NotFound(new {message = "User not found"});
+                return NotFound(new { message = "User not found" });
             }
             //step 1
             if (file == null || file.Length == 0)
@@ -208,7 +217,7 @@ namespace FitMind_API.Controllers
             using var memory = new MemoryStream();
             await file.CopyToAsync(memory);
 
-           
+
 
             user.ProfilePhoto = memory.ToArray();
             await _context.SaveChangesAsync();
@@ -220,12 +229,25 @@ namespace FitMind_API.Controllers
         public async Task<IActionResult> GetProfileImage(int id)
         {
             var user = await _context.AppUsers.FindAsync(id);
+            if (user == null || user.ProfilePhoto == null) { return NotFound(); }
+            return Ok(user.ProfilePhoto);
+        }
+
+        //Delete profile photo API
+        [HttpPut("delete-profile/{id}")]
+        public async Task<IActionResult> DeleteProfile(int id)
+        {
+            var user = await _context.AppUsers.FindAsync(id);
             if (user == null || user.ProfilePhoto == null)
             {
-                return NotFound();
+                return NotFound(new { message = "User not found or no profile photo to delete." });
             }
 
-            return Ok( user.ProfilePhoto);
+            user.ProfilePhoto = null; // Set the profile photo to null
+            _context.AppUsers.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Profile photo deleted." });
         }
 
 
@@ -284,9 +306,57 @@ namespace FitMind_API.Controllers
             return Ok(user.BackgroundPhoto);
         }
 
+
+        //Delete background photo
+        [HttpPut("delete-background/{id}")]
+        public async Task<IActionResult> DeleteBackground(int id)
+        {
+            var user = await _context.AppUsers.FindAsync(id);
+            if (user == null || user.BackgroundPhoto == null)
+            {
+                return NotFound(new { message = "User not found or no background photo to delete." });
+            }
+            user.BackgroundPhoto = null; // Set the background photo to null
+            _context.AppUsers.Update(user);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Background photo deleted." });
+        }
+
+        //check existing unique name
+        [HttpGet("check-unique-name")]
+        public async Task<bool> CheckUniqueName(string uniqueName, int userId)
+        {
+            var isTaken = await _context.AppUsers.AnyAsync(u => u.UniqueName == uniqueName && u.Id != userId);
+
+            return (isTaken);
+        }
+
         private bool AppUsersExists(int id)
         {
             return _context.AppUsers.Any(e => e.Id == id);
+        }
+
+        //update password
+        [HttpPut("update-password/{id}")]
+        public async Task<IActionResult> UpdatePassword(int id, [FromBody] newPasswordDTO newPasswordObj)
+        {
+            var user = await _context.AppUsers.FindAsync(id);
+            if (newPasswordObj.currentPassword != newPasswordObj.newPassword)
+            {
+                return BadRequest(new { MessageProcessingHandler = "New password and current password cannot be same." });
+            }
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+          
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPasswordObj.newPassword);
+            user.PasswordUpdateAt = DateTime.UtcNow;
+            _context.AppUsers.Update(user);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Password updated successfully!" });
+
         }
     }
 }

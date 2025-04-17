@@ -37,9 +37,72 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "CheckUniqueName",
+    "RelativePath": "api/AppUsers/check-unique-name",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uniqueName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "DeleteAppUsers",
     "RelativePath": "api/AppUsers/delete-app-user/{id}",
     "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "DeleteBackground",
+    "RelativePath": "api/AppUsers/delete-background/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "DeleteProfile",
+    "RelativePath": "api/AppUsers/delete-profile/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -151,6 +214,27 @@
       {
         "Name": "appUser",
         "Type": "FitMind_API.Models.DTOs.PublicAppUserDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "UpdatePassword",
+    "RelativePath": "api/AppUsers/update-password/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newPasswordObj",
+        "Type": "FitMind_API.Models.DTOs.newPasswordDTO",
         "IsRequired": true
       }
     ],
