@@ -1,54 +1,72 @@
-using FitMind_API.Data;
+﻿using FitMind_API.Data;
 using FitMind_API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-
-// Add Swagger (OpenAPI) support
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//configure service
-builder.Services.AddTransient<IEmailService, EmailService>();
-
-//cors 
+// ✅ CORS Policy for Angular only
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    options.AddPolicy("AngularPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Replace with production Angular URL
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
 });
 
-// Configure DbContext with SQL Server connection string
+// ✅ JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+// ✅ Services implementation
+builder.Services.AddTransient<IEmailService, EmailService>();
+
+// ✅ Database
 builder.Services.AddDbContext<FMDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FMDBCS")));
 
 var app = builder.Build();
-app.UseCors("AllowAllOrigins");
 
-// Configure the HTTP request pipeline.
+// ✅ Use CORS before Auth
+app.UseCors("AngularPolicy");
+
 if (app.Environment.IsDevelopment())
 {
-    // Enable Swagger only in development mode
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-        c.RoutePrefix = string.Empty; // Swagger available at root URL
+        c.RoutePrefix = string.Empty;
     });
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 app.Run();

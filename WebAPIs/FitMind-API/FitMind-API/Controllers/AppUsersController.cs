@@ -13,18 +13,28 @@ using BCrypt.Net;
 using System.Text.RegularExpressions;
 using System.Text.Json;
 using FitMind_API.Common;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FitMind_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AppUsersController : ControllerBase
     {
         private readonly FMDBContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AppUsersController(FMDBContext context)
+
+        public AppUsersController(FMDBContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: api/AppUsers
@@ -34,6 +44,36 @@ namespace FitMind_API.Controllers
             return await _context.AppUsers.ToListAsync();
         }
 
+        //generate JWT token
+        private string generateJwtToken(string email)
+        {
+            //claims  
+            var claims = new[]
+            {
+               new Claim(ClaimTypes.Email, email)
+           };
+
+            //key  
+            var jwtKey = _configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
+            {
+                throw new InvalidOperationException("JWT key is not configured.");
+            }
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+              issuer: _configuration["Jwt:Issuer"],
+              audience: _configuration["Jwt:Audience"],
+              claims: claims,
+              expires: DateTime.Now.AddMinutes(30),
+              signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [AllowAnonymous]
         // GET: api/AppUsers/5
         [HttpPost("login-user")]
         public async Task<ActionResult<int>> GetAppUsers([FromBody] UserLoginDTO loginDTO)
@@ -47,8 +87,8 @@ namespace FitMind_API.Controllers
             {
                 return BadRequest("Wrong password");
             }
-
-            return user.Id;
+            var token = this.generateJwtToken(user.Email);
+            return Ok(new {token = token, userId = user.Id });
 
         }
 
@@ -125,6 +165,7 @@ namespace FitMind_API.Controllers
             return Ok(new { message = "User updated!" });
         }
 
+        //[AllowAnonymous]
 
         [HttpPost("add-app-user")]
         public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
@@ -349,7 +390,7 @@ namespace FitMind_API.Controllers
             {
                 return NotFound(new { message = "User not found" });
             }
-          
+
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPasswordObj.newPassword);
             user.PasswordUpdateAt = DateTime.UtcNow;
