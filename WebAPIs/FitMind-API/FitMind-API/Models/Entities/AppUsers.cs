@@ -42,5 +42,10 @@ namespace FitMind_API.Models.Entities
             
         // Navigation Property for Tokens
         public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();
+        // Navigation Property for Likes
+        public ICollection<PostLikes>? Likes { get; set; }
+
+        // Navigation Property for Comments
+        public ICollection<PostComments>? Comments { get; set; }
     }
 }

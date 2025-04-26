@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\addpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\addpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\controllers\\appuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\appuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\postlikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\postlikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\addpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\addpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\postlikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\postlikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f09dce6813ddb7ff0d2e482fab700e493055452a849349bb34e9a9dd486874f7\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -22,10 +62,6 @@
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\publicappuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\publicappuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -40,10 +76,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\migrations\\20250416124035_addpasswordupdatedat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\migrations\\20250416124035_addpasswordupdatedat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\appusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|e:\\asp.net core\\asp.net core\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -69,22 +101,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AppUsersController.cs",
-              "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f09dce6813ddb7ff0d2e482fab700e493055452a849349bb34e9a9dd486874f7\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
-              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f09dce6813ddb7ff0d2e482fab700e493055452a849349bb34e9a9dd486874f7\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs [Read Only]",
-              "ViewState": "AgIAAG0BAAAAAAAAAAAqwH8BAAAIAAAAAQAAAA==",
+              "Title": "AddPost.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AddPost.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\AddPost.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AddPost.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\AddPost.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwDgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T10:09:34.634Z",
-              "EditorCaption": " [Read Only]"
+              "WhenOpened": "2025-04-26T12:04:20.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T12:01:50.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostLikes.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostLikes.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PostLikes.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostLikes.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\PostLikes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T11:50:00.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PostComments.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T11:49:37.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddPostDTO.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\AddPostDTO.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\AddPostDTO.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\AddPostDTO.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\AddPostDTO.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAzwBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T11:49:11.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PostComments.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostComments.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\PostComments.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostComments.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\PostComments.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T10:18:28.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PostLikes.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostLikes.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\PostLikes.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostLikes.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\PostLikes.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T10:17:31.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Program.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs*",
+              "RelativeToolTip": "FitMind-API\\Program.cs*",
+              "ViewState": "AgIAADgAAAAAAAAAAAAwwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T11:11:47.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FMDBContext.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Data\\FMDBContext.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Data\\FMDBContext.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Data\\FMDBContext.cs",
+              "RelativeToolTip": "FitMind-API\\Data\\FMDBContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAqwDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T10:53:08.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "AppUsersController.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\AppUsersController.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\AppUsersController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T09:45:37.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\appsettings.json",
               "RelativeDocumentMoniker": "FitMind-API\\appsettings.json",
@@ -96,19 +247,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Program.cs",
-              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
-              "RelativeToolTip": "FitMind-API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "AppUsers.cs",
+              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\AppUsers.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAA9wDAAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T11:11:47.96Z"
+              "WhenOpened": "2025-02-27T07:44:14.909Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
+              "Title": "AppUsersController.cs",
+              "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f09dce6813ddb7ff0d2e482fab700e493055452a849349bb34e9a9dd486874f7\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
+              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\f09dce6813ddb7ff0d2e482fab700e493055452a849349bb34e9a9dd486874f7\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs [Read Only]",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAqwH8BAAAIAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T10:09:34.634Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "PublicAppUserDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PublicAppUserDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PublicAppUserDTO.cs",
@@ -120,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 21,
               "Title": "RegistrationAppUserDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\RegistrationAppUserDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\RegistrationAppUserDTO.cs",
@@ -132,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "UserLoginDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\UserLoginDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\UserLoginDTO.cs",
@@ -144,20 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppUsersController.cs",
-              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\AppUsersController.cs",
-              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs*",
-              "RelativeToolTip": "FitMind-API\\Controllers\\AppUsersController.cs*",
-              "ViewState": "AgIAAHQBAAAAAAAAAAAAAI0BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T09:45:37.265Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "newPasswordDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\newPasswordDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\newPasswordDTO.cs",
@@ -165,12 +315,11 @@
               "RelativeToolTip": "FitMind-API\\Models\\DTOs\\newPasswordDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T15:43:28.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T15:43:28.678Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\CategoriesController.cs",
@@ -182,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
               "Title": "Utilities.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Common\\Utilities.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Common\\Utilities.cs",
@@ -194,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 16,
               "Title": "EmailSendingController.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\EmailSendingController.cs",
@@ -206,7 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 18,
               "Title": "20250416124035_AddPasswordUpdatedAt.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20250416124035_AddPasswordUpdatedAt.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Migrations\\20250416124035_AddPasswordUpdatedAt.cs",
@@ -218,19 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AppUsers.cs",
-              "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\AppUsers.cs",
-              "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\AppUsers.cs",
-              "RelativeToolTip": "FitMind-API\\Models\\Entities\\AppUsers.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAgwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T07:44:14.909Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 22,
               "Title": "AppUserDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\AppUserDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\AppUserDTO.cs",
@@ -242,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "UpdateAppUserDTO.cs",
               "DocumentMoniker": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\UpdateAppUserDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\UpdateAppUserDTO.cs",
