@@ -158,6 +158,7 @@ namespace FitMind_API.Controllers
             user.Location = appUser.Location;
             user.Country = appUser.Country;
             user.UpdatedAt = DateTime.UtcNow;
+            user.Status = 3;
 
             _context.AppUsers.Update(user);
             await _context.SaveChangesAsync();
@@ -165,7 +166,7 @@ namespace FitMind_API.Controllers
             return Ok(new { message = "User updated!" });
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
 
         [HttpPost("add-app-user")]
         public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
@@ -203,8 +204,8 @@ namespace FitMind_API.Controllers
             userToken.Status = 2;
             _context.UserRegistrationTokens.Update(userToken);
             await _context.SaveChangesAsync(); // Save token update
-
-            return Ok(new { message = "User registered successfully and token linked!", id = user.Id });
+            var token = this.generateJwtToken(user.Email);
+            return Ok(new { message = "User registered successfully and token linked!"});
         }
 
 
@@ -382,10 +383,7 @@ namespace FitMind_API.Controllers
         public async Task<IActionResult> UpdatePassword(int id, [FromBody] newPasswordDTO newPasswordObj)
         {
             var user = await _context.AppUsers.FindAsync(id);
-            if (newPasswordObj.currentPassword != newPasswordObj.newPassword)
-            {
-                return BadRequest(new { MessageProcessingHandler = "New password and current password cannot be same." });
-            }
+           
             if (user == null)
             {
                 return NotFound(new { message = "User not found" });
