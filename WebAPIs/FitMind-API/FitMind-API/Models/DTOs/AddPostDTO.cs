@@ -24,6 +24,6 @@
 
         public int CategoryId { get; set; }
 
-        public byte[]? ImageUrl { get; set; }
+        public IFormFile? PostImage { get; set; }
     }
 }
