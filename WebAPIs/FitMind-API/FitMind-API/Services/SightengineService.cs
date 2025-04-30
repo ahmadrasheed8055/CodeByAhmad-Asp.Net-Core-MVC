@@ -15,7 +15,7 @@ namespace FitMind_API.Services
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
         }
-
+        //Image moderation function
         public async Task<SightengineDTO> CheckImageAsync(IFormFile imageFile)
         {
             var apiUser = _configuration["Sightengine:ApiUser"];
@@ -29,7 +29,7 @@ namespace FitMind_API.Services
             streamContent.Headers.ContentType = new MediaTypeHeaderValue(imageFile.ContentType);
 
             content.Add(streamContent, "media", imageFile.FileName);
-            content.Add(new StringContent("nudity,wad,offensive"), "models"); // you can also add 'wad', 'face-attributes' etc.
+            content.Add(new StringContent("nudity,wad,offensive"), "models");
             content.Add(new StringContent(apiUser), "api_user");
             content.Add(new StringContent(apiSecret), "api_secret");
 
@@ -42,14 +42,37 @@ namespace FitMind_API.Services
             }
 
             var resultString = await response.Content.ReadAsStringAsync();
-            SightengineDTO result = JsonConvert.DeserializeObject<SightengineDTO>(resultString);
+            var result = JsonConvert.DeserializeObject<SightengineDTO>(resultString);
             if (result == null)
             {
                 throw new Exception("Result not found");
             }
 
 
-            return result; // raw JSON string (you can later parse)
+            return result;
+        }
+
+        //Text moderation function
+        public async Task<SightengineTextModerationDTO> CheckTextAsync(string text)
+        {
+            var client = _httpClientFactory.CreateClient();
+
+            var parameters = new Dictionary<string, string>
+                {
+                    { "text", text },
+                    { "lang", "en" },
+                    { "mode", "standard" },
+                    { "api_user", _configuration["Sightengine:ApiUser"] },
+                    { "api_secret", _configuration["Sightengine:ApiSecret"] }
+                };
+
+            var response = await client.PostAsync(
+                "https://api.sightengine.com/1.0/text/check.json",
+                new FormUrlEncodedContent(parameters));
+
+            var resultString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Sightengine response: " + resultString);
+            return JsonConvert.DeserializeObject<SightengineTextModerationDTO>(resultString);
         }
     }
 }

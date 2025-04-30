@@ -592,5 +592,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "AnalyzeText",
+    "RelativePath": "api/Post/analyze-text",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "text",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

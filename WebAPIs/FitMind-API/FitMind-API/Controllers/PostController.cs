@@ -107,6 +107,67 @@ namespace FitMind_API.Controllers
                 return NotFound("Category not found");
             }
 
+            //Moderating post title and description           
+            #region Title Moderation
+
+            var isValidTitle = await _sightengineService.CheckTextAsync(addPostDto.Title);
+
+            if (isValidTitle == null || isValidTitle.Status != "success")
+                return StatusCode(500, "Text moderation failed. Please try again.");
+
+
+            var inappropriateTitle = isValidTitle.Profanity?.Matches?
+                .Where(m =>
+                            m.Type == "inappropriate" ||
+                            m.Type == "insult" ||
+                            m.Type == "sexual" ||
+                            m.Type == "hate" ||
+                            m.Type == "threat" ||
+                            m.Type == "violence" ||
+                            m.Type == "profanity" ||
+                            m.Type == "racist" ||
+                            m.Type == "homophobic" ||
+                            m.Type == "misogyny" ||
+                            m.Type == "drugs" ||
+                            m.Intensity == "high")
+                .Select(m => m)
+                .Distinct()
+                .ToList();
+
+            if (inappropriateTitle != null && inappropriateTitle.Any())
+                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateTitle)}");
+            #endregion
+
+            
+            #region Description Moderation
+            var isValidDesc = await _sightengineService.CheckTextAsync(addPostDto.Title);
+
+            if (isValidDesc == null || isValidDesc.Status != "success")
+                return StatusCode(500, "Text moderation failed. Please try again.");
+
+
+            var inappropriateDesc = isValidDesc.Profanity?.Matches?
+                .Where(m =>
+                            m.Type == "inappropriate" ||
+                            m.Type == "insult" ||
+                            m.Type == "sexual" ||
+                            m.Type == "hate" ||
+                            m.Type == "threat" ||
+                            m.Type == "violence" ||
+                            m.Type == "profanity" ||
+                            m.Type == "racist" ||
+                            m.Type == "homophobic" ||
+                            m.Type == "misogyny" ||
+                            m.Type == "drugs" ||
+                            m.Intensity == "high")
+                .Select(m => m)
+                .Distinct()
+                .ToList();
+
+            if (inappropriateDesc != null && inappropriateDesc.Any())
+                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
+            #endregion
+
             var addPost = new AddPost
             {  
                 Title = addPostDto.Title,
@@ -123,7 +184,6 @@ namespace FitMind_API.Controllers
 
 
 
-            object sensitivityObj = null;
             // Handle image upload 
             if (addPostDto.PostImage != null)
             {
@@ -136,11 +196,42 @@ namespace FitMind_API.Controllers
                     return BadRequest("Extension error.");
                 }
 
+               
                 //checking sensitivity
-                sensitivityObj = await _sightengineService.CheckImageAsync(addPostDto.PostImage);
-
-              
+                var sensitivityObj = await _sightengineService.CheckImageAsync(addPostDto.PostImage);
                 
+                //conditions
+                if (sensitivityObj == null || sensitivityObj.Status != "success")
+                    return StatusCode(500, "Image analysis failed. Please try again.");
+
+                // Nudity check
+                if (sensitivityObj.Nudity != null)
+                {
+                    if (sensitivityObj.Nudity.Raw > 0.5m)
+                        return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
+
+                    if (sensitivityObj.Nudity.Partial > 0.5m)
+                        return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                }
+
+                // Offensive content check
+                if (sensitivityObj.Offensive != null && sensitivityObj.Offensive.Prob > 0.5m)
+                    return UnprocessableEntity("Image is considered offensive and is not allowed.");
+
+                // WAD (Weapons, Alcohol, Drugs) check
+                if (sensitivityObj.Wad != null)
+                {
+                    if (sensitivityObj.Wad.Weapons > 0.5m)
+                        return UnprocessableEntity("Image contains weapons and is not allowed.");
+
+                    if (sensitivityObj.Wad.Alcohol > 0.5m)
+                        return UnprocessableEntity("Image contains alcohol and is not allowed.");
+
+                    if (sensitivityObj.Wad.Drugs > 0.5m)
+                        return UnprocessableEntity("Image contains drugs and is not allowed.");
+                }
+
+
                 if (addPostDto.PostImage.Length > 5 * 1024 * 1024)
                 {
                     return BadRequest("Image size must be less than 5 mbs");
@@ -157,7 +248,7 @@ namespace FitMind_API.Controllers
             _context.AddPosts.Add(addPost);
             await _context.SaveChangesAsync();
 
-            return Ok(sensitivityObj);
+            return Ok("User Added successfully");
         }
 
 
@@ -170,49 +261,78 @@ namespace FitMind_API.Controllers
 
             var sensitivityObj = await _sightengineService.CheckImageAsync(image);
 
-            if (sensitivityObj == null)
-            {
-                throw new Exception("Unable to analyze image sensitivity.");
-            }
+            if (sensitivityObj == null || sensitivityObj.Status != "success")
+                return StatusCode(500, "Image analysis failed. Please try again.");
 
-            // Check if API status is not success
-            if (sensitivityObj.Status != "success")
-            {
-                throw new Exception("Image analysis failed. Please try with a different image.");
-            }
-
-            // Check for high nudity content (raw or partial)
+            // Nudity check
             if (sensitivityObj.Nudity != null)
             {
                 if (sensitivityObj.Nudity.Raw > 0.5m)
-                    throw new Exception("Image contains high raw nudity, not allowed.");
+                    return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
 
                 if (sensitivityObj.Nudity.Partial > 0.5m)
-                    throw new Exception("Image contains partial nudity, not allowed.");
+                    return UnprocessableEntity("Image contains partial nudity and is not allowed.");
             }
 
-            // Check for offensive content
-            if (sensitivityObj.Offensive != null)
-            {
-                if (sensitivityObj.Offensive.Prob > 0.5m)
-                    throw new Exception("Image is considered offensive, not allowed.");
-            }
+            // Offensive content check
+            if (sensitivityObj.Offensive != null && sensitivityObj.Offensive.Prob > 0.5m)
+                return UnprocessableEntity("Image is considered offensive and is not allowed.");
 
-            // Check for WAD (weapons, alcohol, drugs) content if available
+            // WAD (Weapons, Alcohol, Drugs) check
             if (sensitivityObj.Wad != null)
             {
                 if (sensitivityObj.Wad.Weapons > 0.5m)
-                    throw new Exception("Image contains weapons, not allowed.");
+                    return UnprocessableEntity("Image contains weapons and is not allowed.");
 
                 if (sensitivityObj.Wad.Alcohol > 0.5m)
-                    throw new Exception("Image contains alcohol, not allowed.");
+                    return UnprocessableEntity("Image contains alcohol and is not allowed.");
 
                 if (sensitivityObj.Wad.Drugs > 0.5m)
-                    throw new Exception("Image contains drugs, not allowed.");
+                    return UnprocessableEntity("Image contains drugs and is not allowed.");
             }
 
-            return Ok(sensitivityObj); // JSON result
+            return Ok(sensitivityObj); // Image passed all checks
         }
+
+        [HttpPost("analyze-text")]
+        public async Task<Boolean> AnalyzeText([FromBody] string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                //return BadRequest("Text is required.");
+                return false;
+
+            var result = await _sightengineService.CheckTextAsync(text);
+
+            if (result == null || result.Status != "success")
+                //return StatusCode(500, "Text moderation failed. Please try again.");
+                return false;
+
+            var inappropriateWords = result.Profanity?.Matches?
+                .Where(m =>
+                            m.Type == "inappropriate" ||
+                            m.Type == "insult" ||
+                            m.Type == "sexual" ||
+                            m.Type == "hate" ||
+                            m.Type == "threat" ||
+                            m.Type == "violence" ||
+                            m.Type == "profanity" ||
+                            m.Type == "racist" ||
+                            m.Type == "homophobic" ||
+                            m.Type == "misogyny" ||
+                            m.Type == "drugs" ||
+                            m.Intensity == "high")
+                .Select(m => m)
+                .Distinct()
+                .ToList();
+
+            if (inappropriateWords != null && inappropriateWords.Any())
+                //return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateWords)}");
+                return false;
+
+            //return Ok("Text is appropriate.");
+            return true;
+        }
+
 
 
         // DELETE: api/Post/5

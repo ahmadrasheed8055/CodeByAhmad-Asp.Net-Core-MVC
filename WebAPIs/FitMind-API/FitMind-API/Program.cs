@@ -57,7 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         client.BaseAddress = new Uri("https://api.sightengine.com/1.0/");
     });
     builder.Services.AddScoped<SightengineService>();
-
+    
 
 // ✅ Services implementation
 builder.Services.AddTransient<IEmailService, EmailService>();
