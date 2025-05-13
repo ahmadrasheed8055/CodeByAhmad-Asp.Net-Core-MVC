@@ -21,17 +21,11 @@ namespace FitMind_API.Controllers
         
         private readonly SightengineService _sightengineService;
 
-        public PostController(FMDBContext context, DeepAiService deepAIService, SightengineService sightengineService)
+        public PostController(FMDBContext context,  SightengineService sightengineService)
         {
             _context = context;
-      
             _sightengineService = sightengineService;
         }
-
-
-
-
-
 
         // GET: api/Post
         [HttpGet]
@@ -138,7 +132,6 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateTitle)}");
             #endregion
 
-            
             #region Description Moderation
             var isValidDesc = await _sightengineService.CheckTextAsync(addPostDto.Title);
 
@@ -173,10 +166,9 @@ namespace FitMind_API.Controllers
                 Title = addPostDto.Title,
                 Description = addPostDto.Description,
                 CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                UpdatedAt = null,
                 IsPublished = addPostDto.IsPublished,
-                ViewCount = 0,
-                LikeCount = 0,
+               
                 IsDeleted = false,
                 UserId = addPostDto.UserId,
                 CategoryId = addPostDto.CategoryId

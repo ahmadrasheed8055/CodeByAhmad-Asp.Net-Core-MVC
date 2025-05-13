@@ -9,15 +9,6 @@ using FitMind_API.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient("DeepAI", client =>
-{
-    var apiKey = builder.Configuration["DeepAI:ApiKey"];
-    client.BaseAddress = new Uri("https://api.deepai.org/");
-    client.DefaultRequestHeaders.Add("api-key", apiKey); // ✅ Lowercase "api-key"
-});
-
-builder.Services.AddScoped<DeepAiService>();
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

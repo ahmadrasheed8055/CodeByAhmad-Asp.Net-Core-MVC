@@ -515,11 +515,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "PostId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "Title",
         "Type": "System.String",
         "IsRequired": false
@@ -530,32 +525,12 @@
         "IsRequired": false
       },
       {
-        "Name": "CreatedAt",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
         "Name": "UpdatedAt",
         "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "IsPublished",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "ViewCount",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "LikeCount",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsDeleted",
         "Type": "System.Boolean",
         "IsRequired": false
       },
