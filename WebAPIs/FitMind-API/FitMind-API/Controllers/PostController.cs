@@ -165,7 +165,7 @@ namespace FitMind_API.Controllers
             #endregion
 
             #region Description Moderation
-            var isValidDesc = await _sightengineService.CheckTextAsync(addPostDto.Title);
+            var isValidDesc = await _sightengineService.CheckTextAsync(addPostDto.Description);
 
             if (isValidDesc == null || isValidDesc.Status != "success")
                 return StatusCode(500, "Text moderation failed. Please try again.");
@@ -365,7 +365,7 @@ namespace FitMind_API.Controllers
                 return BadRequest("Post data is null");
             }
 
-            var userDetail = await _context.AppUsers.FindAsync(updatePostDTO.UserId);
+            var userDetail = await _context.AppUsers.FindAsync(userId);
             if (userDetail == null)
             {
                 return NotFound("User not found");
@@ -376,7 +376,12 @@ namespace FitMind_API.Controllers
             {
                 return NotFound("Category not found");
             }
-
+            //finding post
+            var post = await _context.AddPosts.FindAsync(updatePostDTO.PostId);
+            if(post == null)
+            {
+                return NotFound(new { message = "Post not found!" });
+            }
             #region Title Moderation
 
             var isValidTitle = await _sightengineService.CheckTextAsync(updatePostDTO.Title);
@@ -408,7 +413,7 @@ namespace FitMind_API.Controllers
             #endregion
 
             #region Description Moderation
-            var isValidDesc = await _sightengineService.CheckTextAsync(updatePostDTO.Title);
+            var isValidDesc = await _sightengineService.CheckTextAsync(updatePostDTO.Description);
 
             if (isValidDesc == null || isValidDesc.Status != "success")
                 return StatusCode(500, "Text moderation failed. Please try again.");
@@ -436,24 +441,20 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
-            var updatePost = new UpdatePostDTO
+            
+            if(post!= null)
             {
-                Title = updatePostDTO.Title,
-                Description = updatePostDTO.Description,
-               
-                UpdatedAt = DateTime.UtcNow,
-                IsPublished = updatePostDTO.IsPublished,
+                post.Title = updatePostDTO.Title;
+                post.Description = updatePostDTO.Description;
+                post.UpdatedAt = DateTime.Now;
+                post.IsPublished = updatePostDTO.IsPublished;
+                post.CategoryId = updatePostDTO.CategoryId;
 
-                UserId = updatePostDTO.UserId,
-                CategoryId = updatePostDTO.CategoryId
-            };
-
-
-
+            }
+            
             // Handle image upload 
-                if (updatePostDTO.PostImage != null)
-                {
-               
+            if (updatePostDTO.PostImage != null)
+            {
                 var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
                 var maxLength = 5 * 1024 * 1024;
                 var fileExtension = Path.GetExtension(updatePostDTO.PostImage.FileName).ToLower();
@@ -499,7 +500,7 @@ namespace FitMind_API.Controllers
                 }
 
 
-                if (updatePostDTO.PostImage.Length > 5 * 1024 * 1024)
+                if (updatePostDTO.PostImage.Length > maxLength)
                 {
                     return BadRequest("Image size must be less than 5 mbs");
                 }
@@ -508,14 +509,13 @@ namespace FitMind_API.Controllers
                 using (var memoryStream = new MemoryStream())
                 {
                     await updatePostDTO.PostImage.CopyToAsync(memoryStream);
-                    addPost.PostImage = memoryStream.ToArray();
+                    post.PostImage = memoryStream.ToArray();
                 }
             }
 
-            _context.AddPosts.Add(addPost);
+            _context.AddPosts.Update(post);
             await _context.SaveChangesAsync();
-
-            return Ok("User Added successfully");
+            return Ok("User Updated successfully");
         }
        
 
