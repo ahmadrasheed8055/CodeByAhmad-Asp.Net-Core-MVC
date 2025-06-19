@@ -357,6 +357,7 @@ namespace FitMind_API.Controllers
             return true;
         }
 
+        //Update Post
          [HttpPut("updatePost/{userId}")]
         public async Task<IActionResult> UpdatePost(int userId, [FromForm] UpdatePostDTO updatePostDTO)
         {

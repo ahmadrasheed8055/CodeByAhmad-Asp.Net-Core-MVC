@@ -2,18 +2,18 @@
 {
     public class UpdatePostDTO
     {
-        public int PostId { get; set; }
+        public required int PostId { get; set; }
         public string Title { get; set; } = string.Empty;
 
         public string? Description { get; set; }
 
-        public DateTime? UpdatedAt { get; set; }
+        //public DateTime? UpdatedAt { get; set; }
 
 
         public bool IsPublished { get; set; }
 
 
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
         public int CategoryId { get; set; }
 
