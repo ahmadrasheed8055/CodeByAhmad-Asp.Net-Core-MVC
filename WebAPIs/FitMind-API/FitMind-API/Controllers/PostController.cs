@@ -516,7 +516,7 @@ namespace FitMind_API.Controllers
 
             _context.AddPosts.Update(post);
             await _context.SaveChangesAsync();
-            return Ok("User Updated successfully");
+            return Ok( new { m = "User Updated successfully" });
         }
        
 

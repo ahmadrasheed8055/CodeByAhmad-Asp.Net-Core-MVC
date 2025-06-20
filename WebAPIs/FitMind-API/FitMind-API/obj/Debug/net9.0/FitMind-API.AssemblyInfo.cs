@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitMind-API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b49a18376749da7115588eaa4892237e44eeb8b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30e395d878ba6789e4dcc7de3982250fc37dd543")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitMind-API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitMind-API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
