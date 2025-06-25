@@ -49,6 +49,20 @@ namespace FitMind_API.Controllers
             return addPost;
         }
 
+        [HttpGet("getPostImage/{userId}/{postId}")]
+        public async Task<ActionResult<string>> GetPostImage(int userId, int postId)
+        {
+            var imageAddress = await _context.AddPosts.Where(u => u.UserId == userId && u.PostId == postId)
+                .Select(p => p.PostImage)
+                .FirstOrDefaultAsync();
+            if(imageAddress == null)
+            {
+                return NotFound(new { message = "Image not found" });
+            }
+
+            return Ok(imageAddress);
+        }
+
         //get drafted post
         [HttpGet("getDrafts/{userId}")]
         public async Task<ActionResult<List<GetDraftedPostDTO>>> GetDraftedPosts(int userId)
@@ -518,7 +532,29 @@ namespace FitMind_API.Controllers
             await _context.SaveChangesAsync();
             return Ok( new { m = "User Updated successfully" });
         }
-       
+
+        [HttpPut("deletePostPhoto/{userId}/{postId}")]
+        public async Task<IActionResult> DeletePostPhoto(int userId, int postId)
+        {
+            var post = await _context.AddPosts
+                .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId);
+
+            if (post == null)
+            {
+                return NotFound(new { message = "Post not found" });
+            }
+
+            if (post.PostImage == null || post.PostImage.Length == 0)
+            {
+                return BadRequest(new { message = "No image to delete" });
+            }
+
+            post.PostImage = null;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Post image deleted successfully" });
+        }
+
 
         // DELETE: api/Post/5
         [HttpDelete("{id}")]

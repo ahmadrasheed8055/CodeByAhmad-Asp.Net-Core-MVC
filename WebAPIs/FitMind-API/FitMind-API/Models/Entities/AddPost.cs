@@ -16,6 +16,7 @@ namespace FitMind_API.Models.Entities
         public string Title { get; set; }
 
         [Required]
+        [StringLength(1000)]
         public string Description { get; set; }
 
         public DateTime CreatedAt { get; set; }

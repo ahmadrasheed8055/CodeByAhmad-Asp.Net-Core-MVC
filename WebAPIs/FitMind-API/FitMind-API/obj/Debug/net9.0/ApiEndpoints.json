@@ -591,6 +591,27 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "DeletePostPhoto",
+    "RelativePath": "api/Post/deletePostPhoto/{userId}/{postId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetDraftedPosts",
     "RelativePath": "api/Post/getDrafts/{userId}",
     "HttpMethod": "GET",
@@ -606,6 +627,37 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetDraftedPostDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "GetPostImage",
+    "RelativePath": "api/Post/getPostImage/{userId}/{postId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
         "MediaTypes": [
           "text/plain",
           "application/json",
