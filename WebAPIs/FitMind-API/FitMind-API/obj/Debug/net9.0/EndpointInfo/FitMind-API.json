@@ -723,10 +723,21 @@
         }
       }
     },
-    "/api/Post": {
+    "/api/Post/getUserPosts/{userId}": {
       "get": {
         "tags": [
           "Post"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -736,7 +747,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AddPost"
+                    "$ref": "#/components/schemas/GetUserPostsDTO"
                   }
                 }
               },
@@ -744,7 +755,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AddPost"
+                    "$ref": "#/components/schemas/GetUserPostsDTO"
                   }
                 }
               },
@@ -752,7 +763,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AddPost"
+                    "$ref": "#/components/schemas/GetUserPostsDTO"
                   }
                 }
               }
@@ -1286,10 +1297,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "likeCount": {
-            "type": "integer",
-            "format": "int32"
-          },
           "isDeleted": {
             "type": "boolean"
           },
@@ -1312,10 +1319,10 @@
             "format": "byte",
             "nullable": true
           },
-          "likes": {
+          "postReactions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostLikes"
+              "$ref": "#/components/schemas/PostReactions"
             },
             "nullable": true
           },
@@ -1432,10 +1439,10 @@
             },
             "nullable": true
           },
-          "likes": {
+          "postReactions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostLikes"
+              "$ref": "#/components/schemas/PostReactions"
             },
             "nullable": true
           },
@@ -1521,6 +1528,70 @@
         },
         "additionalProperties": false
       },
+      "GetUserPostsDTO": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isPublished": {
+            "type": "boolean"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "postImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "viewCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "likeCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "dislikeCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PostComments": {
         "required": [
           "postId",
@@ -1562,16 +1633,24 @@
         },
         "additionalProperties": false
       },
-      "PostLikes": {
+      "PostReactions": {
         "required": [
           "postId",
           "userId"
         ],
         "type": "object",
         "properties": {
-          "likeId": {
+          "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "isLike": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "reactedAt": {
+            "type": "string",
+            "format": "date-time"
           },
           "postId": {
             "type": "integer",
@@ -1586,10 +1665,6 @@
           },
           "user": {
             "$ref": "#/components/schemas/AppUsers"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

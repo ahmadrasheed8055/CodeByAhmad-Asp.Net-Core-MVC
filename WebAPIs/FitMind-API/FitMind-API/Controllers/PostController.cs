@@ -28,11 +28,59 @@ namespace FitMind_API.Controllers
             _sightengineService = sightengineService;
         }
 
-        // GET: api/Post
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<AddPost>>> GetAddPosts()
+        //get posts
+        [HttpGet("getUserPosts/{userId}")]
+        public async Task<ActionResult<List<GetUserPostsDTO>>> GetUserPosts(int userId)
         {
-            return await _context.AddPosts.ToListAsync();
+            if (userId == 0)
+            {
+                return BadRequest(new { message = "User ID is empty." });
+            }
+
+            var user = await _context.AppUsers.FindAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var Posts = await _context.AddPosts
+                                    .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted)
+                                    .Include(p => p.Category)
+                                    .Include(p => p.postReactions)
+                                    .OrderByDescending(p => p.CreatedAt)
+                                    .Select(post => new GetUserPostsDTO
+                                    {
+                                        PostId = post.PostId,
+                                        Title = post.Title,
+                                        Description = post.Description,
+                                        CreatedAt = post.CreatedAt,
+                                        UpdatedAt = post.UpdatedAt,
+                                        IsPublished = post.IsPublished,
+                                        UserId = post.UserId,
+                                        UserName = user.Username,
+                                        CategoryId = post.CategoryId,
+                                        CategoryName = post.Category.Name,
+                                        PostImageUrl = post.PostImage != null ? Convert.ToBase64String(post.PostImage) : null,
+                                        ViewCount = post.ViewCount,
+                                        LikeCount = post.postReactions.Count(r => r.IsLike == true) == 0
+                                                    ? (int?)null
+                                                    : post.postReactions.Count(r => r.IsLike == true),
+
+                                        DislikeCount = post.postReactions.Count(r => r.IsLike == false) == 0
+                                                   ? (int?)null
+                                                   : post.postReactions.Count(r => r.IsLike == false)
+                                    })
+                                    .ToListAsync();
+
+
+
+
+            if (!Posts.Any())
+            {
+                return NotFound(new { message = "No posts found for this user." });
+            }
+
+            return Ok(Posts);
         }
 
         // GET: api/Post/5
@@ -55,7 +103,7 @@ namespace FitMind_API.Controllers
             var imageAddress = await _context.AddPosts.Where(u => u.UserId == userId && u.PostId == postId)
                 .Select(p => p.PostImage)
                 .FirstOrDefaultAsync();
-            if(imageAddress == null)
+            if (imageAddress == null)
             {
                 return NotFound(new { message = "Image not found" });
             }
@@ -119,10 +167,6 @@ namespace FitMind_API.Controllers
 
             return Ok(new { message = "Draft post deleted successfully." });
         }
-
-
-
-
 
 
         // POST: api/Post
@@ -290,7 +334,7 @@ namespace FitMind_API.Controllers
         }
 
 
-
+        //image analyzing
         [HttpPost("analyze-image")]
         public async Task<IActionResult> AnalyzeImage(IFormFile image)
         {
@@ -332,6 +376,7 @@ namespace FitMind_API.Controllers
             return Ok(sensitivityObj); // Image passed all checks
         }
 
+        //text analyzing
         [HttpPost("analyze-text")]
         public async Task<Boolean> AnalyzeText([FromBody] string text)
         {
@@ -372,7 +417,7 @@ namespace FitMind_API.Controllers
         }
 
         //Update Post
-         [HttpPut("updatePost/{userId}")]
+        [HttpPut("updatePost/{userId}")]
         public async Task<IActionResult> UpdatePost(int userId, [FromForm] UpdatePostDTO updatePostDTO)
         {
             if (updatePostDTO == null)
@@ -393,7 +438,7 @@ namespace FitMind_API.Controllers
             }
             //finding post
             var post = await _context.AddPosts.FindAsync(updatePostDTO.PostId);
-            if(post == null)
+            if (post == null)
             {
                 return NotFound(new { message = "Post not found!" });
             }
@@ -456,8 +501,8 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
-            
-            if(post!= null)
+
+            if (post != null)
             {
                 post.Title = updatePostDTO.Title;
                 post.Description = updatePostDTO.Description;
@@ -466,7 +511,7 @@ namespace FitMind_API.Controllers
                 post.CategoryId = updatePostDTO.CategoryId;
 
             }
-            
+
             // Handle image upload 
             if (updatePostDTO.PostImage != null)
             {
@@ -530,9 +575,10 @@ namespace FitMind_API.Controllers
 
             _context.AddPosts.Update(post);
             await _context.SaveChangesAsync();
-            return Ok( new { m = "User Updated successfully" });
+            return Ok(new { m = "User Updated successfully" });
         }
 
+        //delete post image
         [HttpPut("deletePostPhoto/{userId}/{postId}")]
         public async Task<IActionResult> DeletePostPhoto(int userId, int postId)
         {

@@ -27,7 +27,7 @@ namespace FitMind_API.Models.Entities
 
         public int ViewCount { get; set; }
 
-        public int LikeCount { get; set; }
+        //public int LikeCount { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -50,7 +50,7 @@ namespace FitMind_API.Models.Entities
         public byte[]? PostImage { get; set; }  // Nullable for optional image attachment
 
 
-        public ICollection<PostLikes>? Likes { get; set; }
+        public ICollection<PostReactions>? postReactions { get; set; }
 
         public ICollection<PostComments>? Comments { get; set; }
     }

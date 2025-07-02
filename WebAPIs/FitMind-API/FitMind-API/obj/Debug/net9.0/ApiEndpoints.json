@@ -425,26 +425,6 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
-    "Method": "GetAddPosts",
-    "RelativePath": "api/Post",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FitMind_API.Models.Entities.AddPost, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetAddPost",
     "RelativePath": "api/Post/{id}",
     "HttpMethod": "GET",
@@ -658,6 +638,32 @@
     "ReturnTypes": [
       {
         "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "GetUserPosts",
+    "RelativePath": "api/Post/getUserPosts/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetUserPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

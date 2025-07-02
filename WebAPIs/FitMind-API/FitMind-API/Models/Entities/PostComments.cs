@@ -19,8 +19,6 @@ namespace FitMind_API.Models.Entities
         [Required]
         [ForeignKey("Post")]
         public int PostId { get; set; }
-
-     
         public virtual AddPost? Post { get; set; } // Navigation property to Post
 
         [Required]
