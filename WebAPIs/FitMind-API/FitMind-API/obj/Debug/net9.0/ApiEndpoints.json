@@ -451,22 +451,6 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
-    "Method": "DeleteAddPost",
-    "RelativePath": "api/Post/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "AddPost",
     "RelativePath": "api/Post/add-post",
     "HttpMethod": "POST",
@@ -556,11 +540,37 @@
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "DeleteDraftedPost",
-    "RelativePath": "api/Post/deleteDraftedPost/{postId}",
+    "RelativePath": "api/Post/deleteDraftedPost/{userId}/{postId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "DeletePost",
+    "RelativePath": "api/Post/deletePost/{userId}/{postId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
       {
         "Name": "postId",
         "Type": "System.Int32",

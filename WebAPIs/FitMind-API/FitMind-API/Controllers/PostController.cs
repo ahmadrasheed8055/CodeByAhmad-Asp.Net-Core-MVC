@@ -47,7 +47,7 @@ namespace FitMind_API.Controllers
                                     .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted)
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
-                                    .OrderByDescending(p => p.CreatedAt)
+                                    .OrderByDescending(p => p.PublishAt)
                                     .Select(post => new GetUserPostsDTO
                                     {
                                         PostId = post.PostId,
@@ -55,6 +55,7 @@ namespace FitMind_API.Controllers
                                         Description = post.Description,
                                         CreatedAt = post.CreatedAt,
                                         UpdatedAt = post.UpdatedAt,
+                                        PublishAt = post.PublishAt,
                                         IsPublished = post.IsPublished,
                                         UserId = post.UserId,
                                         UserName = user.Username,
@@ -150,23 +151,7 @@ namespace FitMind_API.Controllers
                 .AnyAsync(p => p.UserId == userId && p.IsPublished == false && p.IsDeleted == false);
         }
 
-        //Soft-Delete Draft post
-        [HttpPut("deleteDraftedPost/{postId}")]
-        public async Task<IActionResult> DeleteDraftedPost(int postId)
-        {
-            var addPost = await _context.AddPosts.FindAsync(postId);
-            if (addPost == null)
-            {
-                return NotFound(new { message = "Draft post not found." });
-            }
 
-            //soft delete
-            addPost.IsDeleted = true;
-            _context.AddPosts.Update(addPost);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Draft post deleted successfully." });
-        }
 
 
         // POST: api/Post
@@ -251,14 +236,16 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
+            //condition for draft
+            DateTime? PublishAt = addPostDto.IsPublished ? DateTime.Now : null;
             var addPost = new AddPost
             {
                 Title = addPostDto.Title,
                 Description = addPostDto.Description,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                PublishAt = PublishAt,
                 UpdatedAt = null,
                 IsPublished = addPostDto.IsPublished,
-
                 IsDeleted = false,
                 UserId = addPostDto.UserId,
                 CategoryId = addPostDto.CategoryId
@@ -330,7 +317,7 @@ namespace FitMind_API.Controllers
             _context.AddPosts.Add(addPost);
             await _context.SaveChangesAsync();
 
-            return Ok("User Added successfully");
+            return Ok(addPost.PostId);
         }
 
 
@@ -501,12 +488,20 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
+            //Draft date updation
+            DateTime? PublishAt = null;
+
+            if (updatePostDTO.IsPublished && post.PublishAt == null)
+            {
+                PublishAt = DateTime.Now;
+            }
 
             if (post != null)
             {
                 post.Title = updatePostDTO.Title;
                 post.Description = updatePostDTO.Description;
                 post.UpdatedAt = DateTime.Now;
+                post.PublishAt = PublishAt;
                 post.IsPublished = updatePostDTO.IsPublished;
                 post.CategoryId = updatePostDTO.CategoryId;
 
@@ -602,20 +597,45 @@ namespace FitMind_API.Controllers
         }
 
 
-        // DELETE: api/Post/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAddPost(int id)
+
+        //Soft-Delete Draft post
+        [HttpPut("deleteDraftedPost/{userId}/{postId}")]
+        public async Task<IActionResult> DeleteDraftedPost(int userId, int postId)
         {
-            var addPost = await _context.AddPosts.FindAsync(id);
+            var addPost = await _context.AddPosts
+                            .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId && p.IsPublished == false);
+
             if (addPost == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Draft post not found." });
             }
 
-            _context.AddPosts.Remove(addPost);
+            //soft delete
+            addPost.IsDeleted = true;
+            _context.AddPosts.Update(addPost);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(new { message = "Draft post deleted successfully." });
+        }
+
+        //Soft-Delete  post
+        [HttpPut("deletePost/{userId}/{postId}")]
+        public async Task<IActionResult> DeletePost(int userId, int postId)
+        {
+            var addPost = await _context.AddPosts
+                            .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId && p.IsPublished == true);
+
+            if (addPost == null)
+            {
+                return NotFound(new { message = "post not found." });
+            }
+
+            //soft delete
+            addPost.IsDeleted = true;
+            _context.AddPosts.Update(addPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "post deleted successfully." });
         }
 
         private bool AddPostExists(int id)

@@ -22,6 +22,7 @@ namespace FitMind_API.Models.Entities
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? PublishAt { get; set; }
 
         public bool IsPublished { get; set; }
 

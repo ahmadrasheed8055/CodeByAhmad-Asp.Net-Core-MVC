@@ -13,6 +13,7 @@
         public string? CategoryName { get; set; }
         public string? PostImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime?  PublishAt { get; set; } //-> new colum
         public int ViewCount { get; set; }
         public int? LikeCount { get; set; }
         public int? DislikeCount { get; set; }

@@ -810,27 +810,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
     "/api/Post/getPostImage/{userId}/{postId}": {
@@ -967,29 +946,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/Post/deleteDraftedPost/{postId}": {
-      "put": {
-        "tags": [
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -1254,6 +1210,70 @@
           }
         }
       }
+    },
+    "/api/Post/deleteDraftedPost/{userId}/{postId}": {
+      "put": {
+        "tags": [
+          "Post"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Post/deletePost/{userId}/{postId}": {
+      "put": {
+        "tags": [
+          "Post"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1286,6 +1306,11 @@
             "format": "date-time"
           },
           "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "publishAt": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -1574,6 +1599,11 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "publishAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "viewCount": {
             "type": "integer",
