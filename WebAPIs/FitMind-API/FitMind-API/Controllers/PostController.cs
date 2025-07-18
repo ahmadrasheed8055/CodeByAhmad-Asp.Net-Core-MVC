@@ -44,7 +44,7 @@ namespace FitMind_API.Controllers
             }
 
             var Posts = await _context.AddPosts
-                                    .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted)
+                                    .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted && p.PublishAt != null)
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
                                     .OrderByDescending(p => p.PublishAt)
@@ -488,24 +488,30 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
-            //Draft date updation
-            DateTime? PublishAt = null;
-
-            if (updatePostDTO.IsPublished && post.PublishAt == null)
-            {
-                PublishAt = DateTime.Now;
-            }
+           
 
             if (post != null)
             {
                 post.Title = updatePostDTO.Title;
                 post.Description = updatePostDTO.Description;
                 post.UpdatedAt = DateTime.Now;
-                post.PublishAt = PublishAt;
+                //post.PublishAt = PD;
                 post.IsPublished = updatePostDTO.IsPublished;
                 post.CategoryId = updatePostDTO.CategoryId;
 
+                // Handle PublishAt logic
+                if (updatePostDTO.IsPublished)
+                {
+                    post.PublishAt = post.PublishAt ?? DateTime.Now; // Set now only if not already set
+                }
+                else
+                {
+                    post.PublishAt = null; // Unpublished posts have null PublishAt
+                }
+
             }
+
+
 
             // Handle image upload 
             if (updatePostDTO.PostImage != null)

@@ -39,11 +39,11 @@
               "DocumentIndex": 1,
               "Title": "PostController.cs",
               "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\a395842ecd27e322b95a8a2801ebb4d6fc3c84c4427ef89132aa3c552d6024a6\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
-              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\a395842ecd27e322b95a8a2801ebb4d6fc3c84c4427ef89132aa3c552d6024a6\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs [Read Only]",
+              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\a395842ecd27e322b95a8a2801ebb4d6fc3c84c4427ef89132aa3c552d6024a6\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
               "ViewState": "AgIAAJABAAAAAAAAAAAhwKgBAAAIAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T08:32:37.979Z",
-              "EditorCaption": " [Read Only]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -55,8 +55,7 @@
               "RelativeToolTip": "FitMind-API\\Models\\DTOs\\AddPostDTO.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAxwAkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:27:43.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T11:27:43.275Z"
             },
             {
               "$type": "Document",
@@ -68,19 +67,18 @@
               "RelativeToolTip": "FitMind-API\\Models\\Entities\\AddPost.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAswBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:21:32.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T11:21:32.814Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "PostController.cs",
               "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\6d4c1bb48df495d4c69a8ee5a22d3f9ad60622e21208d9ec4c407b6af33f1541\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
-              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\6d4c1bb48df495d4c69a8ee5a22d3f9ad60622e21208d9ec4c407b6af33f1541\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs [Read Only]",
+              "ToolTip": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\6d4c1bb48df495d4c69a8ee5a22d3f9ad60622e21208d9ec4c407b6af33f1541\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAIAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T15:41:18.894Z",
-              "EditorCaption": " [Read Only]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -92,8 +90,7 @@
               "RelativeToolTip": "FitMind-API\\Models\\DTOs\\GetUserPostsDTO.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAYwA8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T15:29:37.802Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-02T15:29:37.802Z"
             },
             {
               "$type": "Document",
@@ -103,7 +100,7 @@
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostController.cs",
               "ToolTip": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
               "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
-              "ViewState": "AgIAAGACAAAAAAAAAADwv28CAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAANoBAAAAAAAAAAAhwOwBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T13:06:16.757Z",
               "EditorCaption": ""
