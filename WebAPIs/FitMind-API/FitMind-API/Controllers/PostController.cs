@@ -11,6 +11,7 @@ using FitMind_API.Models.DTOs;
 using FitMind_API.Services;
 using static System.Net.Mime.MediaTypeNames;
 using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FitMind_API.Controllers
 {
@@ -84,8 +85,52 @@ namespace FitMind_API.Controllers
             return Ok(Posts);
         }
 
-        // GET: api/Post/5
-        [HttpGet("{id}")]
+        //[Authorize]
+        //get posts
+        [HttpGet("getAllPosts")]
+        public async Task<ActionResult<List<GetAllPostsDTO>>> GetAllPosts()
+        {
+            var Posts = await _context.AddPosts
+                                    .Where(p => p.IsPublished && !p.IsDeleted && p.PublishAt != null)
+                                    .Include(p=> p.User)
+                                    .Include(p => p.Category)
+                                    .Include(p => p.postReactions)
+                                    .OrderByDescending(p => p.PublishAt)
+                                    .Select(post => new GetAllPostsDTO
+                                    {
+                                        PostId = post.PostId,
+                                        Title = post.Title,
+                                        Description = post.Description,
+                                        CreatedAt = post.CreatedAt,
+                                        UpdatedAt = post.UpdatedAt,
+                                         PublishAt = post.PublishAt,
+                                        IsPublished = post.IsPublished,
+                                        UserId = post.UserId,
+                                        UserName = post.User.Username,
+                                        UserImage = post.User.ProfilePhoto != null ? Convert.ToBase64String(post.User.ProfilePhoto) : null,
+                                        CategoryId = post.CategoryId,   
+                                        CategoryName = post.Category.Name,
+                                        PostImage = post.PostImage != null ? Convert.ToBase64String(post.PostImage) : null,
+                                        ViewCount = post.ViewCount,
+                                        LikeCount = post.postReactions.Count(r => r.IsLike == true) == 0
+                                                    ? (int?)null
+                                                    : post.postReactions.Count(r => r.IsLike == true),
+                                        DislikeCount = post.postReactions.Count(r => r.IsLike == false) == 0
+                                                   ? (int?)null
+                                                   : post.postReactions.Count(r => r.IsLike == false)
+                                    })
+                                    .ToListAsync();
+
+            if (!Posts.Any())
+            {
+                return NotFound(new { message = "No posts found for this user." });
+            }
+
+            return Ok(Posts);
+        }
+
+            // GET: api/Post/5
+            [HttpGet("{id}")]
         public async Task<ActionResult<AddPost>> GetAddPost(int id)
         {
             var addPost = await _context.AddPosts.FindAsync(id);

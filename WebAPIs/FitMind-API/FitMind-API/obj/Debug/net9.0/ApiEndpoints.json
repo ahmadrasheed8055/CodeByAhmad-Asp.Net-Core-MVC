@@ -602,6 +602,26 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "GetAllPosts",
+    "RelativePath": "api/Post/getAllPosts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetDraftedPosts",
     "RelativePath": "api/Post/getDrafts/{userId}",
     "HttpMethod": "GET",
