@@ -10,19 +10,18 @@ namespace FitMind_API.Models.Entities
         //public int UserId { get; set; }
         public bool? IsLike { get; set; } 
         public DateTime ReactedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation properties
         [Required]
         [ForeignKey("Post")]
         public int PostId { get; set; }
-
-
         public virtual AddPost? Post { get; set; } // Navigation property to Post
+
 
         [Required]
         [ForeignKey("User")]
         public int UserId { get; set; }
-
         public virtual AppUsers? User { get; set; } // Navigation property to User
     }
 }

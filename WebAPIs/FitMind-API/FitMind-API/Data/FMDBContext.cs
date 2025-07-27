@@ -54,6 +54,7 @@ namespace FitMind_API.Data
                 .HasForeignKey(pr => pr.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // IMPORTANT: NO CASCADE from User -> Likes
         }
+       // public DbSet<FitMind_API.Models.Entities.PostLikes> PostLikes { get; set; } = default!;
 
          
 
