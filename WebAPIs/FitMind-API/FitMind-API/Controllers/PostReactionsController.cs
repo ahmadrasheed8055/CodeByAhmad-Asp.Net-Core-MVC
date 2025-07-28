@@ -44,20 +44,20 @@ namespace FitMind_API.Controllers
 
         //get post dislikes
         [HttpGet("postDislikesCount/{postId}")]
-        public async Task<int> DislikesCount( int postId)
+        public async Task<int> DislikesCount(int postId)
         {
             var dislikesCount = await _context.PostReactions
-                .Where(r => r.PostId == postId  && r.IsLike == false)
+                .Where(r => r.PostId == postId && r.IsLike == false)
                 .CountAsync();
             return dislikesCount;
         }
 
         //get post likes
         [HttpGet("postLikesCount/{postId}")]
-        public async Task<int> LikesCount( int postId)
+        public async Task<int> LikesCount(int postId)
         {
             var likesCount = await _context.PostReactions
-                .Where(r => r.PostId == postId  && r.IsLike == true)
+                .Where(r => r.PostId == postId && r.IsLike == true)
                 .CountAsync();
             return likesCount;
         }
@@ -67,43 +67,58 @@ namespace FitMind_API.Controllers
         public async Task<IActionResult> AddPostReaction(PostReactionsDTO postReaction)
         {
             if (postReaction.PostId == 0 || postReaction.UserId == 0)
-            {
-                return NotFound(new { message = "ids are reqired" });
-            }
+                return NotFound(new { message = "PostId and UserId are required" });
 
             if (!await PostAndUserExists(postReaction.UserId, postReaction.PostId))
-            {
                 return NotFound(new { message = "Post or User not found" });
+
+            // Check if reaction already exists
+            var existingReaction = await _context.PostReactions
+                .FirstOrDefaultAsync(p => p.UserId == postReaction.UserId && p.PostId == postReaction.PostId);
+
+            if (existingReaction != null)
+            {
+                if (existingReaction.IsLike == postReaction.IsLike)
+                {
+                    _context.PostReactions.Remove(existingReaction);
+                    await _context.SaveChangesAsync();
+                    return Ok(new
+                    {
+                        Message = "Post reaction removed."
+                    });
+                    //return BadRequest(new { message = $"Already {(postReaction.IsLike == true ? "liked" : "disliked")}" });
+                }
+
+                // Update existing reaction
+                existingReaction.IsLike = postReaction.IsLike;
+                existingReaction.ReactedAt = DateTime.Now;
+                _context.PostReactions.Update(existingReaction);
+            }
+            else
+            {
+                // Add new reaction
+                var reaction = new PostReactions
+                {
+                    UserId = postReaction.UserId,
+                    PostId = postReaction.PostId,
+                    IsLike = postReaction.IsLike,
+                    ReactedAt = DateTime.Now
+                };
+
+                _context.PostReactions.Add(reaction);
             }
 
-
-            // Check if like already exists
-            var exists = await _context.PostReactions
-                .AnyAsync(p => p.UserId == postReaction.UserId && p.PostId == postReaction.PostId);
-
-
-            if (exists)
-                return BadRequest(new { message = "Already liked" });
-
-            var reaction = new PostReactions
-            {
-                UserId = postReaction.UserId,
-                PostId = postReaction.PostId,
-                IsLike = postReaction.IsLike,
-                ReactedAt = DateTime.Now // if you have this field
-            };
-
-            _context.PostReactions.Add(reaction);
             await _context.SaveChangesAsync();
 
-            var postLikes = await LikesCount( postReaction.PostId);
-            var postDislikes = await DislikesCount(postReaction.PostId);
+            //var postLikes = await LikesCount(postReaction.PostId);
+            //var postDislikes = await DislikesCount(postReaction.PostId);
 
-            return Ok(new { Message = "Post reaction added",
-                            PostLikes = postLikes,
-                            PostDislikes= postDislikes
-                            });
+            return Ok(new
+            {
+                Message = "Post reaction recorded"
+            });
         }
+
 
         [HttpPut("updateReaction")]
         public async Task<IActionResult> UpdatePostReaction(PostReactionsDTO postReaction)
@@ -171,7 +186,7 @@ namespace FitMind_API.Controllers
             });
         }
 
-       
+
 
 
         private async Task<bool> PostAndUserExists(int userId, int postId)
