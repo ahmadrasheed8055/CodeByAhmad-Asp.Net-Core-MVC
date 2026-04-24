@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\FitMind-API.props" />
-</Project>

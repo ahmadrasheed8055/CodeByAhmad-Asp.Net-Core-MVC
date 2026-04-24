@@ -70,7 +70,13 @@ namespace FitMind_API.Controllers
 
                                         DislikeCount = post.postReactions.Count(r => r.IsLike == false) == 0
                                                    ? (int?)null
-                                                   : post.postReactions.Count(r => r.IsLike == false)
+                                                   : post.postReactions.Count(r => r.IsLike == false),
+                                        IsReactedByMe = userId != 0
+                                                                    ? post.postReactions
+                                                                        .Where(r => r.UserId == userId)
+                                                                        .Select(r => (bool?)r.IsLike)
+                                                                        .FirstOrDefault() // returns null if not reacted
+                                                                    : (bool?)null
                                     })
                                     .ToListAsync();
 
@@ -88,11 +94,11 @@ namespace FitMind_API.Controllers
         //[Authorize]
         //get posts
         [HttpGet("getAllPosts")]
-        public async Task<ActionResult<List<GetAllPostsDTO>>> GetAllPosts()
+        public async Task<ActionResult<List<GetAllPostsDTO>>> GetAllPosts(int? userId)
         {
             var Posts = await _context.AddPosts
                                     .Where(p => p.IsPublished && !p.IsDeleted && p.PublishAt != null)
-                                    .Include(p=> p.User)
+                                    .Include(p => p.User)
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
                                     .OrderByDescending(p => p.PublishAt)
@@ -103,12 +109,12 @@ namespace FitMind_API.Controllers
                                         Description = post.Description,
                                         CreatedAt = post.CreatedAt,
                                         UpdatedAt = post.UpdatedAt,
-                                         PublishAt = post.PublishAt,
+                                        PublishAt = post.PublishAt,
                                         IsPublished = post.IsPublished,
                                         UserId = post.UserId,
                                         UserName = post.User.Username,
                                         UserImage = post.User.ProfilePhoto != null ? Convert.ToBase64String(post.User.ProfilePhoto) : null,
-                                        CategoryId = post.CategoryId,   
+                                        CategoryId = post.CategoryId,
                                         CategoryName = post.Category.Name,
                                         PostImage = post.PostImage != null ? Convert.ToBase64String(post.PostImage) : null,
                                         ViewCount = post.ViewCount,
@@ -117,7 +123,14 @@ namespace FitMind_API.Controllers
                                                     : post.postReactions.Count(r => r.IsLike == true),
                                         DislikeCount = post.postReactions.Count(r => r.IsLike == false) == 0
                                                    ? (int?)null
-                                                   : post.postReactions.Count(r => r.IsLike == false)
+                                                   : post.postReactions.Count(r => r.IsLike == false),
+
+                                        IsReactedByMe = userId.HasValue && userId != 0
+                                                                    ? post.postReactions
+                                                                        .Where(r => r.UserId == userId)
+                                                                        .Select(r => (bool?)r.IsLike)
+                                                                        .FirstOrDefault() // returns null if not reacted
+                                                                    : (bool?)null
                                     })
                                     .ToListAsync();
 
@@ -129,8 +142,8 @@ namespace FitMind_API.Controllers
             return Ok(Posts);
         }
 
-            // GET: api/Post/5
-            [HttpGet("{id}")]
+        // GET: api/Post/5
+        [HttpGet("{id}")]
         public async Task<ActionResult<AddPost>> GetAddPost(int id)
         {
             var addPost = await _context.AddPosts.FindAsync(id);
@@ -533,7 +546,7 @@ namespace FitMind_API.Controllers
                 return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
             #endregion
 
-           
+
 
             if (post != null)
             {

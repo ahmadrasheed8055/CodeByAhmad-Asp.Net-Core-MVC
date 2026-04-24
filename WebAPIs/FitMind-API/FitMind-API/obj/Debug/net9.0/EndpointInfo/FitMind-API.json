@@ -723,6 +723,27 @@
         }
       }
     },
+    "/api/EmailSending/send-fp-email": {
+      "post": {
+        "tags": [
+          "EmailSending"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Post/getUserPosts/{userId}": {
       "get": {
         "tags": [
@@ -776,6 +797,16 @@
       "get": {
         "tags": [
           "Post"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1825,6 +1856,10 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "isReactedByMe": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1931,6 +1966,10 @@
           "dislikeCount": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "isReactedByMe": {
+            "type": "boolean",
             "nullable": true
           }
         },
@@ -2199,6 +2238,11 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "tokenType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
           "userId": {
             "type": "integer",

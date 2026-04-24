@@ -18,5 +18,7 @@
         public int ViewCount { get; set; }
         public int? LikeCount { get; set; }
         public int? DislikeCount { get; set; }
+
+        public bool? IsReactedByMe { get; set; } // To check the reaction status of the user
     }
 }

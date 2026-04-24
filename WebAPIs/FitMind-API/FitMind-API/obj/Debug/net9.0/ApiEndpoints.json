@@ -409,6 +409,22 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.EmailSendingController",
+    "Method": "SendFPEmail",
+    "RelativePath": "api/EmailSending/send-fp-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.EmailSendingController",
     "Method": "emailValidation",
     "RelativePath": "api/EmailSending/validate-email-token",
     "HttpMethod": "GET",
@@ -607,7 +623,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
