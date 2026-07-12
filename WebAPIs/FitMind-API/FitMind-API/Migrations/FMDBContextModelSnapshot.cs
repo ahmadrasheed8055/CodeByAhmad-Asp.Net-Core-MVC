@@ -38,10 +38,8 @@ namespace FitMind_API.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ImageUrl")
-                        .HasColumnType("varbinary(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -49,8 +47,11 @@ namespace FitMind_API.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LikeCount")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("PostImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime?>("PublishAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -216,30 +217,36 @@ namespace FitMind_API.Migrations
                     b.ToTable("PostComments");
                 });
 
-            modelBuilder.Entity("FitMind_API.Models.Entities.PostLikes", b =>
+            modelBuilder.Entity("FitMind_API.Models.Entities.PostReactions", b =>
                 {
-                    b.Property<int>("LikeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LikeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<bool?>("IsLike")
+                        .HasColumnType("bit");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("ReactedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("LikeId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PostLikes");
+                    b.ToTable("PostReactions");
                 });
 
             modelBuilder.Entity("FitMind_API.Models.Entities.UserRT", b =>
@@ -267,6 +274,9 @@ namespace FitMind_API.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("TokenType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -319,16 +329,16 @@ namespace FitMind_API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FitMind_API.Models.Entities.PostLikes", b =>
+            modelBuilder.Entity("FitMind_API.Models.Entities.PostReactions", b =>
                 {
                     b.HasOne("FitMind_API.Models.Entities.AddPost", "Post")
-                        .WithMany("Likes")
+                        .WithMany("postReactions")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FitMind_API.Models.Entities.AppUsers", "User")
-                        .WithMany("Likes")
+                        .WithMany("postReactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -352,16 +362,16 @@ namespace FitMind_API.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Likes");
+                    b.Navigation("postReactions");
                 });
 
             modelBuilder.Entity("FitMind_API.Models.Entities.AppUsers", b =>
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Likes");
-
                     b.Navigation("UserTokens");
+
+                    b.Navigation("postReactions");
                 });
 #pragma warning restore 612, 618
         }

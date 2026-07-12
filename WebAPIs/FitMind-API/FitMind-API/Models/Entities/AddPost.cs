@@ -16,17 +16,19 @@ namespace FitMind_API.Models.Entities
         public string Title { get; set; }
 
         [Required]
+        [StringLength(1000)]
         public string Description { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? PublishAt { get; set; }
 
         public bool IsPublished { get; set; }
 
         public int ViewCount { get; set; }
 
-        public int LikeCount { get; set; }
+        //public int LikeCount { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -36,22 +38,21 @@ namespace FitMind_API.Models.Entities
         public int UserId { get; set; }
 
         // Navigation property for the User (many-to-one)
-        public virtual required AppUsers User { get; set; }
+        public virtual  AppUsers User { get; set; }
 
         [ForeignKey("Category")]
         [Required]
         public int CategoryId { get; set; }
 
         // Navigation property for Category (many-to-one)       
-        public virtual required Categories Category { get; set; }
+        public virtual  Categories Category { get; set; }
 
         // Image field to store image as binary data (nullable)
-        public byte[]? ImageUrl { get; set; }  // Nullable for optional image attachment
+        public byte[]? PostImage { get; set; }  // Nullable for optional image attachment
 
 
-        public ICollection<PostLikes>? Likes { get; set; }
+        public ICollection<PostReactions>? postReactions { get; set; }
 
-        // Navigation Property for Comments
         public ICollection<PostComments>? Comments { get; set; }
     }
 

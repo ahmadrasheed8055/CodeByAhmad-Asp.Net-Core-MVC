@@ -25,6 +25,12 @@ namespace FitMind_API.Models.Entities
         public DateTime InsertedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public int? TokenType { get; set; }
+        //TokenType
+        //1 = Registration
+        //2 = ForgotPassword
+
+
         //user table connection
         //[ForeignKey("AppUsers")]
         public int? UserId { get; set; } // null-able

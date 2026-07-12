@@ -16,7 +16,9 @@ namespace FitMind_API.Data
 
         public DbSet<AddPost> AddPosts { get; set; }
         public DbSet<PostComments> PostComments { get; set; }
-        public DbSet<PostLikes> PostLikes { get; set; }
+        //public DbSet<PostLikes> PostLikes { get; set; }
+
+        public DbSet<PostReactions> PostReactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,18 +42,19 @@ namespace FitMind_API.Data
                 .HasForeignKey(pc => pc.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // IMPORTANT: NO CASCADE from User -> Comments
 
-            modelBuilder.Entity<PostLikes>()
-                .HasOne(pl => pl.Post)
-                .WithMany(p => p.Likes)
-                .HasForeignKey(pl => pl.PostId)
+            modelBuilder.Entity<PostReactions>()
+                .HasOne(pr => pr.Post)
+                .WithMany(p => p.postReactions)
+                .HasForeignKey(pr => pr.PostId)
                 .OnDelete(DeleteBehavior.Cascade); // Cascade Post -> Likes
 
-            modelBuilder.Entity<PostLikes>()
+            modelBuilder.Entity<PostReactions>()
                 .HasOne(pl => pl.User)
-                .WithMany(u => u.Likes)
-                .HasForeignKey(pl => pl.UserId)
+                .WithMany(u => u.postReactions)
+                .HasForeignKey(pr => pr.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // IMPORTANT: NO CASCADE from User -> Likes
         }
+       // public DbSet<FitMind_API.Models.Entities.PostLikes> PostLikes { get; set; } = default!;
 
          
 

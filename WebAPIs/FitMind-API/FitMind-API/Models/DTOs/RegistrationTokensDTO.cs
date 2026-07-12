@@ -8,6 +8,7 @@ namespace FitMind_API.Models.DTOs
 
         
         public string Token { get; set; } = string.Empty;
+        public int? TokenType { get; set; }
 
        
         public DateTime Expiry { get; set; }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj": {}
+    "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj": {}
   },
   "projects": {
-    "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj": {
+    "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj",
+        "projectUniqueName": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj",
         "projectName": "AuthenticationAPI",
-        "projectPath": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj",
+        "projectPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\AuthenticationAPI.csproj",
         "packagesPath": "C:\\Users\\LIST-IT\\.nuget\\packages\\",
-        "outputPath": "E:\\ASP.NET Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\obj\\",
+        "outputPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\AuthenticationAPI\\AuthenticationAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
