@@ -16,9 +16,11 @@ namespace FitMind_API.Data
 
         public DbSet<AddPost> AddPosts { get; set; }
         public DbSet<PostComments> PostComments { get; set; }
-        //public DbSet<PostLikes> PostLikes { get; set; }
 
         public DbSet<PostReactions> PostReactions { get; set; }
+
+        // NEW: Comment reactions
+        public DbSet<CommentReactions> CommentReactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,11 +55,19 @@ namespace FitMind_API.Data
                 .WithMany(u => u.postReactions)
                 .HasForeignKey(pr => pr.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // IMPORTANT: NO CASCADE from User -> Likes
+
+            // NEW: CommentReactions relationships (no navigation collections required on other entities)
+            modelBuilder.Entity<CommentReactions>()
+                .HasOne(cr => cr.Comment)
+                .WithMany()
+                .HasForeignKey(cr => cr.CommentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CommentReactions>()
+                .HasOne(cr => cr.User)
+                .WithMany()
+                .HasForeignKey(cr => cr.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
-       // public DbSet<FitMind_API.Models.Entities.PostLikes> PostLikes { get; set; } = default!;
-
-         
-
     }
 }
-        

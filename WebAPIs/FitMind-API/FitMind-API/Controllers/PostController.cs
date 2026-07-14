@@ -706,5 +706,70 @@ namespace FitMind_API.Controllers
         {
             return _context.AddPosts.Any(e => e.PostId == id);
         }
+
+
+        [HttpPost("add-comment")]
+        public async Task<IActionResult> AddComment([FromBody] Models.DTOs.PostComments commentDto)
+        {
+            if (commentDto == null)
+                return BadRequest("Comment data is null.");
+
+            if (commentDto.PostId == 0 || commentDto.UserId == 0)
+                return BadRequest(new { message = "PostId and UserId are required." });
+
+            if (string.IsNullOrWhiteSpace(commentDto.CommentContent))
+                return BadRequest(new { message = "CommentContent is required." });
+
+            if (commentDto.CommentContent.Length > 1000)
+                return BadRequest(new { message = "CommentContent exceeds maximum length of 1000 characters." });
+
+            var user = await _context.AppUsers.FindAsync(commentDto.UserId);
+            if (user == null)
+                return NotFound(new { message = "User not found." });
+
+            var post = await _context.AddPosts.FindAsync(commentDto.PostId);
+            if (post == null)
+                return NotFound(new { message = "Post not found." });
+
+            // Moderate comment text
+            var moderation = await _sightengineService.CheckTextAsync(commentDto.CommentContent);
+            if (moderation == null || moderation.Status != "success")
+                return StatusCode(500, "Text moderation failed. Please try again.");
+
+            var inappropriate = moderation.Profanity?.Matches?
+                .Where(m =>
+                    m.Type == "inappropriate" ||
+                    m.Type == "insult" ||
+                    m.Type == "sexual" ||
+                    m.Type == "hate" ||
+                    m.Type == "threat" ||
+                    m.Type == "violence" ||
+                    m.Type == "profanity" ||
+                    m.Type == "racist" ||
+                    m.Type == "homophobic" ||
+                    m.Type == "misogyny" ||
+                    m.Type == "drugs" ||
+                    m.Intensity == "high")
+                .Select(m => m)
+                .Distinct()
+                .ToList();
+
+            if (inappropriate != null && inappropriate.Any())
+                return UnprocessableEntity($"Comment contains inappropriate content: {string.Join(", ", inappropriate)}");
+
+            var comment = new Models.Entities.PostComments
+            {
+                PostId = commentDto.PostId,
+                UserId = commentDto.UserId,
+                CommentContent = commentDto.CommentContent,
+                CreatedAt = DateTime.Now,
+                IsDeleted = false
+            };
+
+            _context.PostComments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { CommentId = comment.CommentId });
+        }
     }
 }
