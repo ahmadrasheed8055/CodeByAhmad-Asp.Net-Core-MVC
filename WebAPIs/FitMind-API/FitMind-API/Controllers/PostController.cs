@@ -755,7 +755,7 @@ namespace FitMind_API.Controllers
                 .ToList();
 
             if (inappropriate != null && inappropriate.Any())
-                return UnprocessableEntity($"Comment contains inappropriate content: {string.Join(", ", inappropriate)}");
+                return UnprocessableEntity(new { message = $"Comment contains inappropriate content." });
 
             var comment = new Models.Entities.PostComments
             {

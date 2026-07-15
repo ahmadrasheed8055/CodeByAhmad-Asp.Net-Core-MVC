@@ -13,5 +13,9 @@
         public DateTime CreatedAt { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        // 👇 user Things
+        public string UserName { get; set; } = string.Empty;
+        public string? UserImage { get; set; }
     }
 }

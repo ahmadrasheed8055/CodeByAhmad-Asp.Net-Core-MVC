@@ -393,22 +393,6 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.CommentsController",
-    "Method": "AddComment",
-    "RelativePath": "api/Comments/add-comment",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "commentDto",
-        "Type": "FitMind_API.Models.DTOs.PostComments",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FitMind_API.Controllers.CommentsController",
     "Method": "DeleteOwnComment",
     "RelativePath": "api/Comments/delete/{userId}/{commentId}",
     "HttpMethod": "DELETE",

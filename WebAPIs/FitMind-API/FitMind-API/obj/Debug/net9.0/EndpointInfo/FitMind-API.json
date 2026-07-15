@@ -681,37 +681,6 @@
         }
       }
     },
-    "/api/Comments/add-comment": {
-      "post": {
-        "tags": [
-          "Comments"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Comments/getAll/{postId}": {
       "get": {
         "tags": [
@@ -2044,6 +2013,14 @@
           },
           "isDeleted": {
             "type": "boolean"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userImage": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

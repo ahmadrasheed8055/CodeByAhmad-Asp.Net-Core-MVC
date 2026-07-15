@@ -36,7 +36,13 @@ namespace FitMind_API.Controllers
                     UserId = c.UserId,
                     CommentContent = c.CommentContent ?? string.Empty,
                     CreatedAt = c.CreatedAt,
-                    IsDeleted = c.IsDeleted
+                    IsDeleted = c.IsDeleted,
+
+                    //user things
+                    UserName = c.User.Username,
+                    UserImage = c.User.ProfilePhoto != null
+                                        ? Convert.ToBase64String(c.User.ProfilePhoto)
+                                        : null
                 })
                 .ToListAsync();
 
