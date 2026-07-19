@@ -1,0 +1,14 @@
+# Build outputs
+bin/
+obj/
+
+# Visual Studio cache & user-specific settings
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Environment secrets (Inhe kabhi Git pr nahi bhejna chahiye)
+.env
+appsettings.Development.json
