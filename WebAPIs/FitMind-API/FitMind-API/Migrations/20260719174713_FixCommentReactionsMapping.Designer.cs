@@ -4,6 +4,7 @@ using FitMind_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMind_API.Migrations
 {
     [DbContext(typeof(FMDBContext))]
-    partial class FMDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260719174713_FixCommentReactionsMapping")]
+    partial class FixCommentReactionsMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,6 +201,9 @@ namespace FitMind_API.Migrations
                     b.Property<bool?>("IsLike")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PostCommentsCommentId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ReactedAt")
                         .HasColumnType("datetime2");
 
@@ -210,6 +216,8 @@ namespace FitMind_API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
+
+                    b.HasIndex("PostCommentsCommentId");
 
                     b.HasIndex("UserId");
 
@@ -350,10 +358,14 @@ namespace FitMind_API.Migrations
             modelBuilder.Entity("FitMind_API.Models.Entities.CommentReactions", b =>
                 {
                     b.HasOne("FitMind_API.Models.Entities.PostComments", "Comment")
-                        .WithMany("CommentReactions")
+                        .WithMany()
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("FitMind_API.Models.Entities.PostComments", null)
+                        .WithMany("CommentReactions")
+                        .HasForeignKey("PostCommentsCommentId");
 
                     b.HasOne("FitMind_API.Models.Entities.AppUsers", "User")
                         .WithMany()

@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\commentreactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\commentreactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -13,26 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\dtos\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\postcomments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\data\\fmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\entities\\commentreactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\models\\entities\\commentreactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\models\\dtos\\commentreactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,73 +81,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 230,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PostComments.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PostComments.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
-              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\PostComments.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAA8wBUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:54:42.849Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmailSendingController.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\EmailSendingController.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
-              "RelativeToolTip": "FitMind-API\\Controllers\\EmailSendingController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAUwGMAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T10:55:42.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CommentReactions.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\CommentReactions.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\CommentReactions.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\CommentReactions.cs",
-              "RelativeToolTip": "FitMind-API\\Models\\Entities\\CommentReactions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T13:06:13.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PostController.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostController.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
-              "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
-              "ViewState": "AgIAAOECAAAAAAAAAAAowPYCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T13:07:47.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CommentReactionDTO.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
-              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T13:07:10.425Z"
             },
             {
               "$type": "Document",
@@ -175,25 +113,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "CommentsController.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CommentsController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\CommentsController.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CommentsController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\CommentsController.cs",
+              "ViewState": "AgIAAAEBAAAAAAAAAAAQwBIBAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T13:14:59.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostController.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
+              "ViewState": "AgIAAOECAAAAAAAAAAAowPYCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T13:07:47.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PostComments.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostComments.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\PostComments.cs",
               "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostComments.cs",
               "RelativeToolTip": "FitMind-API\\Models\\Entities\\PostComments.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAawAgAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAawCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:55:06.451Z"
+              "WhenOpened": "2026-07-14T11:55:06.451Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\appsettings.json",
               "RelativeDocumentMoniker": "FitMind-API\\appsettings.json",
               "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\appsettings.json",
               "RelativeToolTip": "FitMind-API\\appsettings.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-12-23T09:43:26.4Z",
               "EditorCaption": ""
@@ -201,18 +166,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CommentsController.cs",
-              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CommentsController.cs",
-              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\CommentsController.cs",
-              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CommentsController.cs",
-              "RelativeToolTip": "FitMind-API\\Controllers\\CommentsController.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAqwKwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T13:14:59.114Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "FMDBContext.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Data\\FMDBContext.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Data\\FMDBContext.cs",
@@ -220,7 +173,59 @@
               "RelativeToolTip": "FitMind-API\\Data\\FMDBContext.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAowBUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T13:08:29.119Z"
+              "WhenOpened": "2026-07-14T13:08:29.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PostComments.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\PostComments.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAuwBgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:54:42.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CommentReactions.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\CommentReactions.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\CommentReactions.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\CommentReactions.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\Entities\\CommentReactions.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAqwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T13:06:13.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CommentReactionDTO.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
+              "RelativeToolTip": "FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T13:07:10.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmailSendingController.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\EmailSendingController.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\EmailSendingController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAUwGMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-20T10:55:42.93Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

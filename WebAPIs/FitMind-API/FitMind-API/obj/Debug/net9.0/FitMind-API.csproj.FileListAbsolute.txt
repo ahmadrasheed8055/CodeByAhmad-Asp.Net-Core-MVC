@@ -836,10 +836,10 @@ C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\D
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.development.json
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-.E1A1A03F.Up2Date
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.dll
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\refint\FitMind-API.dll
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.pdb
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.genruntimeconfig.cache
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\ref\FitMind-API.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

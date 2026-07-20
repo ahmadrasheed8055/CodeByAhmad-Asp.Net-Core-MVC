@@ -1,4 +1,4 @@
-﻿namespace FitMind_API.Models.DTOs
+namespace FitMind_API.Models.DTOs
 {
     public class PostComments
     {
@@ -17,5 +17,12 @@
         // 👇 user Things
         public string UserName { get; set; } = string.Empty;
         public string? UserImage { get; set; }
+
+        // 👇 Comments System Extension
+        public int? ParentCommentId { get; set; }
+        public int RepliesCount { get; set; }
+        public int LikeCount { get; set; }
+        public int DislikeCount { get; set; }
+        public bool? IsReactedByMe { get; set; } // true for like, false for dislike, null for none
     }
 }

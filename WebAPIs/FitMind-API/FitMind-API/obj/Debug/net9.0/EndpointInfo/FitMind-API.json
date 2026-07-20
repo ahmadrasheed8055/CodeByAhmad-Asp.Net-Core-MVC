@@ -738,6 +738,63 @@
         }
       }
     },
+    "/api/Comments/getReplies/{commentId}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Comments/getUserComments/{userId}": {
       "get": {
         "tags": [
@@ -787,6 +844,37 @@
         }
       }
     },
+    "/api/Comments/add-comment": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PostComments"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Comments/delete/{userId}/{commentId}": {
       "delete": {
         "tags": [
@@ -819,45 +907,14 @@
         }
       }
     },
-    "/api/Comments/react": {
+    "/api/Comments/{id}/like": {
       "post": {
-        "tags": [
-          "Comments"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CommentReactionDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CommentReactionDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CommentReactionDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Comments/removeReaction/{userId}/{commentId}": {
-      "delete": {
         "tags": [
           "Comments"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -866,9 +923,39 @@
             }
           },
           {
-            "name": "commentId",
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Comments/{id}/dislike": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1782,24 +1869,6 @@
   },
   "components": {
     "schemas": {
-      "FitMind_API.Models.DTOs.CommentReactionDTO": {
-        "type": "object",
-        "properties": {
-          "commentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isLike": {
-            "type": "boolean",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "FitMind_API.Models.DTOs.GetAllPostsDTO": {
         "type": "object",
         "properties": {
@@ -2020,6 +2089,27 @@
           },
           "userImage": {
             "type": "string",
+            "nullable": true
+          },
+          "parentCommentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "repliesCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "likeCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dislikeCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isReactedByMe": {
+            "type": "boolean",
             "nullable": true
           }
         },
@@ -2419,6 +2509,47 @@
         },
         "additionalProperties": false
       },
+      "FitMind_API.Models.Entities.CommentReactions": {
+        "required": [
+          "commentId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isLike": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "reactedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "commentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.PostComments"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          }
+        },
+        "additionalProperties": false
+      },
       "FitMind_API.Models.Entities.PostComments": {
         "required": [
           "postId",
@@ -2456,6 +2587,28 @@
           },
           "user": {
             "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          },
+          "parentCommentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentComment": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.PostComments"
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.PostComments"
+            },
+            "nullable": true
+          },
+          "commentReactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.CommentReactions"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

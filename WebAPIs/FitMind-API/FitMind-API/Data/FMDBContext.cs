@@ -1,4 +1,4 @@
-﻿using FitMind_API.Models.Entities;
+using FitMind_API.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitMind_API.Data
@@ -57,9 +57,15 @@ namespace FitMind_API.Data
                 .OnDelete(DeleteBehavior.Restrict); // IMPORTANT: NO CASCADE from User -> Likes
 
             // NEW: CommentReactions relationships (no navigation collections required on other entities)
+            modelBuilder.Entity<PostComments>()
+                .HasOne(c => c.ParentComment)
+                .WithMany(c => c.Replies)
+                .HasForeignKey(c => c.ParentCommentId)
+                .OnDelete(DeleteBehavior.Restrict); // Important: Prevent multiple cascade paths in SQL Server. We will handle recursive delete in code.
+
             modelBuilder.Entity<CommentReactions>()
                 .HasOne(cr => cr.Comment)
-                .WithMany()
+                .WithMany(c => c.CommentReactions)
                 .HasForeignKey(cr => cr.CommentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
