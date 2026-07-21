@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,12 +45,13 @@ namespace FitMind_API.Controllers
         }
 
         //generate JWT token
-        private string generateJwtToken(string email)
+        private string generateJwtToken(string email, int userId)
         {
             //claims  
             var claims = new[]
             {
-               new Claim(ClaimTypes.Email, email)
+               new Claim(ClaimTypes.Email, email),
+               new Claim(ClaimTypes.NameIdentifier, userId.ToString())
            };
 
             //key  
@@ -87,7 +88,7 @@ namespace FitMind_API.Controllers
             {
                 return BadRequest("Wrong password");
             }
-            var token = this.generateJwtToken(user.Email);
+            var token = this.generateJwtToken(user.Email, user.Id);
             return Ok(new {token = token, userId = user.Id });
 
         }
@@ -204,7 +205,7 @@ namespace FitMind_API.Controllers
             userToken.Status = 2;
             _context.UserRegistrationTokens.Update(userToken);
             await _context.SaveChangesAsync(); // Save token update
-            var token = this.generateJwtToken(user.Email);
+            var token = this.generateJwtToken(user.Email, user.Id);
             return Ok(new { message = "User registered successfully and token linked!"});
         }
 
@@ -376,6 +377,52 @@ namespace FitMind_API.Controllers
         private bool AppUsersExists(int id)
         {
             return _context.AppUsers.Any(e => e.Id == id);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO resetDTO)
+        {
+            if (string.IsNullOrEmpty(resetDTO.Token) || string.IsNullOrEmpty(resetDTO.NewPassword))
+            {
+                return BadRequest(new { message = "Token and New Password are required." });
+            }
+
+            // Find the token
+            var userToken = await _context.UserRegistrationTokens.FirstOrDefaultAsync(t => t.Token == resetDTO.Token && t.TokenType == 2);
+
+            if (userToken == null)
+            {
+                return NotFound(new { message = "Invalid or missing token." });
+            }
+            if (userToken.ExpiryDate < DateTime.UtcNow)
+            {
+                return BadRequest(new { message = "Token has expired." });
+            }
+            if (userToken.Status == 2)
+            {
+                return BadRequest(new { message = "Token has already been used." });
+            }
+
+            // Find the associated user by email
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == userToken.Email);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            // Update user password
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(resetDTO.NewPassword);
+            user.PasswordUpdateAt = DateTime.UtcNow;
+            _context.AppUsers.Update(user);
+
+            // Mark token as used
+            userToken.Status = 2;
+            _context.UserRegistrationTokens.Update(userToken);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Password has been successfully reset." });
         }
 
         //update password

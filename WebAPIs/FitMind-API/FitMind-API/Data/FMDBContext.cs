@@ -22,6 +22,9 @@ namespace FitMind_API.Data
         // NEW: Comment reactions
         public DbSet<CommentReactions> CommentReactions { get; set; }
 
+        public DbSet<SavedPost> SavedPosts { get; set; }
+        public DbSet<HiddenPost> HiddenPosts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -74,6 +77,32 @@ namespace FitMind_API.Data
                 .WithMany()
                 .HasForeignKey(cr => cr.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Saved Post relations
+            modelBuilder.Entity<SavedPost>()
+                .HasOne(sp => sp.User)
+                .WithMany()
+                .HasForeignKey(sp => sp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SavedPost>()
+                .HasOne(sp => sp.Post)
+                .WithMany()
+                .HasForeignKey(sp => sp.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Hidden Post relations
+            modelBuilder.Entity<HiddenPost>()
+                .HasOne(hp => hp.User)
+                .WithMany()
+                .HasForeignKey(hp => hp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<HiddenPost>()
+                .HasOne(hp => hp.Post)
+                .WithMany()
+                .HasForeignKey(hp => hp.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

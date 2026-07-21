@@ -1,4 +1,4 @@
-﻿using FitMind_API.Data;
+using FitMind_API.Data;
 using FitMind_API.Models.DTOs;
 using FitMind_API.Models.Entities;
 using FitMind_API.Services;
@@ -167,13 +167,14 @@ namespace FitMind_API.Controllers
             {
                 Email = email,
                 Token = token,
-                Status = 2,
+                Status = 1, // 1 for active/unused
+                TokenType = 2, // 2 for ForgotPassword
                 ExpiryDate = expiry, // expiring time
                 InsertedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
-            //next step is too
-            //this.fMDBContext.UserRegistrationTokens.Add();
+            
+            this.fMDBContext.UserRegistrationTokens.Add(resetToken);
             this.fMDBContext.SaveChanges();
 
             var subject = "Reset Your FitMind Password 🔒";
@@ -209,6 +210,36 @@ namespace FitMind_API.Controllers
             await emailService.sendEmail(email, subject, body);
             //return Redirect("www.google.com");
             return Ok(new { message = 1 });
+        }
+
+        //http://localhost:5177/api/EmailSending/validate-reset-token?token=...
+        [HttpGet("validate-reset-token")]
+        public async Task<IActionResult> validateResetToken(string token)
+        {
+            string urlToken = token;
+
+            if (string.IsNullOrEmpty(urlToken))
+            {
+                return BadRequest(new { message = "Token is missing" });
+            }
+
+            // TokenType == 2 is for ForgotPassword
+            var userToken = await fMDBContext.UserRegistrationTokens.FirstOrDefaultAsync(t => t.Token == urlToken && t.TokenType == 2);
+
+            if (userToken == null)
+            {
+                return NotFound(new { message = "Token not found or invalid!" });
+            }
+            else if (userToken.ExpiryDate < DateTime.UtcNow)
+            {
+                return BadRequest(new { message = "Token has expired!" });
+            }
+            else if (userToken.Status == 2)
+            {
+                return BadRequest(new { message = "Token has already been used" });
+            }
+
+            return Ok(new { message = "Token found!", email = userToken.Email });
         }
 
     }

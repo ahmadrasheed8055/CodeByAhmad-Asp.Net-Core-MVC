@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ using FitMind_API.Services;
 using static System.Net.Mime.MediaTypeNames;
 using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
-
+using System.Security.Claims;
 namespace FitMind_API.Controllers
 {
     [Route("api/[controller]")]
@@ -45,7 +45,7 @@ namespace FitMind_API.Controllers
             }
 
             var Posts = await _context.AddPosts
-                                    .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted && p.PublishAt != null)
+                                    .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted && p.PublishAt != null && !_context.HiddenPosts.Any(hp => hp.PostId == p.PostId))
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
                                     .OrderByDescending(p => p.PublishAt)
@@ -76,7 +76,11 @@ namespace FitMind_API.Controllers
                                                                         .Where(r => r.UserId == userId)
                                                                         .Select(r => (bool?)r.IsLike)
                                                                         .FirstOrDefault() // returns null if not reacted
-                                                                    : (bool?)null
+                                                                    : (bool?)null,
+                                        IsSavedByMe = userId != 0
+                                            ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
+                                            : (bool?)null,
+                                        IsHidden = false
                                     })
                                     .ToListAsync();
 
@@ -96,8 +100,17 @@ namespace FitMind_API.Controllers
         [HttpGet("getAllPosts")]
         public async Task<ActionResult<List<GetAllPostsDTO>>> GetAllPosts(int? userId)
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(claimsUserId, out int parsedId))
+                {
+                    userId = parsedId;
+                }
+            }
+
             var Posts = await _context.AddPosts
-                                    .Where(p => p.IsPublished && !p.IsDeleted && p.PublishAt != null)
+                                    .Where(p => p.IsPublished && !p.IsDeleted && p.PublishAt != null && !_context.HiddenPosts.Any(hp => hp.PostId == p.PostId))
                                     .Include(p => p.User)
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
@@ -130,7 +143,11 @@ namespace FitMind_API.Controllers
                                                                         .Where(r => r.UserId == userId)
                                                                         .Select(r => (bool?)r.IsLike)
                                                                         .FirstOrDefault() // returns null if not reacted
-                                                                    : (bool?)null
+                                                                    : (bool?)null,
+                                        IsSavedByMe = userId.HasValue && userId != 0
+                                            ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
+                                            : (bool?)null,
+                                        IsHidden = false
                                     })
                                     .ToListAsync();
 
@@ -239,59 +256,15 @@ namespace FitMind_API.Controllers
 
             var isValidTitle = await _sightengineService.CheckTextAsync(addPostDto.Title);
 
-            if (isValidTitle == null || isValidTitle.Status != "success")
-                return StatusCode(500, "Text moderation failed. Please try again.");
-
-
-            var inappropriateTitle = isValidTitle.Profanity?.Matches?
-                .Where(m =>
-                            m.Type == "inappropriate" ||
-                            m.Type == "insult" ||
-                            m.Type == "sexual" ||
-                            m.Type == "hate" ||
-                            m.Type == "threat" ||
-                            m.Type == "violence" ||
-                            m.Type == "profanity" ||
-                            m.Type == "racist" ||
-                            m.Type == "homophobic" ||
-                            m.Type == "misogyny" ||
-                            m.Type == "drugs" ||
-                            m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriateTitle != null && inappropriateTitle.Any())
-                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateTitle)}");
+            if (IsTextInappropriate(isValidTitle))
+                return UnprocessableEntity("Title contains inappropriate content.");
             #endregion
 
             #region Description Moderation
             var isValidDesc = await _sightengineService.CheckTextAsync(addPostDto.Description);
 
-            if (isValidDesc == null || isValidDesc.Status != "success")
-                return StatusCode(500, "Text moderation failed. Please try again.");
-
-
-            var inappropriateDesc = isValidDesc.Profanity?.Matches?
-                .Where(m =>
-                            m.Type == "inappropriate" ||
-                            m.Type == "insult" ||
-                            m.Type == "sexual" ||
-                            m.Type == "hate" ||
-                            m.Type == "threat" ||
-                            m.Type == "violence" ||
-                            m.Type == "profanity" ||
-                            m.Type == "racist" ||
-                            m.Type == "homophobic" ||
-                            m.Type == "misogyny" ||
-                            m.Type == "drugs" ||
-                            m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriateDesc != null && inappropriateDesc.Any())
-                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
+            if (IsTextInappropriate(isValidDesc))
+                return UnprocessableEntity("Description contains inappropriate content.");
             #endregion
 
             //condition for draft
@@ -431,30 +404,7 @@ namespace FitMind_API.Controllers
 
             var result = await _sightengineService.CheckTextAsync(text);
 
-            if (result == null || result.Status != "success")
-                //return StatusCode(500, "Text moderation failed. Please try again.");
-                return false;
-
-            var inappropriateWords = result.Profanity?.Matches?
-                .Where(m =>
-                            m.Type == "inappropriate" ||
-                            m.Type == "insult" ||
-                            m.Type == "sexual" ||
-                            m.Type == "hate" ||
-                            m.Type == "threat" ||
-                            m.Type == "violence" ||
-                            m.Type == "profanity" ||
-                            m.Type == "racist" ||
-                            m.Type == "homophobic" ||
-                            m.Type == "misogyny" ||
-                            m.Type == "drugs" ||
-                            m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriateWords != null && inappropriateWords.Any())
-                //return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateWords)}");
+            if (IsTextInappropriate(result))
                 return false;
 
             //return Ok("Text is appropriate.");
@@ -465,6 +415,12 @@ namespace FitMind_API.Controllers
         [HttpPut("updatePost/{userId}")]
         public async Task<IActionResult> UpdatePost(int userId, [FromForm] UpdatePostDTO updatePostDTO)
         {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to edit this post." });
+            }
+
             if (updatePostDTO == null)
             {
                 return BadRequest("Post data is null");
@@ -491,82 +447,48 @@ namespace FitMind_API.Controllers
 
             var isValidTitle = await _sightengineService.CheckTextAsync(updatePostDTO.Title);
 
-            if (isValidTitle == null || isValidTitle.Status != "success")
-                return StatusCode(500, "Text moderation failed. Please try again.");
-
-
-            var inappropriateTitle = isValidTitle.Profanity?.Matches?
-                .Where(m =>
-                            m.Type == "inappropriate" ||
-                            m.Type == "insult" ||
-                            m.Type == "sexual" ||
-                            m.Type == "hate" ||
-                            m.Type == "threat" ||
-                            m.Type == "violence" ||
-                            m.Type == "profanity" ||
-                            m.Type == "racist" ||
-                            m.Type == "homophobic" ||
-                            m.Type == "misogyny" ||
-                            m.Type == "drugs" ||
-                            m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriateTitle != null && inappropriateTitle.Any())
-                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateTitle)}");
+            if (IsTextInappropriate(isValidTitle))
+                return UnprocessableEntity("Title contains inappropriate content.");
             #endregion
 
             #region Description Moderation
             var isValidDesc = await _sightengineService.CheckTextAsync(updatePostDTO.Description);
 
-            if (isValidDesc == null || isValidDesc.Status != "success")
-                return StatusCode(500, "Text moderation failed. Please try again.");
-
-
-            var inappropriateDesc = isValidDesc.Profanity?.Matches?
-                .Where(m =>
-                            m.Type == "inappropriate" ||
-                            m.Type == "insult" ||
-                            m.Type == "sexual" ||
-                            m.Type == "hate" ||
-                            m.Type == "threat" ||
-                            m.Type == "violence" ||
-                            m.Type == "profanity" ||
-                            m.Type == "racist" ||
-                            m.Type == "homophobic" ||
-                            m.Type == "misogyny" ||
-                            m.Type == "drugs" ||
-                            m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriateDesc != null && inappropriateDesc.Any())
-                return UnprocessableEntity($"Text contains inappropriate content: {string.Join(", ", inappropriateDesc)}");
+            if (IsTextInappropriate(isValidDesc))
+                return UnprocessableEntity("Description contains inappropriate content.");
             #endregion
 
 
 
             if (post != null)
             {
+                bool wasPublishedBefore = post.IsPublished;
+
                 post.Title = updatePostDTO.Title;
                 post.Description = updatePostDTO.Description;
-                post.UpdatedAt = DateTime.Now;
-                //post.PublishAt = PD;
                 post.IsPublished = updatePostDTO.IsPublished;
                 post.CategoryId = updatePostDTO.CategoryId;
 
-                // Handle PublishAt logic
+                // Handle PublishAt and UpdatedAt logic
                 if (updatePostDTO.IsPublished)
                 {
-                    post.PublishAt = post.PublishAt ?? DateTime.Now; // Set now only if not already set
+                    if (!wasPublishedBefore)
+                    {
+                        // Publishing for the first time from draft
+                        post.PublishAt = DateTime.Now;
+                        post.UpdatedAt = null;
+                    }
+                    else
+                    {
+                        // Updating an already published post
+                        post.UpdatedAt = DateTime.Now;
+                    }
                 }
                 else
                 {
-                    post.PublishAt = null; // Unpublished posts have null PublishAt
+                    post.PublishAt = null;
+                    post.UpdatedAt = DateTime.Now;
                 }
-
             }
 
 
@@ -641,6 +563,12 @@ namespace FitMind_API.Controllers
         [HttpPut("deletePostPhoto/{userId}/{postId}")]
         public async Task<IActionResult> DeletePostPhoto(int userId, int postId)
         {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to delete this photo." });
+            }
+
             var post = await _context.AddPosts
                 .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId);
 
@@ -666,6 +594,12 @@ namespace FitMind_API.Controllers
         [HttpPut("deleteDraftedPost/{userId}/{postId}")]
         public async Task<IActionResult> DeleteDraftedPost(int userId, int postId)
         {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to delete this draft." });
+            }
+
             var addPost = await _context.AddPosts
                             .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId && p.IsPublished == false);
 
@@ -686,6 +620,12 @@ namespace FitMind_API.Controllers
         [HttpPut("deletePost/{userId}/{postId}")]
         public async Task<IActionResult> DeletePost(int userId, int postId)
         {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to delete this post." });
+            }
+
             var addPost = await _context.AddPosts
                             .FirstOrDefaultAsync(p => p.UserId == userId && p.PostId == postId && p.IsPublished == true);
 
@@ -733,28 +673,7 @@ namespace FitMind_API.Controllers
 
             // Moderate comment text
             var moderation = await _sightengineService.CheckTextAsync(commentDto.CommentContent);
-            if (moderation == null || moderation.Status != "success")
-                return StatusCode(500, "Text moderation failed. Please try again.");
-
-            var inappropriate = moderation.Profanity?.Matches?
-                .Where(m =>
-                    m.Type == "inappropriate" ||
-                    m.Type == "insult" ||
-                    m.Type == "sexual" ||
-                    m.Type == "hate" ||
-                    m.Type == "threat" ||
-                    m.Type == "violence" ||
-                    m.Type == "profanity" ||
-                    m.Type == "racist" ||
-                    m.Type == "homophobic" ||
-                    m.Type == "misogyny" ||
-                    m.Type == "drugs" ||
-                    m.Intensity == "high")
-                .Select(m => m)
-                .Distinct()
-                .ToList();
-
-            if (inappropriate != null && inappropriate.Any())
+            if (IsTextInappropriate(moderation))
                 return UnprocessableEntity(new { message = $"Comment contains inappropriate content." });
 
             var comment = new Models.Entities.PostComments
@@ -770,6 +689,213 @@ namespace FitMind_API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { CommentId = comment.CommentId });
+        }
+        [HttpPost("savePost/{userId}/{postId}")]
+        public async Task<IActionResult> SavePost(int userId, int postId)
+        {
+            var user = await _context.AppUsers.FindAsync(userId);
+            if (user == null) return NotFound(new { message = "User not found." });
+
+            var post = await _context.AddPosts.FindAsync(postId);
+            if (post == null) return NotFound(new { message = "Post not found." });
+
+            var existingSave = await _context.SavedPosts.FirstOrDefaultAsync(sp => sp.UserId == userId && sp.PostId == postId);
+            if (existingSave != null) return BadRequest(new { message = "Post is already saved." });
+
+            var savedPost = new SavedPost { UserId = userId, PostId = postId, SavedAt = DateTime.UtcNow };
+            _context.SavedPosts.Add(savedPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Post saved successfully." });
+        }
+
+        [HttpDelete("unsavePost/{userId}/{postId}")]
+        public async Task<IActionResult> UnsavePost(int userId, int postId)
+        {
+            var savedPost = await _context.SavedPosts.FirstOrDefaultAsync(sp => sp.UserId == userId && sp.PostId == postId);
+            if (savedPost == null) return NotFound(new { message = "Saved post not found." });
+
+            _context.SavedPosts.Remove(savedPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Post unsaved successfully." });
+        }
+
+        [HttpGet("getSavedPosts/{userId}")]
+        public async Task<ActionResult<List<GetAllPostsDTO>>> GetSavedPosts(int userId)
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(claimsUserId, out int parsedId))
+                {
+                    userId = parsedId;
+                }
+            }
+
+            var user = await _context.AppUsers.FindAsync(userId);
+            if (user == null) return NotFound(new { message = "User not found." });
+
+            var Posts = await _context.SavedPosts
+                                    .Where(sp => sp.UserId == userId && sp.Post.IsPublished && !sp.Post.IsDeleted && !_context.HiddenPosts.Any(hp => hp.PostId == sp.PostId))
+                                    .Include(sp => sp.Post).ThenInclude(p => p.User)
+                                    .Include(sp => sp.Post).ThenInclude(p => p.Category)
+                                    .Include(sp => sp.Post).ThenInclude(p => p.postReactions)
+                                    .OrderByDescending(sp => sp.SavedAt)
+                                    .Select(sp => new GetAllPostsDTO
+                                    {
+                                        PostId = sp.Post.PostId,
+                                        Title = sp.Post.Title,
+                                        Description = sp.Post.Description,
+                                        CreatedAt = sp.Post.CreatedAt,
+                                        UpdatedAt = sp.Post.UpdatedAt,
+                                        PublishAt = sp.Post.PublishAt,
+                                        IsPublished = sp.Post.IsPublished,
+                                        UserId = sp.Post.UserId,
+                                        UserName = sp.Post.User.Username,
+                                        UserImage = sp.Post.User.ProfilePhoto != null ? Convert.ToBase64String(sp.Post.User.ProfilePhoto) : null,
+                                        CategoryId = sp.Post.CategoryId,
+                                        CategoryName = sp.Post.Category.Name,
+                                        PostImage = sp.Post.PostImage != null ? Convert.ToBase64String(sp.Post.PostImage) : null,
+                                        ViewCount = sp.Post.ViewCount,
+                                        LikeCount = sp.Post.postReactions.Count(r => r.IsLike == true) == 0 ? (int?)null : sp.Post.postReactions.Count(r => r.IsLike == true),
+                                        DislikeCount = sp.Post.postReactions.Count(r => r.IsLike == false) == 0 ? (int?)null : sp.Post.postReactions.Count(r => r.IsLike == false),
+                                        IsReactedByMe = sp.Post.postReactions.Where(r => r.UserId == userId).Select(r => (bool?)r.IsLike).FirstOrDefault(),
+                                        IsSavedByMe = true,
+                                        IsHidden = false
+                                    })
+                                    .ToListAsync();
+
+            if (!Posts.Any()) return NotFound(new { message = "No saved posts found for this user." });
+            return Ok(Posts);
+        }
+
+        [HttpPost("hidePost/{userId}/{postId}")]
+        public async Task<IActionResult> HidePost(int userId, int postId)
+        {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to hide this post." });
+            }
+
+            var user = await _context.AppUsers.FindAsync(userId);
+            if (user == null) return NotFound(new { message = "User not found." });
+
+            var post = await _context.AddPosts.FindAsync(postId);
+            if (post == null) return NotFound(new { message = "Post not found." });
+            if (post.UserId != userId) return Unauthorized(new { message = "You can only hide your own posts." });
+
+            var existingHide = await _context.HiddenPosts.FirstOrDefaultAsync(hp => hp.UserId == userId && hp.PostId == postId);
+            if (existingHide != null) return BadRequest(new { message = "Post is already hidden." });
+
+            var hiddenPost = new HiddenPost { UserId = userId, PostId = postId, HiddenAt = DateTime.UtcNow };
+            _context.HiddenPosts.Add(hiddenPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Post hidden successfully." });
+        }
+
+        [HttpDelete("unhidePost/{userId}/{postId}")]
+        public async Task<IActionResult> UnhidePost(int userId, int postId)
+        {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to unhide this post." });
+            }
+
+            var hiddenPost = await _context.HiddenPosts.FirstOrDefaultAsync(hp => hp.UserId == userId && hp.PostId == postId);
+            if (hiddenPost == null) return NotFound(new { message = "Hidden post not found." });
+
+            _context.HiddenPosts.Remove(hiddenPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Post unhidden successfully." });
+        }
+
+        [HttpGet("getHiddenPosts/{userId}")]
+        public async Task<ActionResult<List<GetAllPostsDTO>>> GetHiddenPosts(int userId)
+        {
+            var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claimsUserId == null || !int.TryParse(claimsUserId, out int parsedId) || parsedId != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to view these hidden posts." });
+            }
+
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                userId = parsedId;
+            }
+
+            var user = await _context.AppUsers.FindAsync(userId);
+            if (user == null) return NotFound(new { message = "User not found." });
+
+            var Posts = await _context.HiddenPosts
+                                    .Where(hp => hp.UserId == userId && hp.Post.IsPublished && !hp.Post.IsDeleted)
+                                    .Include(hp => hp.Post).ThenInclude(p => p.User)
+                                    .Include(hp => hp.Post).ThenInclude(p => p.Category)
+                                    .Include(hp => hp.Post).ThenInclude(p => p.postReactions)
+                                    .OrderByDescending(hp => hp.HiddenAt)
+                                    .Select(hp => new GetAllPostsDTO
+                                    {
+                                        PostId = hp.Post.PostId,
+                                        Title = hp.Post.Title,
+                                        Description = hp.Post.Description,
+                                        CreatedAt = hp.Post.CreatedAt,
+                                        UpdatedAt = hp.Post.UpdatedAt,
+                                        PublishAt = hp.Post.PublishAt,
+                                        IsPublished = hp.Post.IsPublished,
+                                        UserId = hp.Post.UserId,
+                                        UserName = hp.Post.User.Username,
+                                        UserImage = hp.Post.User.ProfilePhoto != null ? Convert.ToBase64String(hp.Post.User.ProfilePhoto) : null,
+                                        CategoryId = hp.Post.CategoryId,
+                                        CategoryName = hp.Post.Category.Name,
+                                        PostImage = hp.Post.PostImage != null ? Convert.ToBase64String(hp.Post.PostImage) : null,
+                                        ViewCount = hp.Post.ViewCount,
+                                        LikeCount = hp.Post.postReactions.Count(r => r.IsLike == true) == 0 ? (int?)null : hp.Post.postReactions.Count(r => r.IsLike == true),
+                                        DislikeCount = hp.Post.postReactions.Count(r => r.IsLike == false) == 0 ? (int?)null : hp.Post.postReactions.Count(r => r.IsLike == false),
+                                        IsReactedByMe = hp.Post.postReactions.Where(r => r.UserId == userId).Select(r => (bool?)r.IsLike).FirstOrDefault(),
+                                        IsSavedByMe = _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == hp.PostId),
+                                        IsHidden = true
+                                    })
+                                    .ToListAsync();
+
+            if (!Posts.Any()) return NotFound(new { message = "No hidden posts found for this user." });
+            return Ok(Posts);
+        }
+
+        private bool IsTextInappropriate(SightengineTextModerationDTO moderation)
+        {
+            if (moderation == null || moderation.Status != "success")
+                return true;
+
+            var ruleMatch = moderation.Profanity?.Matches?.Any(m =>
+                    m.Type == "inappropriate" ||
+                    m.Type == "insult" ||
+                    m.Type == "sexual" ||
+                    m.Type == "hate" ||
+                    m.Type == "threat" ||
+                    m.Type == "violence" ||
+                    m.Type == "profanity" ||
+                    m.Type == "racist" ||
+                    m.Type == "homophobic" ||
+                    m.Type == "misogyny" ||
+                    m.Type == "drugs" ||
+                    m.Intensity == "high") ?? false;
+
+            if (ruleMatch) return true;
+
+            if (moderation.ModerationClasses != null)
+            {
+                var ml = moderation.ModerationClasses;
+                if (ml.Discriminatory > 0.5m || ml.Insulting > 0.5m || ml.Toxic > 0.5m || ml.Sexual > 0.5m)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

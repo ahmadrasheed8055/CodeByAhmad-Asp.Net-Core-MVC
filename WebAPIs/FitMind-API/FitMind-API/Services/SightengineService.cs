@@ -1,4 +1,4 @@
-﻿using FitMind_API.Models.DTOs;
+using FitMind_API.Models.DTOs;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -61,7 +61,7 @@ namespace FitMind_API.Services
                 {
                     { "text", text },
                     { "lang", "en" },
-                    { "mode", "standard" },
+                    { "mode", "standard,rules,ml" },
                     { "api_user", _configuration["Sightengine:ApiUser"] },
                     { "api_secret", _configuration["Sightengine:ApiSecret"] }
                 };

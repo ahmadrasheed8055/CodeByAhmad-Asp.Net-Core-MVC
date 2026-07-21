@@ -200,6 +200,22 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.AppUsersController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/AppUsers/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetDTO",
+        "Type": "FitMind_API.Models.DTOs.ResetPasswordDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.AppUsersController",
     "Method": "PutAppUsers",
     "RelativePath": "api/AppUsers/update-app-user/{id}",
     "HttpMethod": "PUT",
@@ -607,6 +623,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FitMind_API.Controllers.EmailSendingController",
+    "Method": "validateResetToken",
+    "RelativePath": "api/EmailSending/validate-reset-token",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetAddPost",
     "RelativePath": "api/Post/{id}",
@@ -853,6 +885,32 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "GetHiddenPosts",
+    "RelativePath": "api/Post/getHiddenPosts/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetPostImage",
     "RelativePath": "api/Post/getPostImage/{userId}/{postId}",
     "HttpMethod": "GET",
@@ -873,6 +931,32 @@
     "ReturnTypes": [
       {
         "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "GetSavedPosts",
+    "RelativePath": "api/Post/getSavedPosts/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -910,6 +994,27 @@
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "HidePost",
+    "RelativePath": "api/Post/hidePost/{userId}/{postId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "IsDraftAvailable",
     "RelativePath": "api/Post/IsDraftAvailable/{userId}",
     "HttpMethod": "GET",
@@ -933,6 +1038,69 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "SavePost",
+    "RelativePath": "api/Post/savePost/{userId}/{postId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "UnhidePost",
+    "RelativePath": "api/Post/unhidePost/{userId}/{postId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PostController",
+    "Method": "UnsavePost",
+    "RelativePath": "api/Post/unsavePost/{userId}/{postId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FitMind_API.Controllers.PostController",

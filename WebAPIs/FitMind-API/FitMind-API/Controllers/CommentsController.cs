@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using FitMind_API.Models.Entities;
 using FitMind_API.Models.DTOs;
 using PostComments = FitMind_API.Models.DTOs.PostComments;
+using System.Security.Claims;
 
 namespace FitMind_API.Controllers
 {
@@ -12,10 +13,12 @@ namespace FitMind_API.Controllers
     public class CommentsController : ControllerBase
     {
         private readonly Data.FMDBContext _context;
+        private readonly FitMind_API.Services.SightengineService _sightengineService;
 
-        public CommentsController(FMDBContext context)
+        public CommentsController(FMDBContext context, FitMind_API.Services.SightengineService sightengineService)
         {
             _context = context;
+            _sightengineService = sightengineService;
         }
 
         // GET: api/comments/getAll/{postId}?userId=optional
@@ -23,6 +26,15 @@ namespace FitMind_API.Controllers
         [HttpGet("getAll/{postId}")]
         public async Task<ActionResult<List<FitMind_API.Models.DTOs.PostComments>>> GetAllComments(int postId, [FromQuery] int? userId)
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(claimsUserId, out int parsedId))
+                {
+                    userId = parsedId;
+                }
+            }
+
             if (postId == 0)
                 return BadRequest(new { message = "PostId is required" });
 
@@ -67,6 +79,15 @@ namespace FitMind_API.Controllers
         [HttpGet("getReplies/{commentId}")]
         public async Task<ActionResult<List<FitMind_API.Models.DTOs.PostComments>>> GetReplies(int commentId, [FromQuery] int? userId)
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(claimsUserId, out int parsedId))
+                {
+                    userId = parsedId;
+                }
+            }
+
             if (commentId == 0)
                 return BadRequest(new { message = "CommentId is required" });
 
@@ -151,6 +172,39 @@ namespace FitMind_API.Controllers
 
             if (commentDto.CommentContent.Length > 1000)
                 return BadRequest(new { message = "CommentContent exceeds maximum length of 1000 characters." });
+
+            // Text moderation using Sightengine
+            try
+            {
+                var moderationResult = await _sightengineService.CheckTextAsync(commentDto.CommentContent);
+                bool isBlocked = false;
+
+                if (moderationResult != null && moderationResult.Profanity != null && moderationResult.Profanity.Matches != null && moderationResult.Profanity.Matches.Any())
+                {
+                    isBlocked = true;
+                }
+
+                if (moderationResult != null && moderationResult.ModerationClasses != null)
+                {
+                    var ml = moderationResult.ModerationClasses;
+                    // Setting a 50% confidence threshold for toxic, insulting, discriminatory or sexual content
+                    if (ml.Discriminatory > 0.5m || ml.Insulting > 0.5m || ml.Toxic > 0.5m || ml.Sexual > 0.5m)
+                    {
+                        isBlocked = true;
+                    }
+                }
+
+                if (isBlocked)
+                {
+                    return BadRequest(new { message = "Your comment contains inappropriate content and cannot be posted." });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Moderation error: {ex.Message}");
+                // In case of an API error, we can either block or let it pass. We'll return an error to be safe.
+                return StatusCode(500, new { message = "Error validating comment content. Please try again later." });
+            }
 
             var user = await _context.AppUsers.FindAsync(commentDto.UserId);
             if (user == null)
