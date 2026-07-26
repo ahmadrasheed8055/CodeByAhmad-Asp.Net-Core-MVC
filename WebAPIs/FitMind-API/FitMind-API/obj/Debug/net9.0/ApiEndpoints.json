@@ -639,6 +639,122 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "DeletePoll",
+    "RelativePath": "api/Polls/{pollId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pollId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "AddCustomOption",
+    "RelativePath": "api/Polls/add-option",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FitMind_API.Controllers.PollsController\u002BCustomOptionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "CreatePoll",
+    "RelativePath": "api/Polls/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FitMind_API.Models.DTOs.CreatePollDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FitMind_API.Models.DTOs.PollDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "ToggleClose",
+    "RelativePath": "api/Polls/toggle-close/{pollId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pollId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "TogglePin",
+    "RelativePath": "api/Polls/toggle-pin/{pollId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pollId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.PollsController",
+    "Method": "VotePoll",
+    "RelativePath": "api/Polls/vote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FitMind_API.Models.DTOs.VotePollDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FitMind_API.Models.DTOs.PollDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FitMind_API.Controllers.PostController",
     "Method": "GetAddPost",
     "RelativePath": "api/Post/{id}",

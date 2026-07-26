@@ -48,6 +48,8 @@ namespace FitMind_API.Controllers
                                     .Where(p => p.UserId == userId && p.IsPublished && !p.IsDeleted && p.PublishAt != null && !_context.HiddenPosts.Any(hp => hp.PostId == p.PostId))
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
+                                    .Include(p => p.Poll).ThenInclude(p => p.Options).ThenInclude(o => o.Votes)
+                                    .Include(p => p.Poll).ThenInclude(p => p.Votes)
                                     .OrderByDescending(p => p.PublishAt)
                                     .Select(post => new GetUserPostsDTO
                                     {
@@ -80,7 +82,32 @@ namespace FitMind_API.Controllers
                                         IsSavedByMe = userId != 0
                                             ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
                                             : (bool?)null,
-                                        IsHidden = false
+                                        IsHidden = false,
+                                        Poll = post.Poll == null ? null : new PollDTO
+                                        {
+                                            PollId = post.Poll.PollId,
+                                            PostId = post.Poll.PostId,
+                                            Question = post.Poll.Question,
+                                            ExpiresAt = post.Poll.ExpiresAt,
+                                            IsExpired = post.Poll.ExpiresAt.HasValue && post.Poll.ExpiresAt.Value < DateTime.UtcNow,
+                                            TotalVotes = post.Poll.Votes.Count,
+                                            AllowUserOptions = post.Poll.AllowUserOptions,
+                                            IsMultipleChoice = post.Poll.IsMultipleChoice,
+                                            AllowVoteEdit = post.Poll.AllowVoteEdit,
+                                            IsPinned = post.Poll.IsPinned,
+                                            IsClosed = post.Poll.IsClosed,
+                                            UserVotedOptionIds = userId != 0 
+                                                ? post.Poll.Votes.Where(v => v.UserId == userId).Select(v => v.OptionId).ToList() 
+                                                : new List<int>(),
+                                            Options = post.Poll.Options.Select(o => new PollOptionResultDTO
+                                            {
+                                                OptionId = o.OptionId,
+                                                OptionText = o.OptionText,
+                                                OptionLetter = o.OptionLetter,
+                                                VoteCount = o.Votes.Count,
+                                                VotePercentage = post.Poll.Votes.Count == 0 ? 0 : (o.Votes.Count * 100.0 / post.Poll.Votes.Count)
+                                            }).ToList()
+                                        }
                                     })
                                     .ToListAsync();
 
@@ -114,6 +141,8 @@ namespace FitMind_API.Controllers
                                     .Include(p => p.User)
                                     .Include(p => p.Category)
                                     .Include(p => p.postReactions)
+                                    .Include(p => p.Poll).ThenInclude(p => p.Options).ThenInclude(o => o.Votes)
+                                    .Include(p => p.Poll).ThenInclude(p => p.Votes)
                                     .OrderByDescending(p => p.PublishAt)
                                     .Select(post => new GetAllPostsDTO
                                     {
@@ -147,7 +176,32 @@ namespace FitMind_API.Controllers
                                         IsSavedByMe = userId.HasValue && userId != 0
                                             ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
                                             : (bool?)null,
-                                        IsHidden = false
+                                        IsHidden = false,
+                                        Poll = post.Poll == null ? null : new PollDTO
+                                        {
+                                            PollId = post.Poll.PollId,
+                                            PostId = post.Poll.PostId,
+                                            Question = post.Poll.Question,
+                                            ExpiresAt = post.Poll.ExpiresAt,
+                                            IsExpired = post.Poll.ExpiresAt.HasValue && post.Poll.ExpiresAt.Value < DateTime.UtcNow,
+                                            TotalVotes = post.Poll.Votes.Count,
+                                            AllowUserOptions = post.Poll.AllowUserOptions,
+                                            IsMultipleChoice = post.Poll.IsMultipleChoice,
+                                            AllowVoteEdit = post.Poll.AllowVoteEdit,
+                                            IsPinned = post.Poll.IsPinned,
+                                            IsClosed = post.Poll.IsClosed,
+                                            UserVotedOptionIds = userId.HasValue && userId != 0 
+                                                ? post.Poll.Votes.Where(v => v.UserId == userId).Select(v => v.OptionId).ToList() 
+                                                : new List<int>(),
+                                            Options = post.Poll.Options.Select(o => new PollOptionResultDTO
+                                            {
+                                                OptionId = o.OptionId,
+                                                OptionText = o.OptionText,
+                                                OptionLetter = o.OptionLetter,
+                                                VoteCount = o.Votes.Count,
+                                                VotePercentage = post.Poll.Votes.Count == 0 ? 0 : (o.Votes.Count * 100.0 / post.Poll.Votes.Count)
+                                            }).ToList()
+                                        }
                                     })
                                     .ToListAsync();
 

@@ -4,6 +4,7 @@ using FitMind_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMind_API.Migrations
 {
     [DbContext(typeof(FMDBContext))]
-    partial class FMDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260726070127_AddPollFeature")]
+    partial class AddPollFeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,26 +253,11 @@ namespace FitMind_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PollId"));
 
-                    b.Property<bool>("AllowUserOptions")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AllowVoteEdit")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ExpiresAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsClosed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsMultipleChoice")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPinned")
-                        .HasColumnType("bit");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
@@ -341,7 +329,7 @@ namespace FitMind_API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("PollId", "UserId", "OptionId")
+                    b.HasIndex("PollId", "UserId")
                         .IsUnique();
 
                     b.ToTable("PollVotes");

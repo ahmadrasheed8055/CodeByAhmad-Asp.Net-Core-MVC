@@ -25,6 +25,10 @@ namespace FitMind_API.Data
         public DbSet<SavedPost> SavedPosts { get; set; }
         public DbSet<HiddenPost> HiddenPosts { get; set; }
 
+        public DbSet<Poll> Polls { get; set; }
+        public DbSet<PollOption> PollOptions { get; set; }
+        public DbSet<PollVote> PollVotes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -103,6 +107,41 @@ namespace FitMind_API.Data
                 .WithMany()
                 .HasForeignKey(hp => hp.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Poll relations
+            modelBuilder.Entity<Poll>()
+                .HasOne(p => p.Post)
+                .WithOne(ap => ap.Poll)
+                .HasForeignKey<Poll>(p => p.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollOption>()
+                .HasOne(po => po.Poll)
+                .WithMany(p => p.Options)
+                .HasForeignKey(po => po.PollId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(pv => pv.Poll)
+                .WithMany(p => p.Votes)
+                .HasForeignKey(pv => pv.PollId)
+                .OnDelete(DeleteBehavior.NoAction); // NO CASCADE from Poll -> Votes to prevent multiple cascade paths, or keep cascade and remove from User
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(pv => pv.Option)
+                .WithMany(po => po.Votes)
+                .HasForeignKey(pv => pv.OptionId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(pv => pv.User)
+                .WithMany()
+                .HasForeignKey(pv => pv.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PollVote>()
+                .HasIndex(pv => new { pv.PollId, pv.UserId, pv.OptionId })
+                .IsUnique();
         }
     }
 }

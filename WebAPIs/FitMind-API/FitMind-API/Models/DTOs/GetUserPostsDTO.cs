@@ -21,5 +21,7 @@ namespace FitMind_API.Models.DTOs
         public bool? IsReactedByMe { get; set; } // To check the reaction status of the user
         public bool? IsSavedByMe { get; set; } // Check if the user has saved this post
         public bool IsHidden { get; set; } // Indicates if the post is hidden by the author
+
+        public PollDTO? Poll { get; set; }
     }
 }

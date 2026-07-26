@@ -1084,6 +1084,202 @@
         }
       }
     },
+    "/api/Polls/create": {
+      "post": {
+        "tags": [
+          "Polls"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CreatePollDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CreatePollDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.CreatePollDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Polls/vote": {
+      "post": {
+        "tags": [
+          "Polls"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.VotePollDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.VotePollDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.DTOs.VotePollDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Polls/add-option": {
+      "post": {
+        "tags": [
+          "Polls"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Controllers.PollsController+CustomOptionDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Controllers.PollsController+CustomOptionDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Controllers.PollsController+CustomOptionDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Polls/toggle-pin/{pollId}": {
+      "post": {
+        "tags": [
+          "Polls"
+        ],
+        "parameters": [
+          {
+            "name": "pollId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Polls/toggle-close/{pollId}": {
+      "post": {
+        "tags": [
+          "Polls"
+        ],
+        "parameters": [
+          {
+            "name": "pollId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Polls/{pollId}": {
+      "delete": {
+        "tags": [
+          "Polls"
+        ],
+        "parameters": [
+          {
+            "name": "pollId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Post/getUserPosts/{userId}": {
       "get": {
         "tags": [
@@ -2147,6 +2343,63 @@
   },
   "components": {
     "schemas": {
+      "FitMind_API.Controllers.PollsController+CustomOptionDTO": {
+        "type": "object",
+        "properties": {
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "optionText": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.CreatePollDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowUserOptions": {
+            "type": "boolean"
+          },
+          "isMultipleChoice": {
+            "type": "boolean"
+          },
+          "allowVoteEdit": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "FitMind_API.Models.DTOs.GetAllPostsDTO": {
         "type": "object",
         "properties": {
@@ -2227,6 +2480,9 @@
           },
           "isHidden": {
             "type": "boolean"
+          },
+          "poll": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
           }
         },
         "additionalProperties": false
@@ -2345,6 +2601,95 @@
           },
           "isHidden": {
             "type": "boolean"
+          },
+          "poll": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.PollDTO": {
+        "type": "object",
+        "properties": {
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "postId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "question": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isExpired": {
+            "type": "boolean"
+          },
+          "totalVotes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userVotedOptionIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "allowUserOptions": {
+            "type": "boolean"
+          },
+          "isMultipleChoice": {
+            "type": "boolean"
+          },
+          "allowVoteEdit": {
+            "type": "boolean"
+          },
+          "isPinned": {
+            "type": "boolean"
+          },
+          "isClosed": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollOptionResultDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.PollOptionResultDTO": {
+        "type": "object",
+        "properties": {
+          "optionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "optionText": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "voteCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "votePercentage": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -2564,6 +2909,28 @@
         },
         "additionalProperties": false
       },
+      "FitMind_API.Models.DTOs.VotePollDTO": {
+        "type": "object",
+        "properties": {
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "optionIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "FitMind_API.Models.DTOs.newPasswordDTO": {
         "type": "object",
         "properties": {
@@ -2657,6 +3024,9 @@
               "$ref": "#/components/schemas/FitMind_API.Models.Entities.PostComments"
             },
             "nullable": true
+          },
+          "poll": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.Poll"
           }
         },
         "additionalProperties": false
@@ -2852,6 +3222,149 @@
           },
           "user": {
             "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.Entities.Poll": {
+        "required": [
+          "postId",
+          "question"
+        ],
+        "type": "object",
+        "properties": {
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "postId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "post": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AddPost"
+          },
+          "question": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "allowUserOptions": {
+            "type": "boolean"
+          },
+          "isMultipleChoice": {
+            "type": "boolean"
+          },
+          "allowVoteEdit": {
+            "type": "boolean"
+          },
+          "isPinned": {
+            "type": "boolean"
+          },
+          "isClosed": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.PollOption"
+            },
+            "nullable": true
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.PollVote"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.Entities.PollOption": {
+        "required": [
+          "optionLetter",
+          "optionText",
+          "pollId"
+        ],
+        "type": "object",
+        "properties": {
+          "optionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "poll": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.Poll"
+          },
+          "optionText": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "optionLetter": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.PollVote"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.Entities.PollVote": {
+        "required": [
+          "optionId",
+          "pollId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "voteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pollId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "poll": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.Poll"
+          },
+          "optionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "option": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.PollOption"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          },
+          "votedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

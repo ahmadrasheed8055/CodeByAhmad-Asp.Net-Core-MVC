@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -54,6 +54,9 @@ namespace FitMind_API.Models.Entities
         public ICollection<PostReactions>? postReactions { get; set; }
 
         public ICollection<PostComments>? Comments { get; set; }
+
+        // Navigation property for an associated Poll (1-to-0..1 relationship)
+        public virtual Poll? Poll { get; set; }
     }
 
 
