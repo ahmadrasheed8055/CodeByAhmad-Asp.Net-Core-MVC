@@ -29,6 +29,7 @@ namespace FitMind_API.Models.Entities
         public bool AllowUserOptions { get; set; } = false;
         public bool IsMultipleChoice { get; set; } = false;
         public bool AllowVoteEdit { get; set; } = false;
+        public bool ShowResultsBeforeVoting { get; set; } = false;
         public bool IsPinned { get; set; } = false;
         public bool IsClosed { get; set; } = false;
 

@@ -94,6 +94,7 @@ namespace FitMind_API.Controllers
                                             AllowUserOptions = post.Poll.AllowUserOptions,
                                             IsMultipleChoice = post.Poll.IsMultipleChoice,
                                             AllowVoteEdit = post.Poll.AllowVoteEdit,
+                                            ShowResultsBeforeVoting = post.Poll.ShowResultsBeforeVoting,
                                             IsPinned = post.Poll.IsPinned,
                                             IsClosed = post.Poll.IsClosed,
                                             UserVotedOptionIds = userId != 0 
@@ -188,6 +189,7 @@ namespace FitMind_API.Controllers
                                             AllowUserOptions = post.Poll.AllowUserOptions,
                                             IsMultipleChoice = post.Poll.IsMultipleChoice,
                                             AllowVoteEdit = post.Poll.AllowVoteEdit,
+                                            ShowResultsBeforeVoting = post.Poll.ShowResultsBeforeVoting,
                                             IsPinned = post.Poll.IsPinned,
                                             IsClosed = post.Poll.IsClosed,
                                             UserVotedOptionIds = userId.HasValue && userId != 0 
@@ -351,21 +353,20 @@ namespace FitMind_API.Controllers
                 }
 
 
-                //checking sensitivity
+                // checking sensitivity (fail-open on network error)
                 var sensitivityObj = await _sightengineService.CheckImageAsync(addPostDto.PostImage);
 
-                //conditions
-                if (sensitivityObj == null || sensitivityObj.Status != "success")
-                    return StatusCode(500, "Image analysis failed. Please try again.");
-
-                // Nudity check
-                if (sensitivityObj.Nudity != null)
+                if (sensitivityObj != null && sensitivityObj.Status == "success")
                 {
-                    if (sensitivityObj.Nudity.Raw > 0.5m)
-                        return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
+                    // Nudity check
+                    if (sensitivityObj.Nudity != null)
+                    {
+                        if (sensitivityObj.Nudity.Raw > 0.5m)
+                            return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
 
-                    if (sensitivityObj.Nudity.Partial > 0.5m)
-                        return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                        if (sensitivityObj.Nudity.Partial > 0.5m)
+                            return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                    }
                 }
 
                 // Offensive content check
@@ -415,17 +416,17 @@ namespace FitMind_API.Controllers
 
             var sensitivityObj = await _sightengineService.CheckImageAsync(image);
 
-            if (sensitivityObj == null || sensitivityObj.Status != "success")
-                return StatusCode(500, "Image analysis failed. Please try again.");
-
-            // Nudity check
-            if (sensitivityObj.Nudity != null)
+            if (sensitivityObj != null && sensitivityObj.Status == "success")
             {
-                if (sensitivityObj.Nudity.Raw > 0.5m)
-                    return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
+                // Nudity check
+                if (sensitivityObj.Nudity != null)
+                {
+                    if (sensitivityObj.Nudity.Raw > 0.5m)
+                        return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
 
-                if (sensitivityObj.Nudity.Partial > 0.5m)
-                    return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                    if (sensitivityObj.Nudity.Partial > 0.5m)
+                        return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                }
             }
 
             // Offensive content check
@@ -560,21 +561,20 @@ namespace FitMind_API.Controllers
                 }
 
 
-                //checking sensitivity
+                // checking sensitivity (fail-open on network error)
                 var sensitivityObj = await _sightengineService.CheckImageAsync(updatePostDTO.PostImage);
 
-                //conditions
-                if (sensitivityObj == null || sensitivityObj.Status != "success")
-                    return StatusCode(500, "Image analysis failed. Please try again.");
-
-                // Nudity check
-                if (sensitivityObj.Nudity != null)
+                if (sensitivityObj != null && sensitivityObj.Status == "success")
                 {
-                    if (sensitivityObj.Nudity.Raw > 0.5m)
-                        return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
+                    // Nudity check
+                    if (sensitivityObj.Nudity != null)
+                    {
+                        if (sensitivityObj.Nudity.Raw > 0.5m)
+                            return UnprocessableEntity("Image contains high raw nudity and is not allowed.");
 
-                    if (sensitivityObj.Nudity.Partial > 0.5m)
-                        return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                        if (sensitivityObj.Nudity.Partial > 0.5m)
+                            return UnprocessableEntity("Image contains partial nudity and is not allowed.");
+                    }
                 }
 
                 // Offensive content check
@@ -922,7 +922,7 @@ namespace FitMind_API.Controllers
         private bool IsTextInappropriate(SightengineTextModerationDTO moderation)
         {
             if (moderation == null || moderation.Status != "success")
-                return true;
+                return false;
 
             var ruleMatch = moderation.Profanity?.Matches?.Any(m =>
                     m.Type == "inappropriate" ||
@@ -953,3 +953,4 @@ namespace FitMind_API.Controllers
         }
     }
 }
+

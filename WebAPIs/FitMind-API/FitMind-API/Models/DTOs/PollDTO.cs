@@ -14,6 +14,7 @@ namespace FitMind_API.Models.DTOs
         public bool AllowUserOptions { get; set; }
         public bool IsMultipleChoice { get; set; }
         public bool AllowVoteEdit { get; set; }
+        public bool ShowResultsBeforeVoting { get; set; }
     }
 
     public class VotePollDTO
@@ -45,6 +46,7 @@ namespace FitMind_API.Models.DTOs
         public bool AllowUserOptions { get; set; }
         public bool IsMultipleChoice { get; set; }
         public bool AllowVoteEdit { get; set; }
+        public bool ShowResultsBeforeVoting { get; set; }
         public bool IsPinned { get; set; }
         public bool IsClosed { get; set; }
         

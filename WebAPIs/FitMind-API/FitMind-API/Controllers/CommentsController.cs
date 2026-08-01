@@ -201,9 +201,8 @@ namespace FitMind_API.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Moderation error: {ex.Message}");
-                // In case of an API error, we can either block or let it pass. We'll return an error to be safe.
-                return StatusCode(500, new { message = "Error validating comment content. Please try again later." });
+                Console.WriteLine($"[Sightengine Moderation Network Warning]: {ex.Message}. Allowing comment to post.");
+                // In case of network/offline or API error, log warning and allow comment to proceed
             }
 
             var user = await _context.AppUsers.FindAsync(commentDto.UserId);
@@ -235,6 +234,48 @@ namespace FitMind_API.Controllers
             };
 
             _context.PostComments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            // Create Notification
+            if (commentDto.ParentCommentId.HasValue && commentDto.ParentCommentId != 0)
+            {
+                var parentComment = await _context.PostComments.FindAsync(commentDto.ParentCommentId.Value);
+                if (parentComment != null && parentComment.UserId != user.Id)
+                {
+                    var notifMsg = $"{user.Username} replied to your comment: \"{commentDto.CommentContent}\"";
+                    var notif = new AppNotification
+                    {
+                        TargetUserId = parentComment.UserId,
+                        ActorName = user.Username,
+                        ActorImage = user.ProfilePhoto != null ? Convert.ToBase64String(user.ProfilePhoto) : null,
+                        NotificationType = "comment",
+                        Message = notifMsg,
+                        TargetId = post.PostId,
+                        IsRead = false,
+                        CreatedAt = DateTime.Now
+                    };
+                    _context.AppNotifications.Add(notif);
+                }
+            }
+            else
+            {
+                if (post.UserId != user.Id)
+                {
+                    var notifMsg = $"{user.Username} commented on your post \"{post.Title}\"";
+                    var notif = new AppNotification
+                    {
+                        TargetUserId = post.UserId,
+                        ActorName = user.Username,
+                        ActorImage = user.ProfilePhoto != null ? Convert.ToBase64String(user.ProfilePhoto) : null,
+                        NotificationType = "comment",
+                        Message = notifMsg,
+                        TargetId = post.PostId,
+                        IsRead = false,
+                        CreatedAt = DateTime.Now
+                    };
+                    _context.AppNotifications.Add(notif);
+                }
+            }
             await _context.SaveChangesAsync();
 
             return Ok(new { CommentId = comment.CommentId, message = "Comment added successfully." });
@@ -337,6 +378,26 @@ namespace FitMind_API.Controllers
             }
 
             await _context.SaveChangesAsync();
+
+            var actorUser = await _context.AppUsers.FindAsync(userId);
+            var commentToNotify = await _context.PostComments.FindAsync(id);
+            if (actorUser != null && commentToNotify != null && commentToNotify.UserId != userId)
+            {
+                var notif = new AppNotification
+                {
+                    TargetUserId = commentToNotify.UserId,
+                    ActorName = actorUser.Username,
+                    ActorImage = actorUser.ProfilePhoto != null ? Convert.ToBase64String(actorUser.ProfilePhoto) : null,
+                    NotificationType = "reaction",
+                    Message = $"{actorUser.Username} liked your comment",
+                    TargetId = commentToNotify.PostId,
+                    IsRead = false,
+                    CreatedAt = DateTime.Now
+                };
+                _context.AppNotifications.Add(notif);
+                await _context.SaveChangesAsync();
+            }
+
             return Ok(new { message = "Comment liked successfully" });
         }
 

@@ -60,6 +60,7 @@ namespace FitMind_API.Controllers
                 AllowUserOptions = dto.AllowUserOptions,
                 IsMultipleChoice = dto.IsMultipleChoice,
                 AllowVoteEdit = dto.AllowVoteEdit,
+                ShowResultsBeforeVoting = dto.ShowResultsBeforeVoting,
                 IsPinned = false,
                 IsClosed = false
             };
@@ -81,6 +82,27 @@ namespace FitMind_API.Controllers
                     letter++;
                 }
             }
+            await _context.SaveChangesAsync();
+
+            // Broadcast "New Poll" notification to all other users
+            var allOtherUserIds = await _context.AppUsers
+                .Where(u => u.Id != dto.UserId)
+                .Select(u => u.Id)
+                .ToListAsync();
+
+            var notifications = allOtherUserIds.Select(id => new AppNotification
+            {
+                TargetUserId = id,
+                ActorName = user.Username ?? "Member",
+                ActorImage = user.ProfilePhoto != null ? "data:image/jpeg;base64," + Convert.ToBase64String(user.ProfilePhoto) : null,
+                NotificationType = "poll",
+                Message = $"{user.Username ?? "Member"} published a new poll: \"{dto.Title}\"",
+                TargetId = post.PostId,
+                IsRead = false,
+                CreatedAt = DateTime.UtcNow
+            });
+
+            _context.AppNotifications.AddRange(notifications);
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Poll created successfully", pollId = poll.PollId, postId = post.PostId });
@@ -158,6 +180,25 @@ namespace FitMind_API.Controllers
             
             await _context.SaveChangesAsync();
 
+            // Notify poll author about the vote
+            var post = await _context.AddPosts.FindAsync(poll.PostId);
+            if (post != null && post.UserId != dto.UserId)
+            {
+                var actor = await _context.AppUsers.FindAsync(dto.UserId);
+                _context.AppNotifications.Add(new AppNotification
+                {
+                    TargetUserId = post.UserId,
+                    ActorName = actor?.Username ?? "Member",
+                    ActorImage = actor?.ProfilePhoto != null ? "data:image/jpeg;base64," + Convert.ToBase64String(actor.ProfilePhoto) : null,
+                    NotificationType = "reaction", // or "poll_vote" but frontend uses reaction for icons
+                    Message = $"{actor?.Username ?? "A member"} voted on your poll \"{poll.Question}\"",
+                    TargetId = poll.PostId,
+                    IsRead = false,
+                    CreatedAt = DateTime.UtcNow
+                });
+                await _context.SaveChangesAsync();
+            }
+
             // Refetch
             var allPollVotes = await _context.PollVotes.Where(v => v.PollId == dto.PollId).ToListAsync();
             var totalVotes = allPollVotes.Count;
@@ -185,6 +226,7 @@ namespace FitMind_API.Controllers
                 AllowUserOptions = poll.AllowUserOptions,
                 IsMultipleChoice = poll.IsMultipleChoice,
                 AllowVoteEdit = poll.AllowVoteEdit,
+                ShowResultsBeforeVoting = poll.ShowResultsBeforeVoting,
                 IsPinned = poll.IsPinned,
                 IsClosed = poll.IsClosed,
                 UserVotedOptionIds = dto.OptionIds,

@@ -29,6 +29,8 @@ namespace FitMind_API.Data
         public DbSet<PollOption> PollOptions { get; set; }
         public DbSet<PollVote> PollVotes { get; set; }
 
+        public DbSet<AppNotification> AppNotifications { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -142,6 +144,13 @@ namespace FitMind_API.Data
             modelBuilder.Entity<PollVote>()
                 .HasIndex(pv => new { pv.PollId, pv.UserId, pv.OptionId })
                 .IsUnique();
+
+            // Notification relations
+            modelBuilder.Entity<AppNotification>()
+                .HasOne(n => n.User)
+                .WithMany()
+                .HasForeignKey(n => n.TargetUserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

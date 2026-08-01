@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,6 +109,28 @@ namespace FitMind_API.Controllers
             }
 
             await _context.SaveChangesAsync();
+
+            // Create notification for post reaction
+            var post = await _context.AddPosts.Include(p => p.User).FirstOrDefaultAsync(p => p.PostId == postReaction.PostId);
+            var actor = await _context.AppUsers.FindAsync(postReaction.UserId);
+            
+            if (post != null && actor != null && post.UserId != actor.Id)
+            {
+                var notifMsg = $"{actor.Username} {(postReaction.IsLike == true ? "liked" : "disliked")} your post \"{post.Title}\"";
+                var notif = new AppNotification
+                {
+                    TargetUserId = post.UserId,
+                    ActorName = actor.Username,
+                    ActorImage = actor.ProfilePhoto != null ? Convert.ToBase64String(actor.ProfilePhoto) : null,
+                    NotificationType = "reaction",
+                    Message = notifMsg,
+                    TargetId = post.PostId,
+                    IsRead = false,
+                    CreatedAt = DateTime.Now
+                };
+                _context.AppNotifications.Add(notif);
+                await _context.SaveChangesAsync();
+            }
 
             //var postLikes = await LikesCount(postReaction.PostId);
             //var postDislikes = await DislikesCount(postReaction.PostId);

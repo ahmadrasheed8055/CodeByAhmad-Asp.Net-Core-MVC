@@ -1084,6 +1084,124 @@
         }
       }
     },
+    "/api/Notifications/getMyNotifications/{userId}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppNotification"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppNotification"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppNotification"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Notifications/markAsRead/{id}": {
+      "put": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/markAllAsRead/{userId}": {
+      "put": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/{id}": {
+      "delete": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Polls/create": {
       "post": {
         "tags": [
@@ -2396,6 +2514,9 @@
           },
           "allowVoteEdit": {
             "type": "boolean"
+          },
+          "showResultsBeforeVoting": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2650,6 +2771,9 @@
             "type": "boolean"
           },
           "allowVoteEdit": {
+            "type": "boolean"
+          },
+          "showResultsBeforeVoting": {
             "type": "boolean"
           },
           "isPinned": {
@@ -3031,6 +3155,58 @@
         },
         "additionalProperties": false
       },
+      "FitMind_API.Models.Entities.AppNotification": {
+        "required": [
+          "message",
+          "notificationType",
+          "targetUserId"
+        ],
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "targetUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          },
+          "actorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationType": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "targetId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isRead": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "FitMind_API.Models.Entities.AppUsers": {
         "required": [
           "email",
@@ -3265,6 +3441,9 @@
             "type": "boolean"
           },
           "allowVoteEdit": {
+            "type": "boolean"
+          },
+          "showResultsBeforeVoting": {
             "type": "boolean"
           },
           "isPinned": {
