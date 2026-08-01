@@ -33,6 +33,19 @@ namespace FitMind_API.Controllers
                 .Take(50)
                 .ToListAsync();
 
+            var followingIds = await _context.UserFollowers
+                .Where(f => f.FollowerId == userId)
+                .Select(f => f.FollowingId)
+                .ToListAsync();
+
+            foreach (var n in notifications)
+            {
+                if (n.NotificationType == "follow" && n.TargetId.HasValue)
+                {
+                    n.IsFollowingActor = followingIds.Contains(n.TargetId.Value);
+                }
+            }
+
             return Ok(notifications);
         }
 

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\controllers\\appuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\appuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|c:\\ahmad side\\codebyahmad-asp.net-core-mvc\\webapis\\fitmind-api\\fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5C250B1-A864-4E35-9C6C-39B3DE93CF0C}|FitMind-API\\FitMind-API.csproj|solutionrelative:fitmind-api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -81,7 +85,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 230,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -89,7 +93,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "AppUsersController.cs",
+              "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
+              "RelativeDocumentMoniker": "FitMind-API\\Controllers\\AppUsersController.cs",
+              "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
+              "RelativeToolTip": "FitMind-API\\Controllers\\AppUsersController.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAUwHkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-01T08:16:08.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Program.cs",
@@ -101,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "20260714132211_AddCommentReactionsTable.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20260714132211_AddCommentReactionsTable.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Migrations\\20260714132211_AddCommentReactionsTable.cs",
@@ -113,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CommentsController.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\CommentsController.cs",
@@ -125,20 +142,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PostController.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostController.cs",
               "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostController.cs",
               "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAgwL4DAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAgwLwDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-29T13:07:47.061Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "PostComments.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\PostComments.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\PostComments.cs",
@@ -150,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\appsettings.json",
               "RelativeDocumentMoniker": "FitMind-API\\appsettings.json",
@@ -162,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "FMDBContext.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Data\\FMDBContext.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Data\\FMDBContext.cs",
@@ -174,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "PostComments.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\PostComments.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\PostComments.cs",
@@ -186,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "CommentReactions.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\CommentReactions.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\CommentReactions.cs",
@@ -198,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CommentReactionDTO.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\CommentReactionDTO.cs",
@@ -210,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "EmailSendingController.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\EmailSendingController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\EmailSendingController.cs",
@@ -222,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "20251220112901_AddTokenTypeToUserRT.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Migrations\\20251220112901_AddTokenTypeToUserRT.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Migrations\\20251220112901_AddTokenTypeToUserRT.cs",
@@ -234,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "UserRT.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\Entities\\UserRT.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\Entities\\UserRT.cs",
@@ -246,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RegistrationTokensDTO.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\RegistrationTokensDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\RegistrationTokensDTO.cs",
@@ -258,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\d76b466e5a3be9612ee01b9b48b3e2dcae82b7f2fd377ed72fe7516ef83e561e\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\LIST-IT\\AppData\\Local\\SourceServer\\d76b466e5a3be9612ee01b9b48b3e2dcae82b7f2fd377ed72fe7516ef83e561e\\WebAPIs\\FitMind-API\\FitMind-API\\Program.cs",
@@ -270,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "GetUserPostsDTO.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\GetUserPostsDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\GetUserPostsDTO.cs",
@@ -282,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "GetAllPostsDTO.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Models\\DTOs\\GetAllPostsDTO.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Models\\DTOs\\GetAllPostsDTO.cs",
@@ -294,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "PostReactionsController.cs",
               "DocumentMoniker": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\PostReactionsController.cs",
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\PostReactionsController.cs",

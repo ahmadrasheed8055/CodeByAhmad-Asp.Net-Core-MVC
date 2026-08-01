@@ -83,6 +83,7 @@ namespace FitMind_API.Controllers
                                             ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
                                             : (bool?)null,
                                         IsHidden = false,
+                                        IsFollowingAuthor = _context.UserFollowers.Any(f => f.FollowerId == userId && f.FollowingId == post.UserId),
                                         Poll = post.Poll == null ? null : new PollDTO
                                         {
                                             PollId = post.Poll.PollId,
@@ -178,6 +179,7 @@ namespace FitMind_API.Controllers
                                             ? _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == post.PostId)
                                             : (bool?)null,
                                         IsHidden = false,
+                                        IsFollowingAuthor = _context.UserFollowers.Any(f => f.FollowerId == userId && f.FollowingId == post.UserId),
                                         Poll = post.Poll == null ? null : new PollDTO
                                         {
                                             PollId = post.Poll.PollId,
@@ -816,7 +818,8 @@ namespace FitMind_API.Controllers
                                         DislikeCount = sp.Post.postReactions.Count(r => r.IsLike == false) == 0 ? (int?)null : sp.Post.postReactions.Count(r => r.IsLike == false),
                                         IsReactedByMe = sp.Post.postReactions.Where(r => r.UserId == userId).Select(r => (bool?)r.IsLike).FirstOrDefault(),
                                         IsSavedByMe = true,
-                                        IsHidden = false
+                                        IsHidden = false,
+                                        IsFollowingAuthor = _context.UserFollowers.Any(f => f.FollowerId == userId && f.FollowingId == sp.Post.UserId)
                                     })
                                     .ToListAsync();
 
@@ -911,7 +914,8 @@ namespace FitMind_API.Controllers
                                         DislikeCount = hp.Post.postReactions.Count(r => r.IsLike == false) == 0 ? (int?)null : hp.Post.postReactions.Count(r => r.IsLike == false),
                                         IsReactedByMe = hp.Post.postReactions.Where(r => r.UserId == userId).Select(r => (bool?)r.IsLike).FirstOrDefault(),
                                         IsSavedByMe = _context.SavedPosts.Any(sp => sp.UserId == userId && sp.PostId == hp.PostId),
-                                        IsHidden = true
+                                        IsHidden = true,
+                                        IsFollowingAuthor = _context.UserFollowers.Any(f => f.FollowerId == userId && f.FollowingId == hp.Post.UserId)
                                     })
                                     .ToListAsync();
 

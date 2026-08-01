@@ -134,6 +134,52 @@
         }
       }
     },
+    "/api/AppUsers/follow/{id}": {
+      "post": {
+        "tags": [
+          "AppUsers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AppUsers/unfollow/{id}": {
+      "delete": {
+        "tags": [
+          "AppUsers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/AppUsers/update-app-user/{id}": {
       "put": {
         "tags": [
@@ -2602,6 +2648,10 @@
           "isHidden": {
             "type": "boolean"
           },
+          "isFollowingAuthor": {
+            "type": "boolean",
+            "nullable": true
+          },
           "poll": {
             "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
           }
@@ -2722,6 +2772,10 @@
           },
           "isHidden": {
             "type": "boolean"
+          },
+          "isFollowingAuthor": {
+            "type": "boolean",
+            "nullable": true
           },
           "poll": {
             "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
@@ -2969,6 +3023,29 @@
           "country": {
             "type": "string",
             "nullable": true
+          },
+          "followersCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followingCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPosts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalComments": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalLikes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isFollowing": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -3203,6 +3280,9 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "isFollowingActor": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -3321,6 +3401,20 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FitMind_API.Models.Entities.PostComments"
+            },
+            "nullable": true
+          },
+          "followers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.UserFollower"
+            },
+            "nullable": true
+          },
+          "following": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.UserFollower"
             },
             "nullable": true
           }
@@ -3648,6 +3742,34 @@
           },
           "user": {
             "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.Entities.UserFollower": {
+        "required": [
+          "followerId",
+          "followingId"
+        ],
+        "type": "object",
+        "properties": {
+          "followerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "follower": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          },
+          "followingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "following": {
+            "$ref": "#/components/schemas/FitMind_API.Models.Entities.AppUsers"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

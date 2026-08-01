@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitMind_API.Models.Entities
 {
@@ -47,5 +47,9 @@ namespace FitMind_API.Models.Entities
 
         // Navigation Property for Comments
         public ICollection<PostComments>? Comments { get; set; }
+
+        // Navigation Properties for Follows
+        public ICollection<UserFollower>? Followers { get; set; } // Users following this user
+        public ICollection<UserFollower>? Following { get; set; } // Users this user follows
     }
 }

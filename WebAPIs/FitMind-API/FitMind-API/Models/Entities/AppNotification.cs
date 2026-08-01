@@ -30,5 +30,8 @@ namespace FitMind_API.Models.Entities
         public bool IsRead { get; set; } = false;
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        [NotMapped]
+        public bool IsFollowingActor { get; set; } = false;
     }
 }

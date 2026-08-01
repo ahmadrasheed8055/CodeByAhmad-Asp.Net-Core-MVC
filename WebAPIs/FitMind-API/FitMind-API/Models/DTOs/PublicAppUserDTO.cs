@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitMind_API.Models.DTOs
 {
@@ -33,5 +33,12 @@ namespace FitMind_API.Models.DTOs
         public string? InstagramLink { get; set; }
         public string? Location { get; set; }
         public string? Country { get; set; }
+
+        public int FollowersCount { get; set; } = 0;
+        public int FollowingCount { get; set; } = 0;
+        public int TotalPosts { get; set; } = 0;
+        public int TotalComments { get; set; } = 0;
+        public int TotalLikes { get; set; } = 0;
+        public bool IsFollowing { get; set; } = false;
     }
 }

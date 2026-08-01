@@ -30,6 +30,7 @@ namespace FitMind_API.Data
         public DbSet<PollVote> PollVotes { get; set; }
 
         public DbSet<AppNotification> AppNotifications { get; set; }
+        public DbSet<UserFollower> UserFollowers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -151,6 +152,22 @@ namespace FitMind_API.Data
                 .WithMany()
                 .HasForeignKey(n => n.TargetUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // UserFollower relations
+            modelBuilder.Entity<UserFollower>()
+                .HasKey(uf => new { uf.FollowerId, uf.FollowingId });
+
+            modelBuilder.Entity<UserFollower>()
+                .HasOne(uf => uf.Follower)
+                .WithMany(u => u.Following)
+                .HasForeignKey(uf => uf.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserFollower>()
+                .HasOne(uf => uf.Following)
+                .WithMany(u => u.Followers)
+                .HasForeignKey(uf => uf.FollowingId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
