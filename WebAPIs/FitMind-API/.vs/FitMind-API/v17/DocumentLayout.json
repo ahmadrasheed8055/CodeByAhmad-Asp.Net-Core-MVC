@@ -99,7 +99,7 @@
               "RelativeDocumentMoniker": "FitMind-API\\Controllers\\AppUsersController.cs",
               "ToolTip": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\Controllers\\AppUsersController.cs",
               "RelativeToolTip": "FitMind-API\\Controllers\\AppUsersController.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAUwHkAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAwCAAAAAAAAAAAqwCICAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T08:16:08.746Z",
               "EditorCaption": ""
@@ -150,8 +150,7 @@
               "RelativeToolTip": "FitMind-API\\Controllers\\PostController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAgwMADAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T13:07:47.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T13:07:47.061Z"
             },
             {
               "$type": "Document",

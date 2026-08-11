@@ -1,4 +1,4 @@
-﻿using FitMind_API.Data;
+using FitMind_API.Data;
 using FitMind_API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -52,6 +52,10 @@ builder.Services.AddHttpClient("Sightengine", client =>
     client.BaseAddress = new Uri("https://api.sightengine.com/1.0/");
 });
 builder.Services.AddScoped<SightengineService>();
+
+// ✅ Chatbot Service
+builder.Services.AddHttpClient<GeminiChatService>();
+builder.Services.AddScoped<GeminiChatService>();
 
 // ✅ Services implementation
 builder.Services.AddTransient<IEmailService, EmailService>();

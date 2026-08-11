@@ -440,6 +440,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FitMind_API.Controllers.ChatbotController",
+    "Method": "AskChatbot",
+    "RelativePath": "api/Chatbot/ask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "FitMind_API.Models.ChatRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FitMind_API.Controllers.CommentsController",
     "Method": "DislikeComment",
     "RelativePath": "api/Comments/{id}/dislike",
@@ -1490,5 +1506,46 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FitMind_API.Controllers.SearchController",
+    "Method": "GlobalSearch",
+    "RelativePath": "api/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "q",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FitMind_API.Models.DTOs.SearchResultDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

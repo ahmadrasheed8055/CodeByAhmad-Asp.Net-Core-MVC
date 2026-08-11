@@ -758,6 +758,37 @@
         }
       }
     },
+    "/api/Chatbot/ask": {
+      "post": {
+        "tags": [
+          "Chatbot"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.ChatRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.ChatRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FitMind_API.Models.ChatRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Comments/getAll/{postId}": {
       "get": {
         "tags": [
@@ -2503,6 +2534,69 @@
           }
         }
       }
+    },
+    "/api/Search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchResultDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchResultDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchResultDTO"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2520,6 +2614,45 @@
           },
           "optionText": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.ChatHistory": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.ChatRequestDTO": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageMimeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.ChatHistory"
+            },
             "nullable": true
           }
         },
@@ -3085,6 +3218,122 @@
             "nullable": true
           },
           "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.DTOs.GetAllPostsDTO"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.PollDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.DTOs.PollDTO"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.SearchUserDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchUserDTO"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.Entities.Categories, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FitMind_API.Models.Entities.Categories"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchResultDTO": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.SearchUserDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          },
+          "posts": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.GetAllPostsDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          },
+          "categories": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.Entities.Categories, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          },
+          "polls": {
+            "$ref": "#/components/schemas/FitMind_API.Models.DTOs.SearchGroup`1[[FitMind_API.Models.DTOs.PollDTO, FitMind-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FitMind_API.Models.DTOs.SearchUserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "profilePhoto": {
             "type": "string",
             "nullable": true
           }
