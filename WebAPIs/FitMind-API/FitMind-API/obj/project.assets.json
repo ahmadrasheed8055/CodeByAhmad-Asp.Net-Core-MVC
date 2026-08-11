@@ -8363,23 +8363,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LIST-IT\\.nuget\\packages\\": {},
+    "C:\\Users\\attiq\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
+      "projectUniqueName": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
       "projectName": "FitMind-API",
-      "projectPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
-      "packagesPath": "C:\\Users\\LIST-IT\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET Core\\ASP.Net Core\\WebAPIs\\FitMind-API\\FitMind-API\\obj\\",
+      "projectPath": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\FitMind-API.csproj",
+      "packagesPath": "C:\\Users\\attiq\\.nuget\\packages\\",
+      "outputPath": "C:\\Ahmad Side\\CodeByAhmad-Asp.Net-Core-MVC\\WebAPIs\\FitMind-API\\FitMind-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\LIST-IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\attiq\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8478,7 +8478,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace FitMind_API.Models.DTOs
 {
@@ -8,6 +8,27 @@ namespace FitMind_API.Models.DTOs
         public Profanity Profanity { get; set; }
         public Personal Personal { get; set; }
         public Link Link { get; set; }
+
+        [JsonProperty("moderation_classes")]
+        public ModerationClasses ModerationClasses { get; set; }
+    }
+
+    public class ModerationClasses
+    {
+        [JsonProperty("discriminatory")]
+        public decimal Discriminatory { get; set; }
+
+        [JsonProperty("insulting")]
+        public decimal Insulting { get; set; }
+
+        [JsonProperty("toxic")]
+        public decimal Toxic { get; set; }
+
+        [JsonProperty("sexual")]
+        public decimal Sexual { get; set; }
+
+        [JsonProperty("self-harm")]
+        public decimal SelfHarm { get; set; }
     }
 
     public class Profanity

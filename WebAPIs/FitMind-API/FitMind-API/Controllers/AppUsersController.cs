@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,12 +45,13 @@ namespace FitMind_API.Controllers
         }
 
         //generate JWT token
-        private string generateJwtToken(string email)
+        private string generateJwtToken(string email, int userId)
         {
             //claims  
             var claims = new[]
             {
-               new Claim(ClaimTypes.Email, email)
+               new Claim(ClaimTypes.Email, email),
+               new Claim(ClaimTypes.NameIdentifier, userId.ToString())
            };
 
             //key  
@@ -87,26 +88,126 @@ namespace FitMind_API.Controllers
             {
                 return BadRequest("Wrong password");
             }
-            var token = this.generateJwtToken(user.Email);
+            var token = this.generateJwtToken(user.Email, user.Id);
             return Ok(new {token = token, userId = user.Id });
 
         }
 
 
 
+        private int GetCurrentUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return string.IsNullOrEmpty(userIdClaim) ? 0 : int.Parse(userIdClaim);
+        }
+
         [HttpGet("get-user/{id}")]
         public async Task<ActionResult<PublicAppUserDTO>> GetUser(int id)
         {
-            var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.Id == id);
+            var user = await _context.AppUsers
+                .Include(u => u.Followers)
+                .Include(u => u.Following)
+                .SingleOrDefaultAsync(u => u.Id == id);
 
-
-            var result = JsonSerializer.Deserialize<PublicAppUserDTO>(JsonSerializer.Serialize(user));
-
-            if (user == null || result == null)
+            if (user == null)
             {
                 return NotFound("User not found");
             }
-            return result;
+            
+            var totalPosts = await _context.AddPosts.CountAsync(p => p.UserId == id && !p.IsDeleted);
+            var totalComments = await _context.PostComments.CountAsync(c => c.UserId == id && !c.IsDeleted);
+            var totalLikes = await _context.PostReactions.CountAsync(r => r.UserId == id && r.IsLike == true && !r.Post!.IsDeleted);
+
+            var currentUserId = GetCurrentUserId();
+            bool isFollowing = user.Followers != null && user.Followers.Any(f => f.FollowerId == currentUserId);
+
+            var result = new PublicAppUserDTO
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                EmailConfirmed = user.EmailConfirmed,
+                IsDeleted = user.IsDeleted,
+                JoinedDate = user.JoinedDate,
+                UpdatedAt = user.UpdatedAt,
+                Status = user.Status,
+                UniqueName = user.UniqueName,
+                UserVisibility = user.UserVisibility,
+                Bio = user.Bio,
+                Phone = user.Phone,
+                FacebookLink = user.FacebookLink,
+                InstagramLink = user.InstagramLink,
+                Location = user.Location,
+                Country = user.Country,
+                FollowersCount = user.Followers?.Count ?? 0,
+                FollowingCount = user.Following?.Count ?? 0,
+                TotalPosts = totalPosts,
+                TotalComments = totalComments,
+                TotalLikes = totalLikes,
+                IsFollowing = isFollowing
+            };
+
+            return result!;
+        }
+
+        [HttpPost("follow/{id}")]
+        public async Task<IActionResult> FollowUser(int id)
+        {
+            var currentUserId = GetCurrentUserId();
+            if (currentUserId == 0) return Unauthorized();
+            if (currentUserId == id) return BadRequest(new { message = "You cannot follow yourself." });
+
+            var targetUser = await _context.AppUsers.FindAsync(id);
+            if (targetUser == null) return NotFound("User not found.");
+
+            var currentUser = await _context.AppUsers.FindAsync(currentUserId);
+
+            var existingFollow = await _context.UserFollowers
+                .FirstOrDefaultAsync(f => f.FollowerId == currentUserId && f.FollowingId == id);
+
+            if (existingFollow != null) return BadRequest(new { message = "Already following this user." });
+
+            var follow = new UserFollower
+            {
+                FollowerId = currentUserId,
+                FollowingId = id
+            };
+
+            _context.UserFollowers.Add(follow);
+
+            // Create notification
+            var notification = new AppNotification
+            {
+                TargetUserId = id,
+                ActorName = currentUser?.Username,
+                ActorImage = currentUser?.ProfilePhoto != null ? "data:image/jpeg;base64," + Convert.ToBase64String(currentUser.ProfilePhoto) : null,
+                NotificationType = "follow",
+                Message = $"{currentUser?.Username} started following you.",
+                TargetId = currentUserId // Send the follower's ID so target can view profile
+            };
+
+            _context.AppNotifications.Add(notification);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Successfully followed user." });
+        }
+
+        [HttpDelete("unfollow/{id}")]
+        public async Task<IActionResult> UnfollowUser(int id)
+        {
+            var currentUserId = GetCurrentUserId();
+            if (currentUserId == 0) return Unauthorized();
+
+            var existingFollow = await _context.UserFollowers
+                .FirstOrDefaultAsync(f => f.FollowerId == currentUserId && f.FollowingId == id);
+
+            if (existingFollow == null) return BadRequest(new { message = "Not following this user." });
+
+            _context.UserFollowers.Remove(existingFollow);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Successfully unfollowed user." });
         }
         private string uniqueNameGenerator(string username)
         {
@@ -204,7 +305,7 @@ namespace FitMind_API.Controllers
             userToken.Status = 2;
             _context.UserRegistrationTokens.Update(userToken);
             await _context.SaveChangesAsync(); // Save token update
-            var token = this.generateJwtToken(user.Email);
+            var token = this.generateJwtToken(user.Email, user.Id);
             return Ok(new { message = "User registered successfully and token linked!"});
         }
 
@@ -376,6 +477,52 @@ namespace FitMind_API.Controllers
         private bool AppUsersExists(int id)
         {
             return _context.AppUsers.Any(e => e.Id == id);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO resetDTO)
+        {
+            if (string.IsNullOrEmpty(resetDTO.Token) || string.IsNullOrEmpty(resetDTO.NewPassword))
+            {
+                return BadRequest(new { message = "Token and New Password are required." });
+            }
+
+            // Find the token
+            var userToken = await _context.UserRegistrationTokens.FirstOrDefaultAsync(t => t.Token == resetDTO.Token && t.TokenType == 2);
+
+            if (userToken == null)
+            {
+                return NotFound(new { message = "Invalid or missing token." });
+            }
+            if (userToken.ExpiryDate < DateTime.UtcNow)
+            {
+                return BadRequest(new { message = "Token has expired." });
+            }
+            if (userToken.Status == 2)
+            {
+                return BadRequest(new { message = "Token has already been used." });
+            }
+
+            // Find the associated user by email
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == userToken.Email);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            // Update user password
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(resetDTO.NewPassword);
+            user.PasswordUpdateAt = DateTime.UtcNow;
+            _context.AppUsers.Update(user);
+
+            // Mark token as used
+            userToken.Status = 2;
+            _context.UserRegistrationTokens.Update(userToken);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Password has been successfully reset." });
         }
 
         //update password
