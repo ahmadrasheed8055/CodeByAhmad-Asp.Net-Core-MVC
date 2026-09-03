@@ -27,7 +27,7 @@ namespace FitMind_API.Controllers
             try
             {
                 var response = await _chatService.GenerateChatResponseAsync(request);
-                return Ok(new ChatResponseDTO { Response = response });
+                return Ok(response);
             }
             catch (Exception ex)
             {

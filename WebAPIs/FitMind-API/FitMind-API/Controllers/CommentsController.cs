@@ -67,7 +67,8 @@ namespace FitMind_API.Controllers
                     UserName = c.User.Username,
                     UserImage = c.User.ProfilePhoto != null
                                         ? Convert.ToBase64String(c.User.ProfilePhoto)
-                                        : null
+                                        : null,
+                    UserRole = c.User.Role ?? "User"
                 })
                 .ToListAsync();
 
@@ -120,7 +121,8 @@ namespace FitMind_API.Controllers
                     UserName = c.User.Username,
                     UserImage = c.User.ProfilePhoto != null
                                         ? Convert.ToBase64String(c.User.ProfilePhoto)
-                                        : null
+                                        : null,
+                    UserRole = c.User.Role ?? "User"
                 })
                 .ToListAsync();
 

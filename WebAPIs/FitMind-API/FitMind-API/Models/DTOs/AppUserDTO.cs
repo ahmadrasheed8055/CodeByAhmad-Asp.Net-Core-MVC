@@ -1,4 +1,4 @@
-﻿using FitMind_API.Models.Entities;
+using FitMind_API.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace FitMind_API.Models.DTOs
@@ -35,6 +35,13 @@ namespace FitMind_API.Models.DTOs
         public string? InstagramLink { get; set; }
         public string? Location { get; set; }
         public string? Country { get; set; }
+
+        public string Role { get; set; } = "User";
+        public int? SpecializationCategoryId { get; set; }
+        public int? YearsOfExperience { get; set; }
+        public string? Certifications { get; set; }
+        public string? Availability { get; set; }
+        public string? WhatsAppNumber { get; set; }
 
         // Navigation Property for Tokens
         //public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();

@@ -39,6 +39,20 @@ namespace FitMind_API.Models.Entities
 
         //update password date colum
         public DateTime? PasswordUpdateAt { get; set; }
+
+        // Role ("User" or "Trainer")
+        [StringLength(20)]
+        public string Role { get; set; } = "User";
+
+        // Trainer-Specific Details (Nullable for regular users)
+        public int? SpecializationCategoryId { get; set; }
+        public virtual Categories? SpecializationCategory { get; set; }
+
+        public int? YearsOfExperience { get; set; }
+        public string? Certifications { get; set; }
+        public string? Availability { get; set; }
+        [StringLength(30)]
+        public string? WhatsAppNumber { get; set; }
             
         // Navigation Property for Tokens
         public ICollection<UserRT>? UserTokens { get; set; } = new List<UserRT>();

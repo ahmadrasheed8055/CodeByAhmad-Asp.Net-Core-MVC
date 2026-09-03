@@ -43,9 +43,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            RoleClaimType = "role"
         };
     });
+
+// ✅ Admin Authorization Policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireAssertion(context =>
+        context.User.HasClaim(c => (c.Type == "role" || c.Type == System.Security.Claims.ClaimTypes.Role) && c.Value == "admin")
+        || context.User.IsInRole("admin")));
+});
 
 builder.Services.AddHttpClient("Sightengine", client =>
 {
@@ -56,6 +65,9 @@ builder.Services.AddScoped<SightengineService>();
 // ✅ Chatbot Service
 builder.Services.AddHttpClient<GeminiChatService>();
 builder.Services.AddScoped<GeminiChatService>();
+
+builder.Services.Configure<FitMind_API.Models.AdminSettings>(
+    builder.Configuration.GetSection("AdminSettings"));
 
 // ✅ Services implementation
 builder.Services.AddTransient<IEmailService, EmailService>();
@@ -87,5 +99,20 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Seed 10 verified trainers & standard categories
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var dbContext = services.GetRequiredService<FMDBContext>();
+        await TrainerSeeder.SeedTrainersAsync(dbContext);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[Seeder Error]: {ex.Message}");
+    }
+}
 
 app.Run();

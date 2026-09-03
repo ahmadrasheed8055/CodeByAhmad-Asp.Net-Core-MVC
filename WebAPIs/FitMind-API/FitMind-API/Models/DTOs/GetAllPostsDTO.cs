@@ -23,6 +23,7 @@ namespace FitMind_API.Models.DTOs
         public bool? IsSavedByMe { get; set; } // Check if the user has saved this post
         public bool IsHidden { get; set; } // Indicates if the post is hidden by the author
         public bool? IsFollowingAuthor { get; set; }
+        public string? AuthorRole { get; set; }
 
         public PollDTO? Poll { get; set; }
     }

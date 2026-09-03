@@ -25,6 +25,9 @@ namespace FitMind_API.Data
         public DbSet<SavedPost> SavedPosts { get; set; }
         public DbSet<HiddenPost> HiddenPosts { get; set; }
 
+        public DbSet<AdminUser> AdminUsers { get; set; }
+        public DbSet<Report> Reports { get; set; }
+
         public DbSet<Poll> Polls { get; set; }
         public DbSet<PollOption> PollOptions { get; set; }
         public DbSet<PollVote> PollVotes { get; set; }
@@ -168,6 +171,26 @@ namespace FitMind_API.Data
                 .WithMany(u => u.Followers)
                 .HasForeignKey(uf => uf.FollowingId)
                 .OnDelete(DeleteBehavior.Restrict);
+                
+            // Report relations
+            modelBuilder.Entity<Report>()
+                .HasOne(r => r.ReporterUser)
+                .WithMany()
+                .HasForeignKey(r => r.ReporterUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Report>()
+                .HasOne(r => r.ReviewedByAdmin)
+                .WithMany()
+                .HasForeignKey(r => r.ReviewedByAdminId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Trainer Specialization Category relation
+            modelBuilder.Entity<AppUsers>()
+                .HasOne(u => u.SpecializationCategory)
+                .WithMany()
+                .HasForeignKey(u => u.SpecializationCategoryId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

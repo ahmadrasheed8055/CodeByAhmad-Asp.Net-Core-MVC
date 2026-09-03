@@ -1,4 +1,4 @@
-﻿namespace FitMind_API.Models.DTOs
+namespace FitMind_API.Models.DTOs
 {
     public class UpdateAppUserDTO
     {
@@ -13,5 +13,11 @@
         public string? InstagramLink { get; set; }
         public string? Location { get; set; }
         public string? Country { get; set; }
+
+        public int? SpecializationCategoryId { get; set; }
+        public int? YearsOfExperience { get; set; }
+        public string? Certifications { get; set; }
+        public string? Availability { get; set; }
+        public string? WhatsAppNumber { get; set; }
     }
 }

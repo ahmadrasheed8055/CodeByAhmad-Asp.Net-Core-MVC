@@ -842,4 +842,9 @@ C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\D
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.pdb
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\FitMind-API.genruntimeconfig.cache
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\ref\FitMind-API.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\Google.Apis.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\Google.Apis.Auth.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\Google.Apis.Core.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\System.Management.dll
+C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
 C:\Ahmad Side\CodeByAhmad-Asp.Net-Core-MVC\WebAPIs\FitMind-API\FitMind-API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

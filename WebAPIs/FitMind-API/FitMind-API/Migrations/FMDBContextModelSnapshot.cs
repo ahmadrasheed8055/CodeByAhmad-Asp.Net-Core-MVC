@@ -76,6 +76,37 @@ namespace FitMind_API.Migrations
                     b.ToTable("AddPosts");
                 });
 
+            modelBuilder.Entity("FitMind_API.Models.Entities.AdminUser", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("FirstLoginAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastLoginAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("AdminUsers");
+                });
+
             modelBuilder.Entity("FitMind_API.Models.Entities.AppNotification", b =>
                 {
                     b.Property<int>("NotificationId")
@@ -127,10 +158,16 @@ namespace FitMind_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Availability")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("BackgroundPhoto")
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Certifications")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
@@ -172,6 +209,14 @@ namespace FitMind_API.Migrations
                     b.Property<byte[]>("ProfilePhoto")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("SpecializationCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -189,7 +234,16 @@ namespace FitMind_API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("WhatsAppNumber")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int?>("YearsOfExperience")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SpecializationCategoryId");
 
                     b.ToTable("AppUsers");
                 });
@@ -217,6 +271,9 @@ namespace FitMind_API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -463,6 +520,50 @@ namespace FitMind_API.Migrations
                     b.ToTable("PostReactions");
                 });
 
+            modelBuilder.Entity("FitMind_API.Models.Entities.Report", b =>
+                {
+                    b.Property<int>("ReportId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReportId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("ReporterUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReviewedByAdminId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("TargetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TargetType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ReportId");
+
+                    b.HasIndex("ReporterUserId");
+
+                    b.HasIndex("ReviewedByAdminId");
+
+                    b.ToTable("Reports");
+                });
+
             modelBuilder.Entity("FitMind_API.Models.Entities.SavedPost", b =>
                 {
                     b.Property<int>("Id")
@@ -577,6 +678,16 @@ namespace FitMind_API.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitMind_API.Models.Entities.AppUsers", b =>
+                {
+                    b.HasOne("FitMind_API.Models.Entities.Categories", "SpecializationCategory")
+                        .WithMany()
+                        .HasForeignKey("SpecializationCategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("SpecializationCategory");
                 });
 
             modelBuilder.Entity("FitMind_API.Models.Entities.CommentReactions", b =>
@@ -709,6 +820,24 @@ namespace FitMind_API.Migrations
                     b.Navigation("Post");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitMind_API.Models.Entities.Report", b =>
+                {
+                    b.HasOne("FitMind_API.Models.Entities.AppUsers", "ReporterUser")
+                        .WithMany()
+                        .HasForeignKey("ReporterUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitMind_API.Models.Entities.AdminUser", "ReviewedByAdmin")
+                        .WithMany()
+                        .HasForeignKey("ReviewedByAdminId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("ReporterUser");
+
+                    b.Navigation("ReviewedByAdmin");
                 });
 
             modelBuilder.Entity("FitMind_API.Models.Entities.SavedPost", b =>

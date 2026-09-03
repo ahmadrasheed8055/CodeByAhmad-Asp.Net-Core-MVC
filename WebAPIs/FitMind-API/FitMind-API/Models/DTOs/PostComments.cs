@@ -17,6 +17,7 @@ namespace FitMind_API.Models.DTOs
         // 👇 user Things
         public string UserName { get; set; } = string.Empty;
         public string? UserImage { get; set; }
+        public string? UserRole { get; set; }
 
         // 👇 Comments System Extension
         public int? ParentCommentId { get; set; }

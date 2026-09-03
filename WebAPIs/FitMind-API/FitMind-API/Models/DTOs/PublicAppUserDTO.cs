@@ -34,6 +34,14 @@ namespace FitMind_API.Models.DTOs
         public string? Location { get; set; }
         public string? Country { get; set; }
 
+        public string Role { get; set; } = "User";
+        public int? SpecializationCategoryId { get; set; }
+        public string? SpecializationCategoryName { get; set; }
+        public int? YearsOfExperience { get; set; }
+        public string? Certifications { get; set; }
+        public string? Availability { get; set; }
+        public string? WhatsAppNumber { get; set; }
+
         public int FollowersCount { get; set; } = 0;
         public int FollowingCount { get; set; } = 0;
         public int TotalPosts { get; set; } = 0;

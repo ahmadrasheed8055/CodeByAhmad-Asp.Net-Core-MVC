@@ -25,5 +25,8 @@ namespace FitMind_API.Models.DTOs
         public SearchGroup<GetAllPostsDTO>? Posts { get; set; }
         public SearchGroup<Categories>? Categories { get; set; }
         public SearchGroup<PollDTO>? Polls { get; set; }
+        public string? DetectedIntent { get; set; }
+        public string? IntentDisplayName { get; set; }
+        public double? ConfidenceScore { get; set; }
     }
 }

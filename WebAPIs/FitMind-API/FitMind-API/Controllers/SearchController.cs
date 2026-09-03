@@ -50,6 +50,32 @@ namespace FitMind_API.Controllers
             if (pageSize > 50) pageSize = 50;
 
             var result = new SearchResultDTO();
+
+            // Run AI classification on search query using custom trained model
+            try
+            {
+                using var httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromSeconds(1.5);
+                var aiRequestPayload = System.Text.Json.JsonSerializer.Serialize(new { text = q });
+                var aiContent = new StringContent(aiRequestPayload, System.Text.Encoding.UTF8, "application/json");
+                var aiResponse = await httpClient.PostAsync("http://127.0.0.1:8000/predict-intent", aiContent);
+                if (aiResponse.IsSuccessStatusCode)
+                {
+                    var aiJson = await aiResponse.Content.ReadAsStringAsync();
+                    var aiPrediction = System.Text.Json.JsonSerializer.Deserialize<FitMind_API.Models.CustomAIPredictionResult>(aiJson, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    if (aiPrediction != null)
+                    {
+                        result.DetectedIntent = aiPrediction.Intent;
+                        result.IntentDisplayName = aiPrediction.DisplayName;
+                        result.ConfidenceScore = aiPrediction.Confidence;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Search AI] Classification non-fatal fallback: {ex.Message}");
+            }
+
             int userId = 0;
             var claimsUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!string.IsNullOrEmpty(claimsUserId))

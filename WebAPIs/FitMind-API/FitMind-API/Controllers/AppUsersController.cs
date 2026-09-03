@@ -105,6 +105,7 @@ namespace FitMind_API.Controllers
         public async Task<ActionResult<PublicAppUserDTO>> GetUser(int id)
         {
             var user = await _context.AppUsers
+                .Include(u => u.SpecializationCategory)
                 .Include(u => u.Followers)
                 .Include(u => u.Following)
                 .SingleOrDefaultAsync(u => u.Id == id);
@@ -139,6 +140,13 @@ namespace FitMind_API.Controllers
                 InstagramLink = user.InstagramLink,
                 Location = user.Location,
                 Country = user.Country,
+                Role = user.Role ?? "User",
+                SpecializationCategoryId = user.SpecializationCategoryId,
+                SpecializationCategoryName = user.SpecializationCategory?.Name,
+                YearsOfExperience = user.YearsOfExperience,
+                Certifications = user.Certifications,
+                Availability = user.Availability,
+                WhatsAppNumber = user.WhatsAppNumber,
                 FollowersCount = user.Followers?.Count ?? 0,
                 FollowingCount = user.Following?.Count ?? 0,
                 TotalPosts = totalPosts,
@@ -239,7 +247,6 @@ namespace FitMind_API.Controllers
             {
                 return NotFound(new { message = "User not found" });
             }
-            //  UniqueName UserVisibility Bio Phone FacebookLink InstagramLink  Location Country
 
             user.Username = appUser.Username;
             if (appUser.UniqueName != null)
@@ -258,6 +265,17 @@ namespace FitMind_API.Controllers
             user.InstagramLink = appUser.InstagramLink;
             user.Location = appUser.Location;
             user.Country = appUser.Country;
+
+            // Trainer specific updates
+            if (user.Role == "Trainer" || (!string.IsNullOrEmpty(appUser.Role) && appUser.Role == "Trainer"))
+            {
+                user.SpecializationCategoryId = appUser.SpecializationCategoryId;
+                user.YearsOfExperience = appUser.YearsOfExperience;
+                user.Certifications = appUser.Certifications;
+                user.Availability = appUser.Availability;
+                user.WhatsAppNumber = appUser.WhatsAppNumber;
+            }
+
             user.UpdatedAt = DateTime.UtcNow;
             user.Status = 3;
 
@@ -268,7 +286,6 @@ namespace FitMind_API.Controllers
         }
 
         [AllowAnonymous]
-
         [HttpPost("add-app-user")]
         public async Task<ActionResult> PostAppUsers(RegistrationAppUserDTO uDTO)
         {
@@ -284,6 +301,10 @@ namespace FitMind_API.Controllers
             if (userToken.ExpiryDate < DateTime.UtcNow)
                 return BadRequest(new { message = "Token has expired!" });
 
+            string role = !string.IsNullOrWhiteSpace(uDTO.Role) && uDTO.Role.Equals("Trainer", StringComparison.OrdinalIgnoreCase) 
+                ? "Trainer" 
+                : "User";
+
             // Step 2: Create user
             AppUsers user = new AppUsers()
             {
@@ -294,7 +315,8 @@ namespace FitMind_API.Controllers
                 EmailConfirmed = true,
                 IsDeleted = false,
                 JoinedDate = DateTime.UtcNow,
-                Status = 2
+                Status = 2,
+                Role = role
             };
 
             _context.AppUsers.Add(user);
@@ -306,7 +328,55 @@ namespace FitMind_API.Controllers
             _context.UserRegistrationTokens.Update(userToken);
             await _context.SaveChangesAsync(); // Save token update
             var token = this.generateJwtToken(user.Email, user.Id);
-            return Ok(new { message = "User registered successfully and token linked!"});
+            return Ok(new { message = "User registered successfully and token linked!" });
+        }
+
+        // GET: api/AppUsers/trainers
+        [AllowAnonymous]
+        [HttpGet("trainers")]
+        public async Task<ActionResult<IEnumerable<PublicAppUserDTO>>> GetTrainers()
+        {
+            var trainers = await _context.AppUsers
+                .Include(u => u.SpecializationCategory)
+                .Include(u => u.Followers)
+                .Include(u => u.Following)
+                .Where(u => u.Role == "Trainer" && !u.IsDeleted)
+                .OrderByDescending(u => u.YearsOfExperience ?? 0)
+                .ToListAsync();
+
+            var currentUserId = GetCurrentUserId();
+
+            var result = trainers.Select(user => new PublicAppUserDTO
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                EmailConfirmed = user.EmailConfirmed,
+                IsDeleted = user.IsDeleted,
+                JoinedDate = user.JoinedDate,
+                UpdatedAt = user.UpdatedAt,
+                Status = user.Status,
+                UniqueName = user.UniqueName,
+                UserVisibility = user.UserVisibility,
+                Bio = user.Bio,
+                Phone = user.Phone,
+                FacebookLink = user.FacebookLink,
+                InstagramLink = user.InstagramLink,
+                Location = user.Location,
+                Country = user.Country,
+                Role = user.Role ?? "Trainer",
+                SpecializationCategoryId = user.SpecializationCategoryId,
+                SpecializationCategoryName = user.SpecializationCategory?.Name,
+                YearsOfExperience = user.YearsOfExperience,
+                Certifications = user.Certifications,
+                Availability = user.Availability,
+                WhatsAppNumber = user.WhatsAppNumber,
+                FollowersCount = user.Followers?.Count ?? 0,
+                FollowingCount = user.Following?.Count ?? 0,
+                IsFollowing = currentUserId > 0 && user.Followers != null && user.Followers.Any(f => f.FollowerId == currentUserId)
+            }).ToList();
+
+            return Ok(result);
         }
 
 
